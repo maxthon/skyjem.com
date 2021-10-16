@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Element: Custom Search Engine Results-only Layout Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Reference for icons -->
+ 
+  <style>
+/* Top: search box with magniying glass, input, and microphone */
+.center-top {
+  width: 540px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 90px;
+  border-color: #c6c6c6;
+}
+.center-top:hover {
+  box-shadow: 0 1px 6px #dfe1e5;
+}
+
+.icon {
+  color: #5f6368;
+}
+
+.input2{
+  border: none;
+  outline: none;
+  height: 35px;
+  width: 90%;
+  font-size: 16px;
+  background: url("https://www.google.com/cse/static/images/1x/en/branding.png") left center no-repeat rgb(255, 255, 255);
+
+}
+.input2:focus{
+  background:white;
+  outline: none;
+}
+/* Icons are only decorative */
+.icons {
+  color: #5f6368;
+}
+/* google image*/
+.logo {
+  padding: 20px;
+}
+.center-bottom {
+  display: block;
+  text-align: center;
+  padding-top: 18px;
+}
+.button {
+  background-image: linear-gradient(top, #f5f5f5, #f1f1f1);
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+  color: #5f6368;
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  margin: 11px 4px;
+  padding: 0 16px;
+  line-height: 27px;
+  height: 36px;
+  min-width: 54px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+.button:hover {
+  border: 1px solid #c6c6c6;
+  box-shadow: 0 1px 1px #dfe1e5;
+}
+
+/* END: center  */
+</style>
+
+
+<!-- Put the following script before the closing </head> tag. -->
+<script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:7463904445" nonce="acL7Y1teFArpTqfjcxzXlA"></script>
+
+</head>
+
+<body>
+
+
+<p>
+<form id="cse-search-box-form-id">
+        <!-- Top: Search box with magnifying glass, input, and microphone-->
+        <div class="center-top">
+          <input class="input2" name="q" id="cse-search-input-box-id">
+          <i class="fa fa-search icon"></i>
+          <input class="button" value="Google Search" type="submit" style="display:none;">
+      
+        </div>
+        
+        <!-- Bottom: 2 buttons-->
+        <div class="center-bottom">
+           </div>
+      </form>
+<!-- Search box form
+<form id="cse-search-box-form-id">
+  
+  <input type="text" id="cse-search-input-box-id" size="25" autocomplete="off"/>
+  
+  <input type="submit" value="Search"/>
+</form>
+ -->
+
+
+<script src="//www.google.com/cse/brand?form=cse-search-box-form-id&inputbox=cse-search-input-box-id" nonce="acL7Y1teFArpTqfjcxzXlA">
+</script>
+<!-- End of Google branding watermark -->
+
+<!-- Element code snippet -->
+<script nonce="acL7Y1teFArpTqfjcxzXlA">
+  function executeQuery(evt) {
+    evt.preventDefault();
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  document.getElementById('cse-search-box-form-id').addEventListener('submit', executeQuery);
+</script>
+
+<!-- Place this tag where you want the search results to render. -->
+<div class="gcse-searchresults-only"></div>
+
+</body>
+</html>
