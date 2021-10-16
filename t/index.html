@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%234a90e2%22></rect><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2290%22>🔎</text></svg>"
+    />
+
+    <style>
+      .cse-header {
+                padding: 12px 0 0 0!important;
+                background-color: #f1f1f1;
+                background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));
+                border-bottom: 1px solid #666;
+                border-color: #e5e5e5;
+                height: 56px;
+                width: 100vm!important;
+              }
+      /*.gsc-tabHeader.gsc-tabhActive, .gsc-refinementHeader.gsc-refinementhActive {
+          color: #dd4b39 !important;
+          border-color: #dd4b39 !important;
+      }*/
+    </style>
+  </head>
+  <body onload="good()">
+    <div class="cse-header">
+      <div style="width:22em;padding:5px 9px 4px 19px">
+        <script
+          async
+          src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:6126772043"
+        >
+        //partner-pub-2698861478625135:7463904445  986e380489f922911
+        </script>
+        <div class="gcse-searchbox"></div>
+      </div>
+    </div>
+    <div>
+      <div class="gcse-searchresults"></div>
+    </div>
+    <script>
+      // Install the callback.
+      window.__gcse || (window.__gcse = {});
+      window.__gcse.searchCallbacks = {
+        image: {
+          rendered: makenicer
+        },
+        web: {
+          rendered: makenicer
+        }
+      };
+      var title = "";
+      const styleDeclarations = {
+        color: "#dd4b39 !important",
+        "border-color": "#dd4b39 !important"
+      };
+      function makenicer() {
+        console.log("here");
+        //change document title
+        var url = new URL(document.location.href);
+        var q = url.hash.split("gsc.q");
+        if (q[1]) {
+          let c = decodeURIComponent(q[1].slice(1));
+          let a = c.split("&")[0];
+          if (a != title) document.title = a + " - Google Result";
+          title = c;
+        }
+      }
+      function good() {
+        //console.log("good");
+        //changeStyle("gsc-tabhActive", styleDeclarations);
+      }
+      /*function changeStyle(findSelector, newDeclarations) {
+        // Change original css style declaration.
+        for (let sheet of document.styleSheets) {
+          if (sheet.href) return;
+          const cssRulesList = sheet.cssRules;
+          for (let styleRule of cssRulesList) {
+            if (styleRule.selectorText === findSelector) {
+              console.log("found");
+              Object.keys(newDeclarations).forEach(cssProp => {
+                console.log(styleRule.style[cssProp]);
+                styleRule.style[cssProp] = newDeclarations[cssProp];
+              });
+            }
+          }
+        }
+      } */
+    </script>
+  </body>
+</html>
