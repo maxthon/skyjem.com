@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="refresh" content="0; url=https://i.maxask.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Reference for icons -->
+  <link rel="stylesheet" href="style.css">
+ <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<body>
+  <!-- Top navigation bar-->
+  <header>
+    <div class="header">
+      <!-- Top navigation bar left two buttons -->
+      <div class="header-left">
+        
+      </div>
+      <!-- Top navigation bar right two buttons, grid, and picture -->
+      <div class="header-right">
+        <a href="https://mail.google.com/mail/?tab=wm&amp;authuser=0&amp;ogbl" target="_blank">Gmail</a>
+        
+      </div>
+    </div>
+  </header>
+  <!--  Google image -->
+  <div class="center">
+    <img style="logo" src="https://cdn.glitch.com/5b38c330-2b6d-4e9a-9130-d41e69fd76de%2Fcoollogo_com-1254624.png?v=1632209504914" alt="maxask">
+    <!-- Search box and buttons-->
+    <main>
+      <form action="s/">
+        <!-- Top: Search box with magnifying glass, input, and microphone-->
+        <div class="center-top">
+          <i class="fa fa-search icon"></i>
+          <input class="input2" name="q">
+          <i class="fa fa-microphone"></i>
+          
+        </div>
+        
+        <!-- Bottom: 2 buttons-->
+        <div class="center-bottom">
+          <input class="button" value="Google Search" type="submit">
+       </div>
+      </form>
+    </main>
+    
+    
+  </div>
+
+  <!-- Bottom navigaton bar-->
+  <footer>
+    <div class="footer">
+      <!-- bottom  left three buttons -->
+       <!-- bottom right three buttons -->
+      <div class="footer-right">
+        <a href="https://www.maxthon.com/privacy/">Privacy</a>
+        <a href="https://www.maxthon.com/eula/">Terms</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+  document.querySelector(".input2").focus();
+  </script>
+</body>
+
+</html>
