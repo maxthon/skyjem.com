@@ -23,6 +23,7 @@ if (elm) {
     title = c;
   }        
 }
+insertTop()
 }
 const adt = `<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4174938960125325"
 crossorigin="anonymous"></script>
