@@ -1,6 +1,6 @@
 AskTab PRIVACY POLICY
 
-This Privacy Policy ( “Privacy Policy”) is designed to describe the data collection and privacy practices of the AskTab software, browser extension, new tab functionality and website (available at: https://www.maxask.com/asktab/ (the “Site”), (collectively and together with any related service, content, feature, design, tool or technology, the “Product”). The Product is owned and developed by Bitrabbit Ltd. Ltd. and its selected business partners (together, the “Company”, “us” or “we”), and applies to users that access and/or use the Product.
+This Privacy Policy ( “Privacy Policy”) is designed to describe the data collection and privacy practices of the AskTab software, browser extension, new tab functionality and website (available at: https://www.maxask.com/asktab/ (the “Site”), (collectively and together with any related service, content, feature, design, tool or technology, the “Product”). The Product is owned and developed by Maxthon Ltd. and its selected business partners (together, the “Company”, “us” or “we”), and applies to users that access and/or use the Product.
 
 This Privacy Policy is an integral part of the Product’s End User License Agreement (“EULA”), available at https://www.maxask.com/asktab/eula.txt, (collectively referred to as the “Agreement”).
 
@@ -40,6 +40,6 @@ Some of the web search services provided herein are provided by CodeFuel and pow
 
 11. General Queries; Contact Us. For any other or general information, you are welcome to contact us at: AskTab27@gmail.com.
 
-Email: asktab@nbdomain.com
+Email: asktab@maxthon.com
 
-Address: Bitrabbit Ltd. Ltd,  Singapore.
+Address: Maxthon Ltd,  Singapore.
