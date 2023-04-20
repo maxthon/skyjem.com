@@ -1,6 +1,6 @@
 AskTab Term of use
 
-1. Acceptance. By attempting to use, using and/or accessing this web site (the “Site“), and certain internet services, AskTab and content (“Services“) which are made available to you (“User“) by Maxask (the “Brand“), User agrees to be bound by these Terms of Use (“TOU“) and the Privacy Policy available at [http://www.maxask.com/asktab/privacy.txt] (TOU and Privacy Policy together shall be referred to as the “Agreement“). If User does not agree with the Agreement or any modification thereof, User must not use the Site. the brand may at its sole discretion block User’s access to the Site or stop providing Services to User.
+1. Acceptance. By attempting to use, using and/or accessing this web site (the “Site“), and certain internet services, AskTab and content (“Services“) which are made available to you (“User“) by Maxask (the “Brand“), User agrees to be bound by these Terms of Use (“TOU“) and the Privacy Policy available at [http://www.maxask.com/asktab/files/privacy.txt] (TOU and Privacy Policy together shall be referred to as the “Agreement“). If User does not agree with the Agreement or any modification thereof, User must not use the Site. the brand may at its sole discretion block User’s access to the Site or stop providing Services to User.
 
 2. Age Requirement. By using the Site and the Services User represents that User is at least 18 years old, that User is authorized to use the Site and the Services, and that User agrees to be bound by the terms of this Agreement.
 

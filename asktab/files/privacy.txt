@@ -2,7 +2,7 @@ AskTab PRIVACY POLICY
 
 This Privacy Policy ( “Privacy Policy”) is designed to describe the data collection and privacy practices of the AskTab software, browser extension, new tab functionality and website (available at: https://www.maxask.com/asktab/ (the “Site”), (collectively and together with any related service, content, feature, design, tool or technology, the “Product”). The Product is owned and developed by Maxthon Ltd. and its selected business partners (together, the “Company”, “us” or “we”), and applies to users that access and/or use the Product.
 
-This Privacy Policy is an integral part of the Product’s End User License Agreement (“EULA”), available at https://www.maxask.com/asktab/eula.txt, (collectively referred to as the “Agreement”).
+This Privacy Policy is an integral part of the Product’s End User License Agreement (“EULA”), available at https://www.maxask.com/asktab/files/eula.txt, (collectively referred to as the “Agreement”).
 
 1. Consent: You are not legally obligated to provide us with Personal Information (as will be defined below), and you acknowledge that providing us with Personal Information is done freely. By using the Product, you give your consent to this Privacy Policy and to the data practices described in it. If you do not agree to this Privacy Policy, please do not access or otherwise use the Site or the Product.
 
@@ -28,16 +28,10 @@ We do and may share non-personally identifiable information about your use of th
 
 7. Information Security. We follow generally accepted standards of information security, virtually and physically, to protect Personal Information if submitted to us. However, you should be aware that no method of transmission over the Internet, or method of electronic storage, is 100% secure. Therefore, we cannot 100% guarantee at all times the information’s absolute security. Notwithstanding the foregoing, we shall not bear any liability for any unintentional disclosure or a disclosure that occurs due to a security breach of the Company’s systems or facilities.
 
-8. User Choices
+8. Some of the web search services provided herein are provided by CodeFuel and powered by CodeFuel’s search partners. For information on the web search services data collection, please visit https://www.maxask.com/asktab/files/eula.txt, and the search providers privacy policy, as applicable, both as updated from time to time and at any successor locations.
 
-We believe in full transparency with our users, and let them choose whether they want their information to be collected and used. When a Personal Information about users will be provides, collected and/or retained by us, the users to which the information pertains can contact us at any time with request to edit or delete Personal Information about them. Such request shall carry the subject “Personal Information Request” and shall be directed to our compliance department at: https://www.AskTab.com/contact.html.
+9. Minors Control. The Product is not designed or addresses to minors. We do not knowingly collect or solicit personal information from anyone under the age of 13 or knowingly allow such persons to send Personal Information to us. If user is between the ages of 13 and 17, User is requested to use the Company’s Service with adult supervision only. If we learn that we maintain Personal Information related to a minor, we will remove such information as quickly as we become aware. If you believe that we might have any Personal Information from or about a User under 13, please contact us.
 
-Some of the web search services provided herein are provided by CodeFuel and powered by CodeFuel’s search partners. For information on the web search services data collection, please visit http://www.codefuel.com/legal/end_user_privacy_policy, and the search providers privacy policy, as applicable, both as updated from time to time and at any successor locations.
-
-9. Minors Control. The Product is not designed or addresses to minors. We do not knowingly collect or solicit personal information from anyone under the age of 13 or knowingly allow such persons to send Personal Information to us. If user is between the ages of 13 and 17, User is requested to use the Company’s Service with adult supervision only. If we learn that we maintain Personal Information related to a minor, we will remove such information as quickly as we become aware. If you believe that we might have any Personal Information from or about a User under 13, please contact us at https://www.AskTab.com/contact.html.
-
-10. Different Jurisdictions. If you are residence of California, Canada or the EU you may have certain rights about your Personal Information, including, to get information about 3rd parties with which such Personal Information is shared by us. In cases where you wish to exercise such right, and provided that we do maintain Personal Information about you, please contact us at https://www.AskTab.com/contacts.html, with request that carries the subject “3rd party sharing of information” and we will process and provide you with answers accordingly.
-
-11. General Queries; Contact Us. For any other or general information, you are welcome to contact us at: asktab@maxthon.com.
+10. General Queries; Contact Us. For any other or general information, you are welcome to contact us at: asktab@maxthon.com.
 
 Address:  Leighton Centre,77 Leighton Road, Causeway Bay, Hong Kong
