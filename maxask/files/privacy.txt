@@ -1,8 +1,8 @@
-AskTab PRIVACY POLICY
+MaxAsk PRIVACY POLICY
 
-This Privacy Policy ( “Privacy Policy”) is designed to describe the data collection and privacy practices of the AskTab software, browser extension, new tab functionality and website (available at: https://www.maxask.com/asktab/ (the “Site”), (collectively and together with any related service, content, feature, design, tool or technology, the “Product”). The Product is owned and developed by Maxthon Ltd. and its selected business partners (together, the “Company”, “us” or “we”), and applies to users that access and/or use the Product.
+This Privacy Policy ( “Privacy Policy”) is designed to describe the data collection and privacy practices of the MaxAsk software, browser extension, new tab functionality and website (available at: https://www.maxask.com/MaxAsk/ (the “Site”), (collectively and together with any related service, content, feature, design, tool or technology, the “Product”). The Product is owned and developed by Maxthon Ltd. and its selected business partners (together, the “Company”, “us” or “we”), and applies to users that access and/or use the Product.
 
-This Privacy Policy is an integral part of the Product’s End User License Agreement (“EULA”), available at https://www.maxask.com/asktab/files/eula.txt, (collectively referred to as the “Agreement”).
+This Privacy Policy is an integral part of the Product’s End User License Agreement (“EULA”), available at https://www.maxask.com/maxask/files/eula.txt, (collectively referred to as the “Agreement”).
 
 1. Consent: You are not legally obligated to provide us with Personal Information (as will be defined below), and you acknowledge that providing us with Personal Information is done freely. By using the Product, you give your consent to this Privacy Policy and to the data practices described in it. If you do not agree to this Privacy Policy, please do not access or otherwise use the Site or the Product.
 
@@ -28,11 +28,11 @@ We do and may share non-personally identifiable information about your use of th
 
 7. Information Security. We follow generally accepted standards of information security, virtually and physically, to protect Personal Information if submitted to us. However, you should be aware that no method of transmission over the Internet, or method of electronic storage, is 100% secure. Therefore, we cannot 100% guarantee at all times the information’s absolute security. Notwithstanding the foregoing, we shall not bear any liability for any unintentional disclosure or a disclosure that occurs due to a security breach of the Company’s systems or facilities.
 
-8. Some of the web search services provided herein are provided by CodeFuel and powered by CodeFuel’s search partners. For information on the web search services data collection, please visit https://www.maxask.com/asktab/files/eula.txt, and the search providers privacy policy, as applicable, both as updated from time to time and at any successor locations.
+8. Some of the web search services provided herein are provided by CodeFuel and powered by CodeFuel’s search partners. For information on the web search services data collection, please visit https://www.maxask.com/maxask/files/eula.txt, and the search providers privacy policy, as applicable, both as updated from time to time and at any successor locations.
 
 9. Minors Control. The Product is not designed or addresses to minors. We do not knowingly collect or solicit personal information from anyone under the age of 13 or knowingly allow such persons to send Personal Information to us. If user is between the ages of 13 and 17, User is requested to use the Company’s Service with adult supervision only. If we learn that we maintain Personal Information related to a minor, we will remove such information as quickly as we become aware. If you believe that we might have any Personal Information from or about a User under 13, please contact us.
 
-Contact us at https://www.maxask.com/asktab/files/contact.txt
+Contact us at https://www.maxask.com/maxask/files/contact.txt
 
 About us:
 
