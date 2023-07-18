@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+    <body onload="redirect()">
+
+        <!-- Your content here -->
+        <script>
+            function redirect(){
+                const u  = new URL(window.location.href)
+                const q = u.searchParams.get('q')
+                const newurl = "https://google.com/search?q="+q
+                window.location.href = newurl
+            }
+        </script>
+        </body>
+</html>
