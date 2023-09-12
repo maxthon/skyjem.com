@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabbed Iframe</title>
+    <title>MaxAsk.com</title>
     <style>
         body, html {
             margin: 0;
@@ -53,19 +53,46 @@
             border: none;
         }
     </style>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform" async="async"></script>
 </head>
 
 <body>
+    <div class="sharethis-sticky-share-buttons"></div>
   <div class="tabs">
     </div>
 
     <iframe id="mainIframe" src="../s/cse.html?q="></iframe>
 
     <script>
+        // Helper function to set a cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+        // Helper function to get a cookie by name
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+        function getParam(param){
+            return new URLSearchParams(window.location.search).get(param);
+        }
+        
         const tabs = [
-            {name:"Google",icon:"https://www.google.com/favicon.ico",url:"../s/cse.html?q="},
-            {name:"Bing",icon:"https://www.bing.com/sa/simg/favicon-2x.ico",url:"https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q="}
+            {name:"Google",icon:"https://www.google.com/favicon.ico",url:"../s/cse.html?q=",s:true},
+            {name:"Bing",icon:"https://www.bing.com/sa/simg/favicon-2x.ico",url:"https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=",s:true},
+            {name:"AI Image",url:"https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D",icon:"https://www.bing.com/sa/simg/favicon-2x.ico"}
         ]
+        function findTab(url){
+            for(const tab of tabs){
+                if(tab.url===url) return tab
+            }
+            return null
+        }
+        const iframe = document.getElementById('mainIframe')
         // Create tab elements based on the array
         const tabsContainer = document.querySelector('.tabs');
         tabs.forEach(tab => {
@@ -86,32 +113,28 @@
         // Make the first tab active by default
         tabsContainer.children[0].classList.add('active');
         
-        // JavaScript to handle tab clicks and iframe URL change
-        document.querySelectorAll('.tab-item').forEach(tab => {
-            tab.addEventListener('click', function () {
-                // Remove active class from all tabs
-                document.querySelectorAll('.tab-item').forEach(innerTab => {
-                    innerTab.classList.remove('active');
-                });
-
-                // Set active class to the clicked tab
-                this.classList.add('active');
-
-                // Change iframe URL
-                document.getElementById('mainIframe').src = this.getAttribute('data-url');
-            });
-        });
-
-        function getParam(param){
-            return new URLSearchParams(window.location.search).get(param);
-        }
-        const visitedUrls = []
-        const iframe = document.getElementById('mainIframe')
+        //restore and navigate
         let searchTerm = getParam('q')
         let url = "../s/cse.html?q="
+        
+        const savedTabUrl = getCookie('activeTabUrl');
+        console.log("savedTabUrl",savedTabUrl)
+        if (savedTabUrl) {
+            const savedTab = document.querySelector(`.tab-item[data-url="${savedTabUrl}"]`);
+            if (savedTab) {
+                // Remove default active state from the first tab
+                tabsContainer.children[0].classList.remove('active');               
+                // Set saved tab as active
+                savedTab.classList.add('active');
+                console.log(savedTab)
+                // Change iframe URL to the saved tab's URL
+                url = savedTab.getAttribute('data-url');
+            }
+        }
         if(searchTerm){
             url+=searchTerm
-        }
+        }else
+            url+='maxthon'
         iframe.src = url
 
         // JavaScript to handle tab clicks and iframe URL change
@@ -125,6 +148,7 @@
                 // Set active class to the clicked tab
                 this.classList.add('active');
                 let dataUrl = this.getAttribute('data-url');
+                const tab = findTab(dataUrl)
                 // Change iframe URL
                 const iframe = document.getElementById('mainIframe')
                 if(iframe){
@@ -138,6 +162,8 @@
                         console.error(e.message)
                     }
                     console.log("searchTerm:",searchTerm)
+                    if(tab&&tab.s)
+                        setCookie('activeTabUrl', dataUrl, 30)
                     dataUrl+=searchTerm
                     iframe.src = dataUrl
                 }
