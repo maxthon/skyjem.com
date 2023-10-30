@@ -217,6 +217,9 @@
                         document.querySelector("#iframeContainer").style.display = 'block'
                         const targetIframe = document.querySelector(`#iframeContainer iframe[data-url='${dataUrl}']`);
                         if(targetIframe) {
+                            if(targetIframe.src == 'about:blank')
+                            targetIframe.src = tabInfo.url
+                        
                             targetIframe.style.display = "block";
                         }
                     } 
@@ -234,7 +237,7 @@
             tabs.forEach(tab => {
                 if(tab.iframe) {
                     let iframe = document.createElement('iframe');
-                    iframe.src = tab.url;
+                    iframe.src = "about:blank";
                     iframe.style.width = "100%";
                     iframe.style.height = "100%";
                     iframe.style.border = "0"; // Remove default iframe border
