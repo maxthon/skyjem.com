@@ -84,6 +84,7 @@
         const tabs = [
             {name:"Google",icon:"https://www.google.com/favicon.ico",url:"../s/cse.html?q=",s:true},
             {name:"Bing",icon:"https://www.bing.com/sa/simg/favicon-2x.ico",url:"https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=",s:true},
+            {name:"AI Chat",icon:"https://www.bing.com/sa/simg/favicon-2x.ico",url:"https://chat.maxask.com/",s:false},
             {name:"AI Image",url:"https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D",icon:"https://www.bing.com/sa/simg/favicon-2x.ico"}
         ]
         function findTab(url){
@@ -162,9 +163,10 @@
                         console.error(e.message)
                     }
                     console.log("searchTerm:",searchTerm)
-                    if(tab&&tab.s)
+                    if(tab&&tab.s){
                         setCookie('activeTabUrl', dataUrl, 30)
-                    dataUrl+=searchTerm
+                        dataUrl+=searchTerm
+                    }
                     iframe.src = dataUrl
                 }
             });
