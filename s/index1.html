@@ -66,15 +66,7 @@
           display: flex;
           align-items: center;
         }
-        #iframeContainer {
-            position: absolute;
-            top: calc(5px + 1em);  /* Adjust based on your tabs div height */
-            left: 0;
-            width: 100vw;
-            height: calc(100vh - 5px - 1em); /* Adjust based on your tabs div height */
-            z-index: 5;  /* So it's below tabs */
-            overflow: hidden;
-        }
+        
     </style>
     <script type="text/javascript"
         src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform"
@@ -103,7 +95,6 @@
         <div class="gcse-searchresults" style="flex:60%"></div>
         <div style="flex:40%"><!-- Side Area --></div>
       </div>
-      <div id="iframeContainer" style="display:none"></div>
       <script>
         // Install the callback.
         window.__gcse || (window.__gcse = {});
@@ -141,7 +132,7 @@
         const tabs = [
                 { name: "Google", icon: "https://www.google.com/favicon.ico", url: "../s/cse.html?q=", append: true },
                 { name: "Bing", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", url: "https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=", append: true },
-                { name: "AI Chat", url: "https://chat.maxask.com", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false,iframe:true },
+                { name: "AI Chat", url: "https://chat.maxask.com", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false },
                 { name: "AI Image", url: "https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false }
             ]
         // Helper function to set a cookie
@@ -159,14 +150,6 @@
         }
         function getParam(param) {
             return new URLSearchParams(window.location.search).get(param);
-        }
-        function setActiveTab(tabElm){
-            // Remove 'active' class from all tabs
-            document.querySelectorAll('.tab-item').forEach(innerTab => {
-                        innerTab.classList.remove('active');
-                    });
-                    // Add 'active' class to the clicked tab
-                    tabElm.classList.add('active');
         }
         function buildTabs() {
             // Create tab elements based on the array
@@ -191,35 +174,10 @@
                     let input = document.querySelector('#gsc-i-id1');
                     if (input && input.value) searchTerm = input.value
                     let dataUrl = this.getAttribute('data-url');
-                    const tabInfo = findTab(dataUrl)
-                    if(tabInfo.name=="Google") {
-                        setActiveTab(this)
-                        document.querySelector("#iframeContainer").style.display = 'none'
-                        return
-                    }
-
-                    if(!tabInfo.iframe){ //open in new window or just do nothing
-                        if(tabInfo.append) {
-                            let input = document.querySelector('#gsc-i-id1');
-                            if (input && input.value) searchTerm = input.value;
-                            dataUrl += searchTerm;
-                        }
-                        window.open(dataUrl);
-                        return
-                    }
-                    setActiveTab(this)
-                    // Hide all iframes
-                    document.querySelectorAll("#iframeContainer iframe").forEach(iframe => {
-                            iframe.style.display = "none";
-                        });
-                    if(tabInfo.iframe) {
-                        // Show the associated iframe
-                        document.querySelector("#iframeContainer").style.display = 'block'
-                        const targetIframe = document.querySelector(`#iframeContainer iframe[data-url='${dataUrl}']`);
-                        if(targetIframe) {
-                            targetIframe.style.display = "block";
-                        }
-                    } 
+                    const tab = findTab(dataUrl)
+                    if(tab.append)
+                        dataUrl += searchTerm
+                    window.open(dataUrl)
                 })
             })
         }
@@ -229,23 +187,6 @@
             }
             return null
         }
-        function preloadIframes() {
-            const iframeContainer = document.getElementById("iframeContainer");
-            tabs.forEach(tab => {
-                if(tab.iframe) {
-                    let iframe = document.createElement('iframe');
-                    iframe.src = tab.url;
-                    iframe.style.width = "100%";
-                    iframe.style.height = "100%";
-                    iframe.style.border = "0"; // Remove default iframe border
-                    iframe.style.display = "none"; // Hide by default
-                    iframe.dataset.url = tab.url;  // Associate with tab URL for later reference
-                    iframeContainer.appendChild(iframe);
-                }
-            });
-        }
-
-        preloadIframes();
         //restore and navigate
         let searchTerm = getParam('q')
         let url = "./cse1.html?q="
