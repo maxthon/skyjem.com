@@ -28,6 +28,7 @@
             font-family: Arial, sans-serif;
             font-size: 13px;
             z-index: 10;
+            visibility: hidden;
         }
 
         .tab-item {
@@ -56,8 +57,8 @@
         }
 
         .cse-header {
-          padding: 38px 0 0 10px !important;
-          background-color: #f1f1f1;
+          padding: 10px 0 0 10px !important;
+          background-color: #fff;
           background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));
           border-bottom: 1px solid #666;
           border-color: #e5e5e5;
@@ -76,13 +77,9 @@
             overflow: hidden;
         }
     </style>
-    <script type="text/javascript"
-        src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform"
-        async="async"></script>
 </head>
 
 <body>
-    <div class="sharethis-sticky-share-buttons"></div>
     <div class="tabs">
     </div>
 
@@ -92,8 +89,8 @@
 
           <script
             async
-            src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:6126772043"
-          >
+            src="https://cse.google.com/cse.js?cx=3974449b75e8d899b"
+          > //pt-mobile1
             
           </script>
           <div class="gcse-searchbox"></div>
@@ -140,9 +137,9 @@
     <script>
         const tabs = [
                 { name: "Google", icon: "https://www.google.com/favicon.ico", url: "../s/cse.html?q=", append: true },
-                { name: "Bing", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", url: "https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=", append: true },
-                { name: "AI Chat", url: "https://chat.maxask.com", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false,iframe:true },
-                { name: "AI Image", url: "https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false }
+                //{ name: "Bing", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", url: "https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=", append: true },
+                //{ name: "AI Chat", url: "https://chat.maxask.com", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false,iframe:true },
+                //{ name: "AI Image", url: "https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D", icon: "https://www.bing.com/sa/simg/favicon-2x.ico",append:false }
             ]
         // Helper function to set a cookie
         function setCookie(name, value, days) {
@@ -217,10 +214,9 @@
                         document.querySelector("#iframeContainer").style.display = 'block'
                         const targetIframe = document.querySelector(`#iframeContainer iframe[data-url='${dataUrl}']`);
                         if(targetIframe) {
-                            if(targetIframe.src == 'about:blank')
+                          if(targetIframe.src == 'about:blank')
                             targetIframe.src = tabInfo.url
-                        
-                            targetIframe.style.display = "block";
+                          targetIframe.style.display = "block";
                         }
                     } 
                 })
