@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-_11-Fog_1">
+      <rect width="30" height="30"/>
+    </clipPath>
+  </defs>
+  <g id="_11-Fog_1" data-name="11-Fog – 1" clip-path="url(#clip-_11-Fog_1)">
+    <g id="路径_1" data-name="路径 1" transform="translate(-0.064 -2.341)">
+      <path id="减去_4" data-name="减去 4" d="M-2372.436-195.108h-.017a5.112,5.112,0,0,1-3.5-1.838,8.335,8.335,0,0,1-1.961-6.086,6.172,6.172,0,0,1,2.839-4.6,10.229,10.229,0,0,1,2.625-1.315,13.115,13.115,0,0,1,1.873-3.855,9.644,9.644,0,0,1,2.767-2.65,8.191,8.191,0,0,1,4.365-1.2c.128,0,.226,0,.319,0a9.474,9.474,0,0,1,4.913,1.528,10.932,10.932,0,0,1,3.043,3.071,14.522,14.522,0,0,1,1.983,4.376,8.729,8.729,0,0,1,2.677,1.287,5.863,5.863,0,0,1,2.574,5.067,6.2,6.2,0,0,1-2.625,5,7.943,7.943,0,0,1-2.52,1.218h-.353v-2h.069a6.188,6.188,0,0,0,1.627-.835,4.154,4.154,0,0,0,1.8-3.436,3.8,3.8,0,0,0-1.659-3.326,6.667,6.667,0,0,0-2.074-1.031l-1.192-.274-.279-1.224a12.63,12.63,0,0,0-1.69-3.7,7.777,7.777,0,0,0-6.369-3.721c-.076,0-.155,0-.248,0a6.511,6.511,0,0,0-5.44,2.927,11.159,11.159,0,0,0-1.631,3.288l-.272,1.089-1.1.324a8.488,8.488,0,0,0-2.046,1.035,4.119,4.119,0,0,0-1.989,3.093,6.326,6.326,0,0,0,1.455,4.622,3.266,3.266,0,0,0,2.029,1.169v2Z" transform="translate(2378 221.001)" fill="#fff" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+    <g id="组_639" data-name="组 639" transform="translate(-0.135)">
+      <rect id="矩形_807" data-name="矩形 807" width="2" height="9" rx="1" transform="translate(16.18 19) rotate(90)" fill="#97d8ff"/>
+      <rect id="矩形_808" data-name="矩形 808" width="2" height="5.911" rx="1" transform="translate(23.091 19) rotate(90)" fill="#97d8ff"/>
+      <rect id="矩形_809" data-name="矩形 809" width="2" height="9" rx="1" transform="translate(23.091 26) rotate(90)" fill="#97d8ff"/>
+      <rect id="矩形_810" data-name="矩形 810" width="2" height="5.911" rx="1" transform="translate(13.091 26) rotate(90)" fill="#97d8ff"/>
+      <rect id="矩形_811" data-name="矩形 811" width="2" height="6.911" rx="1" transform="translate(18.591 22.552) rotate(90)" fill="#97d8ff"/>
+      <rect id="矩形_812" data-name="矩形 812" width="2" height="3.336" rx="1" transform="translate(23.091 22.552) rotate(90)" fill="#97d8ff"/>
+      <rect id="矩形_813" data-name="矩形 813" width="2" height="3.336" rx="1" transform="translate(10.516 22.552) rotate(90)" fill="#97d8ff"/>
+    </g>
+  </g>
+</svg>

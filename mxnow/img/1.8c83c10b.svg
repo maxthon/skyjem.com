@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-_1-Sunny">
+      <rect width="30" height="30"/>
+    </clipPath>
+  </defs>
+  <g id="_1-Sunny" data-name="1-Sunny" clip-path="url(#clip-_1-Sunny)">
+    <g id="组_618" data-name="组 618" transform="translate(-2995 -144)">
+      <rect id="矩形_776" data-name="矩形 776" width="30" height="30" transform="translate(2995 144)" fill="none"/>
+      <path id="联合_1" data-name="联合 1" d="M14,30V25.5h2.5V30Zm7.775-6.957,1.768-1.768,3.182,3.182-1.768,1.768Zm-18,1.414,3.182-3.182,1.768,1.768L5.543,26.225ZM7,15a8,8,0,1,1,8,8A8,8,0,0,1,7,15Zm18.5,1V13.5H30V16ZM0,16V13.5H4.5V16ZM21.775,6.457l3.182-3.182,1.768,1.768L23.543,8.225Zm-18-1.414L5.543,3.275,8.725,6.457,6.957,8.225ZM14,4.5V0h2.5V4.5Z" transform="translate(2995 144)" fill="#ffd10a"/>
+    </g>
+  </g>
+</svg>
