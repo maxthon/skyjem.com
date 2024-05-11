@@ -2,105 +2,306 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaxAsk.com</title>
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaxAsk.com</title>
+  <style>
+    body {
+      font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva, verdana, "Microsoft YaHei", sans-serif !important;
+    }
 
-        .cse-header {
-          padding: 10px 0 0 10px !important;
-          background-color: #fff;
-          border-bottom: 1px solid #666;
-          border-color: #e5e5e5;
-          height: 80px;
-          width: 100vm!important;
-          display: flex;
-          align-items: center;
-        }
-        
-    </style>
+    .cse-header {
+      background: transparent;
+      margin-top: 10px;
+      border-bottom: none;
+    }
+
+    .cse-header img {
+      padding: 0px 15px 0 15px;
+    }
+
+    .gsc-input-box {
+      border: none;
+      background: transparent;
+    }
+
+    .gsc-search-button-v2 {
+      border: none;
+      background-color: transparent;
+      border-left: 1px solid #ededed;
+      margin-top: 7px;
+      padding: 6px 20px;
+      cursor: pointer;
+    }
+
+    .gsc-search-button path {
+      color: #4285f4;
+      fill: #4285f4;
+    }
+
+    .gsc-search-button-v2 svg {
+      fill: #4285f4;
+      width: 18px !important;
+      height: 18px !important;
+    }
+
+
+
+    .gsc-search-button-v2:hover {
+      border: none;
+      background-color: transparent;
+      border-left: 1px solid #ededed;
+    }
+
+    table.gsc-search-box {
+      position: relative;
+      display: flex;
+      min-height: 44px;
+      box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+      border-radius: 24px;
+      margin: 0 auto;
+    }
+
+    table.gsc-search-box:hover {
+      box-shadow: 0 2px 5px 1px rgb(64 60 67 / 24%);
+      outline: 1px solid #ededed;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .gs-bidi-start-align.gs-snippet {
+      font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva, verdana, "Microsoft YaHei", sans-serif !important;
+      color: #4d5156 !important;
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .gs-bidi-start-align.gs-snippet b {
+      font-weight: bold;
+      color: #5f6368;
+    }
+
+    .gs-visibleUrl {
+      line-height: 18px;
+      font-size: 12px;
+      color: #5f6368 !important;
+      margin: 2px 0 0 0;
+    }
+
+
+    .gs-title {
+      width: calc(100% - 100px);
+    }
+
+    .gs-title>a {
+      font-size: 20px !important;
+      line-height: 24px !important;
+      margin-bottom: 3px !important;
+      color: #1a0dab !important;
+    }
+
+    .gs-title b {
+      font-size: 20px !important;
+      line-height: 24px !important;
+      margin-bottom: 3px !important;
+      color: #1a0dab !important;
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .gs-title>a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .gs-web-image-box .gs-image,
+    .gs-promotion-image-box .gs-promotion-image {
+      max-width: 100%;
+      max-height: 100%;
+      width: 92px;
+      height: 92px;
+      border: none;
+      display: block;
+    }
+
+
+    .gs-web-image-box,
+    .gs-promotion-image-box {
+      float: none;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gsc-table-cell-thumbnail {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 92px;
+      height: 100%;
+    }
+
+    .gs-webResult.gs-result {
+      position: relative;
+    }
+
+    .gs-image-box .gs-web-image-box {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gs-web-image-box .gs-image img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      border: 1px solid #ededed99;
+      object-fit: cover;
+    }
+
+
+    .gs-web-image-box-landscape img {
+      object-fit: contain;
+    }
+
+    .gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-breadcrumb {
+      width: calc(100% - 100px);
+    }
+
+    .gsc-table-cell-snippet-close {
+      width: calc(100% - 100px);
+    }
+
+    .gsc-control-cse,
+    .gsc-control-cse .gsc-table-result {
+      font-size: 14px;
+      font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva, verdana, "Microsoft YaHei", sans-serif !important;
+    }
+
+    .gsc-result-info {
+      padding: 10px 4px;
+    }
+
+    .gsc-tabHeader.gsc-tabhActive {
+      color: #1a73e8 !important;
+      border-bottom: 3px solid #1a73e8;
+      border-bottom-left-radius: 1.5px;
+      border-bottom-right-radius: 1.5px;
+    }
+
+    .gsc-tabHeader {
+      font-weight: normal;
+    }
+
+    .gsc-control-cse {
+      padding: 0 20px 20px 28px;
+    }
+
+    .gsc-input-box {
+      margin-top: 7px;
+      margin-left: 8px;
+      line-height: 22px;
+      width: 18em;
+    }
+
+    .gsc-search-button {
+      width: 4em;
+      /* border-left: 1px solid; */
+    }
+
+    table.gsc-search-box td.gsc-input {
+      padding-right: 0;
+    }
+
+
+
+    input {
+      cursor: text;
+    }
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-page {
+      margin-right: 16px;
+    }
+
+    .gsc-results .gsc-cursor-box {
+      margin-bottom: 24px;
+    }
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+      border-color: #1a0dab;
+      color: #1a0dab;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="cse-header">
-      <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92">
-        <div style="width:22em;padding:5px 9px 4px 19px">
+  <div class="cse-header">
+    <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92">
+    <div style="width:22em;padding:5px 9px 4px 19px">
 
-          <script
-            async
-            src="https://cse.google.com/cse.js?cx=3974449b75e8d899b"
-          > //pt-mobile1
-            
-          </script>
-          <div class="gcse-searchbox"></div>
-        </div>
-      </div>
-      <div style="display:flex">
-        <div class="gcse-searchresults" style="flex:60%"></div>
-        <div style="flex:40%"><!-- Side Area --></div>
-      </div>
-      <script>
-        // Install the callback.
-        window.__gcse || (window.__gcse = {});
-          window.__gcse.searchCallbacks = {
-            image: {
-              rendered: makenicer,
-            },
-            web: {
-              rendered: makenicer,
-              ready:myResultsReadyCallback,
-            },
-        };
-        var title = "";
-        function makenicer() {
-          const elm = document.querySelector(".gsc-tabsArea");
-          if (elm) {
-            console.log("found elm:", elm);
-           var url = new URL(document.location.href);
-            var q = url.hash.split("gsc.q");
-            if (q[1]) {
-              let c = decodeURIComponent(q[1].slice(1));
-              let a = c.split('&')[0]
-              if(a!=title)
-                document.title = a + " - Google Result";
-              title = c;
-            }        
-          }
-        }
-        function myResultsReadyCallback(name, q, promos, results, resultsDiv){
-            console.log(name,q,promos,results,resultsDiv)
-        }
+      <script async src="https://cse.google.com/cse.js?cx=3974449b75e8d899b"> //pt-mobile1
+
       </script>
+      <div class="gcse-searchbox"></div>
+    </div>
+  </div>
+  <div style="display:flex">
+    <div class="gcse-searchresults" style="flex:60%"></div>
+    <div style="flex:40%"><!-- Side Area --></div>
+  </div>
+  <script>
+    // Install the callback.
+    window.__gcse || (window.__gcse = {});
+    window.__gcse.searchCallbacks = {
+      image: {
+        rendered: makenicer,
+      },
+      web: {
+        rendered: makenicer,
+        ready: myResultsReadyCallback,
+      },
+    };
+    var title = "";
+    function makenicer() {
+      const elm = document.querySelector(".gsc-tabsArea");
+      if (elm) {
+        console.log("found elm:", elm);
+        var url = new URL(document.location.href);
+        var q = url.hash.split("gsc.q");
+        if (q[1]) {
+          let c = decodeURIComponent(q[1].slice(1));
+          let a = c.split('&')[0]
+          if (a != title)
+            document.title = a + " - Google Result";
+          title = c;
+        }
+      }
+    }
+    function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
+      console.log(name, q, promos, results, resultsDiv)
+    }
+  </script>
 
-    <script>
-        // Helper function to set a cookie
-        function setCookie(name, value, days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
-        // Helper function to get a cookie by name
-        function getCookie(name) {
-            const value = "; " + document.cookie;
-            const parts = value.split("; " + name + "=");
-            if (parts.length === 2) return parts.pop().split(";").shift();
-        }
-        function getParam(param) {
-            return new URLSearchParams(window.location.search).get(param);
-        }
-        
-        
-    </script>
+  <script>
+    // Helper function to set a cookie
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    // Helper function to get a cookie by name
+    function getCookie(name) {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+    function getParam(param) {
+      return new URLSearchParams(window.location.search).get(param);
+    }
+
+
+  </script>
 </body>
 
 </html>
