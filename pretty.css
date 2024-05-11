@@ -6,6 +6,9 @@ body {
     background: transparent;
     margin-top: 10px;
     border-bottom: none;
+    display: flex;
+    align-items: center;
+    width:22em;
   }
 
   .cse-header img {
