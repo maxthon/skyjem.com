@@ -1,0 +1,7 @@
+node_modules
+gen.js
+template.hbs
+package.json
+partners.json
+pnpm-lock.yaml
+build.sh
