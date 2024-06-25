@@ -119,7 +119,8 @@
             },
         };
         var title = "";
-        function makenicer() {
+        function makenicer(name, q, promos, results, resultsDiv) {
+            console.log("makenicer:", name, q, promos, results, resultsDiv)
             const elm = document.querySelector(".gsc-tabsArea");
             if (elm) {
                 console.log("found elm:", elm);
@@ -135,7 +136,7 @@
             }
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-            console.log(name, q, promos, results, resultsDiv)
+            console.log("myResultsReadyCallback:", name, q, promos, results, resultsDiv)
         }
     </script>
 
