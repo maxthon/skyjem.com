@@ -98,7 +98,7 @@
             <script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:9080238447">
 
             </script>
-            <div class="gcse-searchbox"></div>
+            <div class="gcse-searchbox" enableAutoComplete="true"></div>
         </div>
     </div>
     <div style="display:flex">
@@ -120,7 +120,6 @@
         };
         var title = "";
         function makenicer(name, q, promos, results, resultsDiv) {
-            console.log("makenicer:", name, q, promos, results, resultsDiv)
             const elm = document.querySelector(".gsc-tabsArea");
             if (elm) {
                 console.log("found elm:", elm);
@@ -136,7 +135,7 @@
             }
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-            console.log("myResultsReadyCallback:", name, q, promos, results, resultsDiv)
+            //console.log("myResultsReadyCallback:", name, q, promos, results, resultsDiv)
         }
     </script>
 
