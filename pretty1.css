@@ -1,0 +1,309 @@
+html {
+  font-size: 16px;
+}
+body {
+  font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva,
+    verdana, "Microsoft YaHei", sans-serif !important;
+}
+@media only screen and (max-width: 768px) {
+  /* Mobile specific styles */
+  .cse-header {
+    padding: 10px 0 0 10px !important;
+    background-color: #fff;
+    border-bottom: 1px solid #666;
+    border-color: #e5e5e5;
+    height: 80px;
+    width: 100vm !important;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .cse-header {
+    background: transparent;
+    margin-top: 10px;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .cse-header img {
+    padding: 0px 15px 0 15px;
+  }
+
+  .gsc-input-box {
+    border: none;
+    background: transparent;
+  }
+
+  .gsc-search-button-v2 {
+    border: none;
+    background-color: transparent;
+    border-left: 1px solid #ededed;
+    margin-top: 7px;
+    padding: 6px 20px;
+    cursor: pointer;
+  }
+
+  .gsc-search-button path {
+    color: #4285f4;
+    fill: #4285f4;
+  }
+
+  .gsc-search-button-v2 svg {
+    fill: #4285f4;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .gsc-search-button-v2:hover {
+    border: none;
+    background-color: transparent;
+    border-left: 1px solid #ededed;
+  }
+
+  table.gsc-search-box {
+    position: relative;
+    display: flex;
+    min-height: 44px;
+    box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+    border-radius: 24px;
+    margin: 0 auto;
+    width: 22rem;
+  }
+
+  table.gsc-search-box:hover {
+    box-shadow: 0 2px 5px 1px rgb(64 60 67 / 24%);
+    outline: 1px solid #ededed;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .gs-bidi-start-align.gs-snippet {
+    font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva,
+      verdana, "Microsoft YaHei", sans-serif !important;
+    color: #4d5156 !important;
+    font-size: 14px;
+    line-height: 1.58;
+  }
+
+  .gs-bidi-start-align.gs-snippet b {
+    font-weight: bold;
+    color: #5f6368;
+  }
+
+  .gs-visibleUrl {
+    line-height: 18px;
+    font-size: 12px;
+    color: #5f6368 !important;
+    margin: 2px 0 0 0;
+  }
+
+  .gs-title {
+    width: calc(100% - 100px);
+  }
+
+  .gs-title > a {
+    font-size: 20px !important;
+    line-height: 24px !important;
+    margin-bottom: 3px !important;
+    color: #1a0dab !important;
+  }
+
+  .gs-title b {
+    font-size: 20px !important;
+    line-height: 24px !important;
+    margin-bottom: 3px !important;
+    color: #1a0dab !important;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .gs-title > a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .gs-web-image-box .gs-image,
+  .gs-promotion-image-box .gs-promotion-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: 92px;
+    height: 92px;
+    border: none;
+    display: block;
+  }
+
+  .gs-web-image-box,
+  .gs-promotion-image-box {
+    float: none;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .gsc-table-cell-thumbnail {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 92px;
+    height: 100%;
+  }
+
+  .gs-webResult.gs-result {
+    position: relative;
+  }
+
+  .gs-image-box .gs-web-image-box {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gs-web-image-box .gs-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid #ededed99;
+    object-fit: cover;
+  }
+
+  .gs-web-image-box-landscape img {
+    object-fit: contain;
+  }
+
+  .gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-breadcrumb {
+    width: calc(100% - 100px);
+  }
+
+  .gsc-table-cell-snippet-close {
+    width: calc(100% - 100px);
+  }
+
+  .gsc-control-cse,
+  .gsc-control-cse .gsc-table-result {
+    font-size: 14px;
+    font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva,
+      verdana, "Microsoft YaHei", sans-serif !important;
+  }
+
+  .gsc-result-info {
+    padding: 10px 4px;
+  }
+
+  .gsc-tabHeader.gsc-tabhActive {
+    color: #1a73e8 !important;
+    border-bottom: 3px solid #1a73e8;
+    border-bottom-left-radius: 1.5px;
+    border-bottom-right-radius: 1.5px;
+  }
+
+  .gsc-tabHeader {
+    font-weight: normal;
+  }
+
+  .gsc-control-cse {
+    padding: 0 20px 20px 28px;
+  }
+
+  .gsc-input-box {
+    margin-top: 7px;
+    margin-left: 8px;
+    line-height: 22px;
+    width: 18em;
+  }
+
+  .gsc-search-button {
+    width: 4em;
+    /* border-left: 1px solid; */
+  }
+
+  table.gsc-search-box td.gsc-input {
+    padding-right: 0;
+  }
+
+  input {
+    cursor: text;
+  }
+
+  .gsc-results .gsc-cursor-box .gsc-cursor-page {
+    margin-right: 16px;
+  }
+
+  .gsc-results .gsc-cursor-box {
+    margin-bottom: 24px;
+  }
+
+  .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+    border-color: #1a0dab;
+    color: #1a0dab;
+  }
+
+  gs-web-image-box-portrait img {
+    align-items: center;
+  }
+
+  .gs-web-image-box-protrait img {
+    object-fit: contain !important;
+  }
+
+  .styleable-title {
+    font-size: 20px !important;
+    line-height: 24px !important;
+    margin-bottom: 3px !important;
+    color: #1a0dab !important;
+  }
+
+  .styleable-description {
+    font-family: Google Sans, arial, sans-serif-medium, sans-seriftahoma, geneva,
+      verdana, "Microsoft YaHei", sans-serif !important;
+    color: #4d5156 !important;
+    font-size: 14px;
+    line-height: 1.58;
+    margin: 2px 0 4px 0;
+  }
+
+  .styleable-rootcontainer {
+    padding: 15px 4px;
+  }
+
+  .styleable-visurl {
+    line-height: 18px;
+    font-size: 12px;
+    color: #5f6368 !important;
+    margin: 2px 0 0 0;
+  }
+
+  .si25 {
+    line-height: 18px;
+    font-size: 12px;
+    color: #5f6368 !important;
+    margin: 2px 0 0 0;
+  }
+
+  .si24 {
+    line-height: 18px;
+    font-size: 10px;
+    color: #5f6368 !important;
+    margin-left: 5px;
+  }
+
+  .exp-sitelinks-container {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 0 0 10px 0;
+  }
+
+  .si15 {
+    font-size: 14px;
+    line-height: 1.57;
+    color: #1a0dab !important;
+  }
+
+  .si71 {
+    font-size: 16px;
+    line-height: 18px;
+    color: #1a0dab;
+  }
+
+  .si72 {
+    line-height: 18px;
+  }
+}
