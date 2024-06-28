@@ -1,64 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Max Ask</title>
-    <link rel="shortcut icon" href="./logos/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <script src='./index.js'></script>
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-    <style type='text/css'>
-        .wrap {
-            background: url('./logos/background.png');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyJem Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 584px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            outline: none;
+        }
+
+        .search-box:hover,
+        .search-box:focus {
+            box-shadow: 0 1px 6px rgba(32, 33, 36, .28);
+            border-color: rgba(223, 225, 229, 0);
+        }
+
+        .search-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .search-button {
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            color: #3c4043;
+            font-size: 14px;
+            margin: 11px 4px;
+            padding: 0 16px;
+            line-height: 27px;
+            height: 36px;
+            min-width: 54px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+            background-color: #f8f9fa;
+            border: 1px solid #dadce0;
+            color: #202124;
         }
     </style>
 </head>
 
 <body>
-    <div class="wrap chrome">
-        <div class="table">
-            <div class="table-cell">
-                <div class="content">
-                    <div class="logo" style="background-image: url('./logos/s_logo.png');"></div>
-                    <div id="uninstall" style="display: none;">Extension was successfully uninstalled!</div>
-                    <!--                <div id="install" style="display: none;">Thanks for installing our extension!</div>-->
-                    <form id="searchForm" class="search-holder" action="javascript:onSearch()">
-                        <i class="icon-search"></i>
-                        <input type="text" class="input" id="search-term" name="q" placeholder="Search web"
-                            autocomplete="off">
-                        <input type="submit" class="submit" value="">
-                    </form>
-                    <div class="widgets" id="widgets">
-                        <ul class='tiles'>
-                            <li class='tile-wrapper'><a href=https://www.youtube.com/ class='youtube' target='_blank'
-                                    title=Youtube><i
-                                        style='background-image: url(./logos/youtube.png);'></i><span>Youtube</span></a>
-                                </il>
-                            <li class='tile-wrapper'><a href=https://open.spotify.com/ class='spotify' target='_blank'
-                                    title=Spotify><i
-                                        style='background-image: url(./logos/spotify.png);'></i><span>Spotify</span></a>
-                                </il>
-                            <li class='tile-wrapper'><a href=https://mail.google.com/ class='gmail' target='_blank'
-                                    title=Gmail><i
-                                        style='background-image: url(./logos/gmail.png);'></i><span>Gmail</span></a>
-                                </il>
-                            <li class='tile-wrapper'><a href=https://www.facebook.com/ class='facebook' target='_blank'
-                                    title=Facebook><i
-                                        style='background-image: url(./logos/fb.png);'></i><span>Facebook</span></a>
-                                </il>
-                            <li class='tile-wrapper'><a href=https://www.twitter.com/ class='twitter' target='_blank'
-                                    title=Twitter><i
-                                        style='background-image: url(./logos/twitter.png);'></i><span>Twitter</span></a>
-                                </il>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <img src='./logos/s_logo.png'></img>
+    <form id="searchForm" class="search-container" action="javascript:onSearch()">
+
+        <input type="text" class="search-box" placeholder="Search SkyJem" id="search-term">
+
+    </form>
+
+    <div class="search-buttons">
+        <button class="search-button" onclick="onSearch()">Search</button>
+    </div>
+    <script>
+        function onSearch() {
+            var input = document.querySelector('#search-term')
+            var n = input.value.trim();
+            location.href = ('/s/?q='.concat(n));
+        }
+    </script>
 </body>
 
 </html>
