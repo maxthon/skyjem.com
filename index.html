@@ -25,7 +25,7 @@
 
 <body>
     <div id="content">
-        <iframe id="mainframe" width="100%" height="100%" frameborder="0" src="./asktab/index.html"></iframe>
+        <iframe id="mainframe" width="100%" height="100%" frameborder="0" src="./_subtab/index.html"></iframe>
     </div>
     <script>
         const url = new URL(location.href)
@@ -33,7 +33,7 @@
         console.log(url)
         if (url.hostname === 'www.skyjem.com' || url.hostname === 'skyjem.com') {
             document.title = "SkyJem - Search The Web"
-            document.querySelector("#mainframe").src = "./asktab/skyjem.html"
+            document.querySelector("#mainframe").src = "./_subtab/skyjem.html"
         }
     </script>
 </body>
