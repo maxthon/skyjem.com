@@ -22,6 +22,7 @@ function loadGoogleAnalytics(trackingId) {
   };
 }
 function dynamicModifyPage() {
+  const url = new URL(location.href)
   if (url.hostname === 'www.skyjem.com' || url.hostname === 'skyjem.com') {
     const link = document.createElement('link');
     link.rel = 'shortcut icon'
