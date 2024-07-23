@@ -15,7 +15,6 @@ class AIMgr {
         };
 
         eventSource.onerror = function () {
-            document.getElementById('output').textContent += '\nConnection closed by server.';
             eventSource.close();
         }
     }
