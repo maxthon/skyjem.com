@@ -15,11 +15,32 @@
       flex: 30%
     }
 
+    .result-all {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      margin-left: -102px;
+      margin-bottom: 25px;
+      margin-top: 25px;
+    }
+
     @media (max-width: 800px) {
 
       .result-left,
       .result-right {
         flex: 2%;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
       }
     }
   </style>
@@ -30,8 +51,8 @@
   </script>
   <div style="display:flex">
     <div class="result-left"><!-- left Area --></div>
-    <div style="display: flex;flex-direction: column;align-items: flex-start;">
-      <div style="display: flex;align-items: center;margin-left:-102px;margin-bottom: 25px;margin-top: 25px;">
+    <div class="result-all">
+      <div class="search-box">
         <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92" style="margin-right:10px;">
         <div class="gcse-searchbox"></div>
       </div>
