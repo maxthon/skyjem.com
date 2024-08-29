@@ -7,14 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaxAsk.com</title>
     <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-
-        }
-
         .tabs {
             position: fixed;
             top: 0;
@@ -55,18 +47,6 @@
             border-bottom: 2px solid #fff;
         }
 
-        .cse-header {
-            padding: 38px 0 0 10px !important;
-            background-color: #f1f1f1;
-            background-image: -webkit-gradient(radial, 100 36, 0, 100 -40, 120, from(#fafafa), to(#f1f1f1));
-            border-bottom: 1px solid #666;
-            border-color: #e5e5e5;
-            height: 80px;
-            width: 100vm !important;
-            display: flex;
-            align-items: center;
-        }
-
         #iframeContainer {
             position: absolute;
             top: calc(5px + 1em);
@@ -79,6 +59,60 @@
             /* So it's below tabs */
             overflow: hidden;
         }
+
+        .result-left {
+            flex: 20%;
+        }
+
+        .result-right {
+            flex: 30%
+        }
+
+        .result-all {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            margin-left: -102px;
+            margin-bottom: 25px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 800px) {
+
+            .result-left,
+            .result-right {
+                flex: 2%;
+            }
+
+            .search-box {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
+            .result-all {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .search-box {
+                display: flex;
+                align-items: center;
+                margin-bottom: 25px;
+                margin-top: 25px;
+                margin-left: 10px;
+            }
+        }
     </style>
     <script type="text/javascript"
         src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform"
@@ -90,20 +124,21 @@
     <div class="sharethis-sticky-share-buttons"></div>
     <div class="tabs">
     </div>
+    <script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:9080238447">
 
-    <div class="cse-header">
-        <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92">
-        <div style="width:22em;padding:5px 9px 4px 19px">
-
-            <script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:9080238447">
-
-            </script>
-            <div class="gcse-searchbox" enableAutoComplete="true"></div>
-        </div>
-    </div>
+    </script>
     <div style="display:flex">
-        <div class="gcse-searchresults" style="flex:60%"></div>
-        <div style="flex:40%"><!-- Side Area --></div>
+        <div class="result-left"><!-- left Area --></div>
+        <div class="result-all">
+            <div class="search-box">
+                <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92" style="margin-right:10px;">
+                <div id="cse" style="width: 100%; margin: 0 auto">
+                    <div class="gcse-searchbox"></div>
+                </div>
+            </div>
+            <div class="gcse-searchresults"></div>
+        </div>
+        <div class="result-right"><!-- right Area --></div>
     </div>
     <div id="iframeContainer" style="display:none"></div>
     <script>
@@ -261,6 +296,7 @@
         buildTabs()
 
     </script>
+    <link rel="stylesheet" href="/pretty.css">
 </body>
 
 </html>
