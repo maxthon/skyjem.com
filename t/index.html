@@ -8,11 +8,25 @@
   <title>MaxAsk.com</title>
   <style>
     .result-left {
-      flex: 10%;
+      flex: 20%;
     }
 
     .result-right {
       flex: 30%
+    }
+
+    .result-all {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      margin-bottom: 25px;
+      margin-top: 25px;
     }
 
     @media (max-width: 800px) {
@@ -21,25 +35,30 @@
       .result-right {
         flex: 2%;
       }
+
+      .result-all {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <div class="cse-header" style="display: flex">
-    <div style="flex:10%"></div>
-    <div style="flex:90%"><img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92">
-      <div style="width:22em;padding:5px 9px 4px 19px">
-        <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16"> //mx-test
-        </script>
-        <div class="gcse-searchbox"></div>
-      </div>
-    </div>
-  </div>
+  <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16"> //mx-test
+  </script>
   <div style="display:flex">
     <div class="result-left"><!-- left Area --></div>
-    <div class="gcse-searchresults"></div>
+    <div class="result-all">
+      <div class="search-box">
+        <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92" style="margin-right:10px;">
+        <div id="cse" style="width: 100%; margin: 0 auto">
+          <div class="gcse-searchbox"></div>
+        </div>
+      </div>
+      <div class="gcse-searchresults"></div>
+    </div>
     <div class="result-right"><!-- right Area --></div>
   </div>
   <script>
