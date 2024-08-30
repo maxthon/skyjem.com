@@ -7,6 +7,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaxAsk.com</title>
   <style>
+    .result-left {
+      flex: 20%;
+    }
+
+    .result-right {
+      flex: 30%
+    }
+
+    .result-all {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .searchboxarea {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      margin-bottom: 25px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 800px) {
+
+      .result-left,
+      .result-right {
+        flex: 2%;
+      }
+
+      .result-all {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
     /* 自定义tab */
     .tabarea {
       display: flex;
@@ -72,9 +108,8 @@
     <div class="result-all">
       <div class="searchboxarea cse-header-hide" id="cse_header">
         <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92" style="margin-right:10px;">
-        <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16">    //mx-test  </script>
-
         <div id="cse" style="width: 100%; margin: 0 auto">
+          <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16">    //mx-test  </script>
           <div class="gcse-searchbox"></div>
         </div>
       </div>
