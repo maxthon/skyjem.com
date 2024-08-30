@@ -140,6 +140,7 @@
     var old_ai_q = '';
     window.onload = () => {
       ai_q = getHashParamValue('gsc.q');
+      document.querySelector('.gsc-tabsArea').style['display'] = 'none';
       document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
       let gs_input = document.getElementById('gsc-i-id1');
       gs_input.addEventListener('keydown', function (event) {
