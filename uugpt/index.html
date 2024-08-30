@@ -8,63 +8,61 @@
   <title>MaxAsk.com</title>
   <style>
     /* 自定义tab */
-.tabarea {
-  display: flex;
-  padding: 0 10px;
-  border-bottom: 1px solid #e5e5e5;
-  gap: 20px;
-  position: relative;
-}
+    .tabarea {
+      display: flex;
+      padding: 0 10px;
+      border-bottom: 1px solid #e5e5e5;
+      gap: 20px;
+      position: relative;
+    }
 
-.tabitem {
-  display: block;
-  padding: 10px 10px;
-  min-width: 72px;
-  color: #666;
-  text-align: center;
-  line-height: 1.5;
-  border-radius: 2px;
-}
+    .tabitem {
+      display: block;
+      padding: 10px 10px;
+      min-width: 72px;
+      color: #666;
+      text-align: center;
+      line-height: 1.5;
+      border-radius: 2px;
+    }
 
-.tabitem-inactive {
-  transition: all 0.2s ease;
-  border-color: transparent;
-  color: #666;
-  cursor: pointer;
-}
-
-
-.tabitem-inactive:hover{
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.tabitem-active {
-  border-bottom: 4px solid #1a73e8;
-  color: #1a73e8;
-  border-radius: 2px;
-  transition: all 0.2s ease;
-  cursor: default;
-}
-
-.unfoldsearch{
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background-image: url(toggle.svg);
-  display: block;
-  background-repeat: no-repeat;
-  background-position: center;
-  top: 10px;
-  right:20px;
-  position: absolute;
-  transition: all 0.15s ease;
-}
-
-.unfoldsearch:hover{
-  background-color: #00000010;
-}
+    .tabitem-inactive {
+      transition: all 0.2s ease;
+      border-color: transparent;
+      color: #666;
+      cursor: pointer;
+    }
 
 
+    .tabitem-inactive:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .tabitem-active {
+      border-bottom: 4px solid #1a73e8;
+      color: #1a73e8;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .unfoldsearch {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      background-image: url(toggle.svg);
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      top: 10px;
+      right: 20px;
+      position: absolute;
+      transition: all 0.15s ease;
+    }
+
+    .unfoldsearch:hover {
+      background-color: #00000010;
+    }
   </style>
 </head>
 
@@ -93,7 +91,7 @@
   </div>
   <div class="aiarea" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
     <div class="aiwrapper">
-      <iframe  id="ai_iframe" class="aiframe" style="border: 0;">
+      <iframe id="ai_iframe" class="aiframe" style="border: 0;">
 
       </iframe>
     </div>
@@ -101,21 +99,21 @@
   <script>
     var ai_q = '';
     var old_ai_q = '';
-    window.onload=()=>{
+    window.onload = () => {
       ai_q = getHashParamValue('gsc.q');
-       document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click',back2Search);
-        let gs_input = document.getElementById('gsc-i-id1');
-        gs_input.addEventListener('keydown', function(event) {
-            // 检查是否按下了回车键（Enter 键）
-            if (event.key === 'Enter' || event.keyCode === 13) {
-                back2Search();
-                // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
-                // event.preventDefault();
-            }
-        });
-        gs_input.addEventListener('input',function(event){
-          ai_q = event.target.value;
-        })
+      document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+      let gs_input = document.getElementById('gsc-i-id1');
+      gs_input.addEventListener('keydown', function (event) {
+        // 检查是否按下了回车键（Enter 键）
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          back2Search();
+          // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
+          // event.preventDefault();
+        }
+      });
+      gs_input.addEventListener('input', function (event) {
+        ai_q = event.target.value;
+      })
 
     }
 
@@ -193,8 +191,8 @@
     }
 
     function showTab(tabid) {
-      
-      if(!tabid){tabid = 0}
+
+      if (!tabid) { tabid = 0 }
       document.getElementById('result_tab_0').classList.add('tabitem-inactive');
       document.getElementById('result_tab_1').classList.add('tabitem-inactive');
       document.getElementById('result_tab_2').classList.add('tabitem-inactive');
@@ -211,12 +209,12 @@
         ch.classList.remove('cse-header-show');
         document.getElementById('show_header').classList.remove('hide');
         showHeader = false;
-        console.log(ai_q,old_ai_q);
-        if(ai_q!=old_ai_q){
-          document.getElementById('ai_iframe').src=`http://localhost:5173/?aisearch_q=${ai_q}`;
+        console.log(ai_q, old_ai_q);
+        if (ai_q != old_ai_q) {
+          document.getElementById('ai_iframe').src = `https://www.uugpt.com/?aisearch_q=${ai_q}`;
           old_ai_q = ai_q;
-        }else{
-          document.getElementById('ai_iframe').src=`http://localhost:5173/`;
+        } else {
+          document.getElementById('ai_iframe').src = `https://www.uugpt.com`;
         }
 
       } else {
@@ -229,17 +227,17 @@
       }
     }
 
-    function back2Search(){
-      if(tabid!=2) return;
+    function back2Search() {
+      if (tabid != 2) return;
       showTab(0);
     }
 
 
   </script>
   <script>
-    
+
     const sh = document.getElementById('show_header');
-    let showHeader=false;//是否显示header
+    let showHeader = false;//是否显示header
     let tabid = getHashParamValue('gsc.tab');
     let webtab = document.getElementById('result_tab_0');
     let imgtab = document.getElementById('result_tab_1');
@@ -262,13 +260,13 @@
 
 
 
-    sh.addEventListener('click', function(event) {
+    sh.addEventListener('click', function (event) {
       let ch = document.getElementById('cse_header');
-      if(!showHeader){
+      if (!showHeader) {
         ch.classList.remove('cse-header-hide');
         ch.classList.add('cse-header-show');
         showHeader = true;
-      }else{
+      } else {
         ch.classList.add('cse-header-hide');
         ch.classList.remove('cse-header-show');
         showHeader = false;
