@@ -3,7 +3,7 @@
 :after {
   box-sizing: border-box;
 }
-.hide{
+.hide {
   display: none !important;
 }
 html {
@@ -16,49 +16,52 @@ body {
 }
 
 /* 针对新样式文件bublegum的调整 */
-.gsc-control-cse{
+.gsc-control-cse {
   border: 0;
 }
 
-.gsc-webResult.gsc-result{
+.gsc-webResult.gsc-result {
   border: 0;
 }
 
-.gsc-control-cse{
+.gsc-control-cse {
   background-color: #fff;
 }
 
-.styleable-rootcontainer{
+.styleable-rootcontainer {
   background-color: #fff;
 }
 
 /* 修改搜索框样式和tab样式 */
-.searchboxarea{
+.searchboxarea {
   width: auto;
-  padding:5px 9px 4px 19px;
+  padding: 5px 9px 4px 19px;
 }
 
-.cse-header-hide{
-  opacity: 0; margin-top:-79px; transition:  opacity 0.5s, margin-top 0.5s;
+.cse-header-hide {
+  opacity: 0;
+  margin-top: -79px;
+  transition: opacity 0.5s, margin-top 0.5s;
 }
 
-.cse-header-show{
-  opacity: 1; margin-top: 0px; transition:  opacity 0.5s, margin-top 0.5s;
+.cse-header-show {
+  opacity: 1;
+  margin-top: 10px;
+  transition: opacity 0.5s, margin-top 0.5s;
 }
-
 
 /* google原有tab */
-.gsc-positioningWrapper{
+.gsc-positioningWrapper {
   display: none;
 }
 
 /* ai组件的边框 */
-.aiarea{
+.aiarea {
   padding: 20px;
   display: flex;
 }
 
-.aiwrapper{
+.aiwrapper {
   display: block;
   width: 100%;
   position: relative;
@@ -70,8 +73,7 @@ body {
   border: 0;
 }
 
-
-.aiframe{
+.aiframe {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -80,38 +82,52 @@ body {
   z-index: 10;
 }
 
-.aiwrapper::before{
+.aiwrapper::before {
   content: "";
   position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px;
-  background: linear-gradient(97deg, #A4EFD1 0%, #9EB3FA 28%, #CAB5FC 54%, #C17BFF 74%, #549CF9 100%);
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    97deg,
+    #a4efd1 0%,
+    #9eb3fa 28%,
+    #cab5fc 54%,
+    #c17bff 74%,
+    #549cf9 100%
+  );
   border-radius: 10px;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
   z-index: -1;
 }
 
-.aiwrapper::after{
+.aiwrapper::after {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: white; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
   border-radius: 8px;
   z-index: 1;
 }
 
-@media (min-width:1369px) {
-  .aiwrapper,.mainarea{
+@media (min-width: 1369px) {
+  .aiwrapper,
+  .mainarea {
     width: 75vw;
     margin-left: 135px;
   }
 
-  .tabarea{
+  .tabarea {
     padding-left: 165px;
-    padding-right: calc( 25vw - 150px);
+    padding-right: calc(25vw - 150px);
   }
 
-  .unfoldsearch{
-    right:  calc( 25vw - 160px);
+  .unfoldsearch {
+    right: calc(25vw - 160px);
   }
 }
 
@@ -306,13 +322,12 @@ body {
     margin-top: 0.25rem;
     margin-left: 8px;
     line-height: 22px;
-    flex:1;
+    flex: 1;
     width: 330px;
   }
 
   .gsc-search-button {
     width: 60px;
-    
   }
 
   table.gsc-search-box td.gsc-input {
@@ -434,11 +449,11 @@ body {
     padding: 0px 8px 0 0px;
   }
 
-  .searchboxarea{
+  .searchboxarea {
     padding: 5px 9px 4px 0px;
   }
 
-  .gsc-input-box{
+  .gsc-input-box {
     width: calc(100vw - 190px);
     border: none;
     background: transparent;
@@ -456,11 +471,11 @@ body {
     justify-content: space-between;
   }
 
-  .gsc-search-button{
+  .gsc-search-button {
     margin-left: 0;
   }
 
-  .gsc-search-button-v2{
+  .gsc-search-button-v2 {
     border: none;
     background: transparent;
     cursor: pointer;
@@ -469,48 +484,52 @@ body {
     margin-top: 0.25rem;
   }
 
-  .gsc-search-button-v2:hover{
+  .gsc-search-button-v2:hover {
     border: none;
     background: transparent;
   }
 
-  .gsc-search-button-v2 svg{
+  .gsc-search-button-v2 svg {
     fill: #4285f4;
     width: 16px;
     height: 16px;
   }
 
-  .gsc-search-box-tools .gsc-search-box .gsc-input{
+  .gsc-search-box-tools .gsc-search-box .gsc-input {
     padding: 6px 5px;
     margin-top: 0.25rem;
   }
 
-  .gsc-control-cse, .gsc-control-cse .gsc-table-result{
+  .gsc-control-cse,
+  .gsc-control-cse .gsc-table-result {
     font-size: 14px;
   }
 
-  .gs-promotion-image-box img.gs-promotion-image, .gs-web-image-box-portrait img.gs-image, .gs-web-image-box-landscape img.gs-image{
+  .gs-promotion-image-box img.gs-promotion-image,
+  .gs-web-image-box-portrait img.gs-image,
+  .gs-web-image-box-landscape img.gs-image {
     border-radius: 8px;
   }
 
-  .gs-webResult .gs-snippet, .gs-fileFormatType{
-   color: #4d5156; 
-   line-height: 1.4;
+  .gs-webResult .gs-snippet,
+  .gs-fileFormatType {
+    color: #4d5156;
+    line-height: 1.4;
   }
-  
-  .gs-promotion .gs-visibleUrl, .gs-webResult .gs-visibleUrl {
+
+  .gs-promotion .gs-visibleUrl,
+  .gs-webResult .gs-visibleUrl {
     color: #5f6368;
     line-height: 18px;
     font-size: 12px;
   }
 
-  .gs-result .gs-title *, .gsc-cursor-page, .gs-spelling a{
+  .gs-result .gs-title *,
+  .gsc-cursor-page,
+  .gs-spelling a {
     font-size: 17px !important;
     line-height: 22px !important;
     margin-bottom: 3px !important;
     color: #1a0dab !important;
   }
-
-
-
 }
