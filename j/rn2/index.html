@@ -1,70 +1,111 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SkyJem.com</title>
-    <style>
-      .result-left { flex: 20%; } .result-right { flex: 30% } .result-all {
-      display: flex; flex-direction: column; align-items: flex-start; }
-      .search-box { display: flex; align-items: center; margin-left: 10px;
-      margin-bottom: 25px; margin-top: 25px; } @media (max-width: 800px) {
-      .result-left, .result-right { flex: 2%; } .result-all { display: flex;
-      flex-direction: column; align-items: stretch; } }
-    </style>
-    <script async src="/head.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyJem.com</title>
+  <style>
+    .result-left {
+      flex: 20%;
+    }
 
-  <body>
-    <script async src="https://cse.google.com/cse.js?cx=e4fb4be3cb6b00613">
-    </script>
-    <div style="display:flex">
-      <div class="result-left"><!-- left Area --></div>
-      <div class="result-all">
-        <div class="search-box">
-          <img
-            src="/googlelogo_92x30.png"
-            alt="Google logo"
-            height="30"
-            width="92"
-            style="margin-right:10px;"
-          />
-          <div id="cse" style="width: 100%; margin: 0 auto">
-            <div class="gcse-searchbox"></div>
-          </div>
+    .result-right {
+      flex: 30%
+    }
+
+    .result-all {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      margin-bottom: 25px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 800px) {
+
+      .result-left,
+      .result-right {
+        flex: 2%;
+      }
+
+      .result-all {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+  <script async src="/head.js"></script>
+</head>
+
+<body>
+  <script async src="https://cse.google.com/cse.js?cx=e4fb4be3cb6b00613">
+  </script>
+  <div style="display:flex">
+    <div class="result-left"><!-- left Area --></div>
+    <div class="result-all">
+      <div class="search-box">
+        <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92" style="margin-right:10px;" />
+        <div id="cse" style="width: 100%; margin: 0 auto">
+          <div class="gcse-searchbox"></div>
         </div>
-        <div class="gcse-searchresults"></div>
       </div>
-      <div class="result-right"><!-- right Area --></div>
+      <div class="gcse-searchresults"></div>
     </div>
+    <div class="result-right"><!-- right Area --></div>
+  </div>
 
-    <script>
-      // Install the callback. window.__gcse || (window.__gcse = {});
-      window.__gcse.searchCallbacks = { image: { rendered: makenicer, }, web: {
-      rendered: makenicer, ready: myResultsReadyCallback, }, }; var title = "";
-      function makenicer() { const elm =
-      document.querySelector(".gsc-tabsArea"); if (elm) { console.log("found
-      elm:", elm); var url = new URL(document.location.href); var q =
-      url.hash.split("gsc.q"); if (q[1]) { let c =
-      decodeURIComponent(q[1].slice(1)); let a = c.split('&')[0] if (a != title)
-      document.title = a + " - Google Result"; title = c; } } } function
-      myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-      console.log(name, q, promos, results, resultsDiv) }
-    </script>
+  <script>
+    // Install the callback. 
+    window.__gcse || (window.__gcse = {});
+    window.__gcse.searchCallbacks = {
+      image: { rendered: makenicer, }, web: {
+        rendered: makenicer, ready: myResultsReadyCallback,
+      },
+    }; var title = "";
+    function makenicer() {
+      const elm =
+        document.querySelector(".gsc-tabsArea");
+      if (elm) {
+        console.log("foundelm:", elm); var url = new URL(document.location.href);
+        var q = url.hash.split("gsc.q");
+        if (q[1]) {
+          let c = decodeURIComponent(q[1].slice(1));
+          let a = c.split('&')[0]
+          if (a != title)
+            document.title = a + " - Google Result";
+          title = c;
+        }
+      }
+    }
+    function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
+      console.log(name, q, promos, results, resultsDiv)
+    }
+  </script>
 
-    <script>
-      // Helper function to set a cookie function setCookie(name, value, days) {
+  <script>
+    function setCookie(name, value, days) {
       const date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 *
-      60 * 1000)); const expires = "expires=" + date.toUTCString();
-      document.cookie = name + "=" + value + ";" + expires + ";path=/"; } //
-      Helper function to get a cookie by name function getCookie(name) { const
-      value = "; " + document.cookie; const parts = value.split("; " + name +
-      "="); if (parts.length === 2) return parts.pop().split(";").shift(); }
-      function getParam(param) { return new
-      URLSearchParams(window.location.search).get(param); }
-    </script>
-    <link rel="stylesheet" href="/pretty.css" />
-  </body>
+        60 * 1000)); const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    function getCookie(name) {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+    function getParam(param) {
+      return new URLSearchParams(window.location.search).get(param);
+    }
+  </script>
+  <link rel="stylesheet" href="/pretty.css" />
+</body>
 
 </html>
