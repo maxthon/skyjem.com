@@ -2,287 +2,287 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaxAsk.com</title>
-    <style>
-        /* 自定义tab */
-        .tabarea {
-            display: flex;
-            padding: 0 10px;
-            border-bottom: 1px solid #e5e5e5;
-            gap: 20px;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaxAsk.com</title>
+  <style>
+    /* 自定义tab */
+    .tabarea {
+      display: flex;
+      padding: 0 10px;
+      border-bottom: 1px solid #e5e5e5;
+      gap: 20px;
+      position: relative;
+    }
 
-        .tabitem {
-            display: block;
-            padding: 10px 10px;
-            min-width: 72px;
-            color: #666;
-            text-align: center;
-            line-height: 1.5;
-            border-radius: 2px;
-        }
+    .tabitem {
+      display: block;
+      padding: 10px 10px;
+      min-width: 72px;
+      color: #666;
+      text-align: center;
+      line-height: 1.5;
+      border-radius: 2px;
+    }
 
-        .tabitem-inactive {
-            transition: all 0.2s ease;
-            border-color: transparent;
-            color: #666;
-            cursor: pointer;
-        }
+    .tabitem-inactive {
+      transition: all 0.2s ease;
+      border-color: transparent;
+      color: #666;
+      cursor: pointer;
+    }
 
 
-        .tabitem-inactive:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
+    .tabitem-inactive:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
 
-        .tabitem-active {
-            border-bottom: 4px solid #1a73e8;
-            color: #1a73e8;
-            border-radius: 2px;
-            transition: all 0.2s ease;
-            cursor: default;
-        }
+    .tabitem-active {
+      border-bottom: 4px solid #1a73e8;
+      color: #1a73e8;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
 
-        .unfoldsearch {
-            width: 32px;
-            height: 32px;
-            border-radius: 5px;
-            background-image: url(toggle.svg);
-            display: block;
-            background-repeat: no-repeat;
-            background-position: center;
-            top: 10px;
-            right: 20px;
-            position: absolute;
-            transition: all 0.15s ease;
-        }
+    .unfoldsearch {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      background-image: url(toggle.svg);
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      top: 10px;
+      right: 20px;
+      position: absolute;
+      transition: all 0.15s ease;
+    }
 
-        .unfoldsearch:hover {
-            background-color: #00000010;
-        }
-    </style>
+    .unfoldsearch:hover {
+      background-color: #00000010;
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="cse-header cse-header-hide" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
-        <img src="/googlelogo_92x30.png" alt="Google logo" height="30">
-        <div class="searchboxarea">
+  <div class="cse-header cse-header-hide" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
+    <img src="/googlelogo_92x30.png" alt="Google logo" height="30">
+    <div class="searchboxarea">
 
-            <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16"> //mx-test
+      <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16"> //mx-test
 
-            </script>
-            <div class="gcse-searchbox"></div>
-        </div>
+      </script>
+      <div class="gcse-searchbox"></div>
     </div>
-    <!--修改Hosts文件  maxask.com-->
-    <div class="tabarea" id="tabarea"><!--往下拖动显示cse-header -->
-        <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
-        <div class="tabitem tabitem-inactive" id="result_tab_1">Image</div>
-        <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
-        <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
+  </div>
+  <!--修改Hosts文件  maxask.com-->
+  <div class="tabarea" id="tabarea"><!--往下拖动显示cse-header -->
+    <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
+    <div class="tabitem tabitem-inactive" id="result_tab_1">Image</div>
+    <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
+    <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
+  </div>
+  <div class="mainarea " id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
+    <div class="gcse-searchresults" style="flex:60%"></div>
+    <div class="sidebar"><!-- Side Area --></div>
+  </div>
+  <div class="aiarea" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
+    <div class="aiwrapper" id="aiwrapper">
+      <iframe id="ai_iframe" class="aiframe" style="border: 0;">
+
+      </iframe>
     </div>
-    <div class="mainarea " id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
-        <div class="gcse-searchresults" style="flex:60%"></div>
-        <div class="sidebar"><!-- Side Area --></div>
-    </div>
-    <div class="aiarea" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
-        <div class="aiwrapper" id="aiwrapper">
-            <iframe id="ai_iframe" class="aiframe" style="border: 0;">
+  </div>
+  <script>
+    var ai_q = '';
+    var old_ai_q = '';
+    window.onload = () => {
+      ai_q = getHashParamValue('gsc.q');
+      document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+      let gs_input = document.getElementById('gsc-i-id1');
+      gs_input.addEventListener('keydown', function (event) {
+        // 检查是否按下了回车键（Enter 键）
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          back2Search();
+          // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
+          // event.preventDefault();
+        }
+      });
+      gs_input.addEventListener('input', function (event) {
+        ai_q = event.target.value;
+      })
 
-            </iframe>
-        </div>
-    </div>
-    <script>
-        var ai_q = '';
-        var old_ai_q = '';
-        window.onload = () => {
-            ai_q = getHashParamValue('gsc.q');
-            document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
-            let gs_input = document.getElementById('gsc-i-id1');
-            gs_input.addEventListener('keydown', function (event) {
-                // 检查是否按下了回车键（Enter 键）
-                if (event.key === 'Enter' || event.keyCode === 13) {
-                    back2Search();
-                    // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
-                    // event.preventDefault();
-                }
-            });
-            gs_input.addEventListener('input', function (event) {
-                ai_q = event.target.value;
-            })
+    }
 
+    // Install the callback.
+    window.__gcse || (window.__gcse = {});
+    window.__gcse.searchCallbacks = {
+      image: {
+        rendered: makenicer,
+      },
+      web: {
+        rendered: makenicer,
+        ready: myResultsReadyCallback,
+      },
+    };
+    var title = "";
+    function makenicer() {
+      const elm = document.querySelector(".gsc-tabsArea");
+      if (elm) {
+        console.log("found elm:", elm);
+        var url = new URL(document.location.href);
+        var q = url.hash.split("gsc.q");
+        if (q[1]) {
+          let c = decodeURIComponent(q[1].slice(1));
+          let a = c.split('&')[0]
+          if (a != title)
+            document.title = a + " - Google Result";
+          title = c;
+        }
+      }
+    }
+    function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
+      console.log(name, q, promos, results, resultsDiv)
+    }
+
+
+  </script>
+
+  <script>
+    // Helper function to set a cookie
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    // Helper function to get a cookie by name
+    function getCookie(name) {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+    function getParam(param) {
+      return new URLSearchParams(window.location.search).get(param);
+    }
+    function getHashParamValue(paramName) {
+      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
+      const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+      return params.get(paramName); // 获取指定参数名的值
+    }
+
+    function setHashParamValue(paramName, paramValue) {
+      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
+      const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+
+      // 设置新的参数值
+      if (params.has(paramName)) {
+        params.set(paramName, paramValue); // 修改已存在的参数
+      } else {
+        params.append(paramName, paramValue); // 添加新的参数
+      }
+
+      // 构造新的哈希字符串
+      const newHash = params.toString();
+      window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
+    }
+
+    function showTab(tabid) {
+
+      if (!tabid) { tabid = 0 }
+      document.getElementById('result_tab_0').classList.add('tabitem-inactive');
+      document.getElementById('result_tab_1').classList.add('tabitem-inactive');
+      document.getElementById('result_tab_2').classList.add('tabitem-inactive');
+      document.getElementById('result_tab_0').classList.remove('tabitem-active');
+      document.getElementById('result_tab_1').classList.remove('tabitem-active');
+      document.getElementById('result_tab_2').classList.remove('tabitem-active');
+      document.getElementById(`result_tab_${tabid}`).classList.remove('tabitem-inactive');
+      document.getElementById(`result_tab_${tabid}`).classList.add('tabitem-active');
+      let ch = document.getElementById('cse_header');
+      if (tabid == 2) {
+        document.getElementById('googlesearh').classList.add('hide');
+        document.getElementById('aiarea').classList.remove('hide');
+        ch.classList.add('cse-header-hide');
+        ch.classList.remove('cse-header-show');
+        document.getElementById('show_header').classList.remove('hide');
+        showHeader = false;
+        document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
+        console.log(ai_q, old_ai_q);
+        if (ai_q != old_ai_q) {
+          document.getElementById('ai_iframe').src = `https://www.uugpt.com/framed?aisearch_q=${ai_q}`;
+          old_ai_q = ai_q;
+        } else {
+          document.getElementById('ai_iframe').src = `https://www.uugpt.com/framed/`;
         }
 
-        // Install the callback.
-        window.__gcse || (window.__gcse = {});
-        window.__gcse.searchCallbacks = {
-            image: {
-                rendered: makenicer,
-            },
-            web: {
-                rendered: makenicer,
-                ready: myResultsReadyCallback,
-            },
-        };
-        var title = "";
-        function makenicer() {
-            const elm = document.querySelector(".gsc-tabsArea");
-            if (elm) {
-                console.log("found elm:", elm);
-                var url = new URL(document.location.href);
-                var q = url.hash.split("gsc.q");
-                if (q[1]) {
-                    let c = decodeURIComponent(q[1].slice(1));
-                    let a = c.split('&')[0]
-                    if (a != title)
-                        document.title = a + " - Google Result";
-                    title = c;
-                }
-            }
-        }
-        function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-            console.log(name, q, promos, results, resultsDiv)
-        }
+      } else {
+        document.getElementById('aiarea').classList.add('hide');
+        document.getElementById('googlesearh').classList.remove('hide');
+        ch.classList.remove('cse-header-hide');
+        ch.classList.add('cse-header-show');
+        document.getElementById('show_header').classList.add('hide');
+        showHeader = true;
+      }
+    }
+
+    function back2Search() {
+      if (tabid != 2) return;
+      showTab(0);
+    }
 
 
-    </script>
+  </script>
+  <script>
 
-    <script>
-        // Helper function to set a cookie
-        function setCookie(name, value, days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
-        // Helper function to get a cookie by name
-        function getCookie(name) {
-            const value = "; " + document.cookie;
-            const parts = value.split("; " + name + "=");
-            if (parts.length === 2) return parts.pop().split(";").shift();
-        }
-        function getParam(param) {
-            return new URLSearchParams(window.location.search).get(param);
-        }
-        function getHashParamValue(paramName) {
-            const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
-            const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
-            return params.get(paramName); // 获取指定参数名的值
-        }
+    const sh = document.getElementById('show_header');
+    let showHeader = false;//是否显示header
+    let tabid = getHashParamValue('gsc.tab');
+    let webtab = document.getElementById('result_tab_0');
+    let imgtab = document.getElementById('result_tab_1');
+    let aitab = document.getElementById('result_tab_2');
+    showTab(tabid);
+    webtab.addEventListener('click', function () {
+      showTab(0);
+      setHashParamValue('gsc.tab', 0);
+    });
+    imgtab.addEventListener('click', function () {
+      showTab(1);
+      setHashParamValue('gsc.tab', 1);
+    });
+    aitab.addEventListener('click', function () {
+      showTab(2);
+      setHashParamValue('gsc.tab', 2);
 
-        function setHashParamValue(paramName, paramValue) {
-            const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
-            const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
-
-            // 设置新的参数值
-            if (params.has(paramName)) {
-                params.set(paramName, paramValue); // 修改已存在的参数
-            } else {
-                params.append(paramName, paramValue); // 添加新的参数
-            }
-
-            // 构造新的哈希字符串
-            const newHash = params.toString();
-            window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
-        }
-
-        function showTab(tabid) {
-
-            if (!tabid) { tabid = 0 }
-            document.getElementById('result_tab_0').classList.add('tabitem-inactive');
-            document.getElementById('result_tab_1').classList.add('tabitem-inactive');
-            document.getElementById('result_tab_2').classList.add('tabitem-inactive');
-            document.getElementById('result_tab_0').classList.remove('tabitem-active');
-            document.getElementById('result_tab_1').classList.remove('tabitem-active');
-            document.getElementById('result_tab_2').classList.remove('tabitem-active');
-            document.getElementById(`result_tab_${tabid}`).classList.remove('tabitem-inactive');
-            document.getElementById(`result_tab_${tabid}`).classList.add('tabitem-active');
-            let ch = document.getElementById('cse_header');
-            if (tabid == 2) {
-                document.getElementById('googlesearh').classList.add('hide');
-                document.getElementById('aiarea').classList.remove('hide');
-                ch.classList.add('cse-header-hide');
-                ch.classList.remove('cse-header-show');
-                document.getElementById('show_header').classList.remove('hide');
-                showHeader = false;
-                document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
-                console.log(ai_q, old_ai_q);
-                if (ai_q != old_ai_q) {
-                    document.getElementById('ai_iframe').src = `http://www.uugpt.com/framed?aisearch_q=${ai_q}`;
-                    old_ai_q = ai_q;
-                } else {
-                    document.getElementById('ai_iframe').src = `http://www.uugpt.com/framed/`;
-                }
-
-            } else {
-                document.getElementById('aiarea').classList.add('hide');
-                document.getElementById('googlesearh').classList.remove('hide');
-                ch.classList.remove('cse-header-hide');
-                ch.classList.add('cse-header-show');
-                document.getElementById('show_header').classList.add('hide');
-                showHeader = true;
-            }
-        }
-
-        function back2Search() {
-            if (tabid != 2) return;
-            showTab(0);
-        }
-
-
-    </script>
-    <script>
-
-        const sh = document.getElementById('show_header');
-        let showHeader = false;//是否显示header
-        let tabid = getHashParamValue('gsc.tab');
-        let webtab = document.getElementById('result_tab_0');
-        let imgtab = document.getElementById('result_tab_1');
-        let aitab = document.getElementById('result_tab_2');
-        showTab(tabid);
-        webtab.addEventListener('click', function () {
-            showTab(0);
-            setHashParamValue('gsc.tab', 0);
-        });
-        imgtab.addEventListener('click', function () {
-            showTab(1);
-            setHashParamValue('gsc.tab', 1);
-        });
-        aitab.addEventListener('click', function () {
-            showTab(2);
-            setHashParamValue('gsc.tab', 2);
-
-        });
+    });
 
 
 
 
-        sh.addEventListener('click', function (event) {
-            let ch = document.getElementById('cse_header');
-            let showHeaderElement = document.getElementById('show_header');
+    sh.addEventListener('click', function (event) {
+      let ch = document.getElementById('cse_header');
+      let showHeaderElement = document.getElementById('show_header');
 
-            if (!showHeader) {
-                ch.classList.remove('cse-header-hide');
-                ch.classList.add('cse-header-show');
-                showHeader = true;
-                document.getElementById('aiwrapper').style.height = 'calc(100vh - 163px)';
-                showHeaderElement.classList.add('rotate-180');
-            } else {
-                ch.classList.add('cse-header-hide');
-                ch.classList.remove('cse-header-show');
-                showHeader = false;
-                document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
-                showHeaderElement.classList.remove('rotate-180');
-            }
-        })
+      if (!showHeader) {
+        ch.classList.remove('cse-header-hide');
+        ch.classList.add('cse-header-show');
+        showHeader = true;
+        document.getElementById('aiwrapper').style.height = 'calc(100vh - 163px)';
+        showHeaderElement.classList.add('rotate-180');
+      } else {
+        ch.classList.add('cse-header-hide');
+        ch.classList.remove('cse-header-show');
+        showHeader = false;
+        document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
+        showHeaderElement.classList.remove('rotate-180');
+      }
+    })
 
 
-    </script>
-    <link rel="stylesheet" href="pretty.css">
+  </script>
+  <link rel="stylesheet" href="pretty.css">
 </body>
 
 </html>
