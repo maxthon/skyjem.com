@@ -57,7 +57,7 @@ body {
 
 /* ai组件的边框 */
 .aiarea {
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   display: flex;
 }
 
@@ -67,7 +67,7 @@ body {
   position: relative;
   background: white;
   width: 100%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 75px);
   border-radius: 8px;
   z-index: 1;
   border: 0;
@@ -82,7 +82,7 @@ body {
   z-index: 10;
 }
 
-.aiwrapper::before {
+/* .aiwrapper::before {
   content: "";
   position: absolute;
   top: -2px;
@@ -112,7 +112,7 @@ body {
   background: white;
   border-radius: 8px;
   z-index: 1;
-}
+} */
 
 @media (min-width: 1369px) {
   .aiwrapper,
@@ -130,6 +130,7 @@ body {
     right: calc(25vw - 160px);
   }
 }
+
 
 @media only screen and (min-width: 769px) {
   .cse-header {
@@ -315,7 +316,7 @@ body {
   }
 
   .gsc-control-cse {
-    padding: 0 20px 20px 28px;
+    padding-top: 0;
   }
 
   .gsc-input-box {
@@ -532,4 +533,9 @@ body {
     margin-bottom: 3px !important;
     color: #1a0dab !important;
   }
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease; /* 添加过渡效果 */
 }
