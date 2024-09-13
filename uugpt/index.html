@@ -108,6 +108,7 @@
         if (event.key === 'Enter' || event.keyCode === 13) {
           ai_q = gs_input.value;
           back2Search();
+          if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) { showTab(2) }
           // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
           // event.preventDefault();
         }
@@ -125,9 +126,9 @@
         aiiframe.src = `https://www.uugpt.com/framed/`;
         //  aiiframe.src =`http://localhost:5173/framed/`;
       }
-
+      if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) { showTab(2) }
     }
-
+    // str[str.length - 1] === "?"
     // Install the callback.
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
