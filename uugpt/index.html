@@ -79,7 +79,7 @@
     </div>
   </div>
   <!--修改Hosts文件  maxask.com-->
-  <div class="tabarea" id="tabarea"><!--往下拖动显示cse-header -->
+  <div class="tabarea" id="tabarea">
     <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
     <div class="tabitem tabitem-inactive" id="result_tab_1">Image</div>
     <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
@@ -91,32 +91,31 @@
   </div>
   <div class="aiarea" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
     <div class="aiwrapper" id="aiwrapper">
-      <iframe id="ai_iframe" class="aiframe" style="border: 0;">
-
+      <iframe id="ai_iframe" class="aiframe" style="border: 0;" allow="clipboard-write">
       </iframe>
     </div>
   </div>
   <script>
-    var ai_q = '';
-    var old_ai_q = '';
+
+
     window.onload = () => {
-      ai_q = getHashParamValue('gsc.q');
       document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
       let gs_input = document.getElementById('gsc-i-id1');
       gs_input.addEventListener('keydown', function (event) {
         // 检查是否按下了回车键（Enter 键）
         if (event.key === 'Enter' || event.keyCode === 13) {
+          ai_q = gs_input.value;
           back2Search();
+          if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) { showTab(2) }
           // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
           // event.preventDefault();
         }
       });
       gs_input.addEventListener('input', function (event) {
         ai_q = event.target.value;
-      })
-
+      });
     }
-
+    // str[str.length - 1] === "?"
     // Install the callback.
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
@@ -160,6 +159,7 @@
       document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
     // Helper function to get a cookie by name
+    //how to use chatgpt
     function getCookie(name) {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
@@ -173,25 +173,24 @@
       const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
       return params.get(paramName); // 获取指定参数名的值
     }
-
     function setHashParamValue(paramName, paramValue) {
-      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
+      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #            
       const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
-
       // 设置新的参数值
       if (params.has(paramName)) {
         params.set(paramName, paramValue); // 修改已存在的参数
       } else {
         params.append(paramName, paramValue); // 添加新的参数
       }
-
       // 构造新的哈希字符串
-      const newHash = params.toString();
+      let newHash = '';
+      for (const [key, value] of params.entries()) {
+        newHash += `${key}=${value}&`
+      }
+      newHash = newHash.slice(0, -1); // 删除最后一个字符
       window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
     }
-
     function showTab(tabid) {
-
       if (!tabid) { tabid = 0 }
       document.getElementById('result_tab_0').classList.add('tabitem-inactive');
       document.getElementById('result_tab_1').classList.add('tabitem-inactive');
@@ -211,13 +210,12 @@
         showHeader = false;
         document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
         console.log(ai_q, old_ai_q);
-        if (ai_q != old_ai_q) {
-          document.getElementById('ai_iframe').src = `https://www.uugpt.com/framed?aisearch_q=${ai_q}`;
-          old_ai_q = ai_q;
-        } else {
-          document.getElementById('ai_iframe').src = `https://www.uugpt.com/framed/`;
-        }
+        if (aiiframe == null) { aiiframe = document.getElementById('ai_iframe'); }
 
+        if (ai_q != old_ai_q) {
+          aiiframe.contentWindow.postMessage(ai_q, '*');
+          old_ai_q = ai_q;
+        }
       } else {
         document.getElementById('aiarea').classList.add('hide');
         document.getElementById('googlesearh').classList.remove('hide');
@@ -227,22 +225,43 @@
         showHeader = true;
       }
     }
-
     function back2Search() {
       if (tabid != 2) return;
       showTab(0);
     }
-
-
   </script>
   <script>
-
     const sh = document.getElementById('show_header');
     let showHeader = false;//是否显示header
     let tabid = getHashParamValue('gsc.tab');
+    let channel_q = new URLSearchParams(window.location.search).get('q');
     let webtab = document.getElementById('result_tab_0');
     let imgtab = document.getElementById('result_tab_1');
     let aitab = document.getElementById('result_tab_2');
+    let aiiframe = document.getElementById('ai_iframe');
+    let ai_q = getHashParamValue('gsc.q');;
+    let old_ai_q = '';
+
+    if (channel_q) {
+      ai_q = ai_q ? ai_q : channel_q;
+      setHashParamValue('gsc.q', ai_q);
+    }
+    // ai_q = ai_q ? ai_q : 
+    console.log(ai_q);
+    if (ai_q) {
+      old_ai_q = ai_q;
+      aiiframe.src = `https://www.uugpt.com/framed?aisearch_q=${ai_q}`;
+      // aiiframe.src = `http://localhost:5173/framed?aisearch_q=${ai_q}`;
+    } else {
+      aiiframe.src = `https://www.uugpt.com/framed/`;
+      //  aiiframe.src =`http://localhost:5173/framed/`;
+    }
+    if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+      tabid = 2;
+      setHashParamValue('gsc.tab', 2);
+    }
+
+
     showTab(tabid);
     webtab.addEventListener('click', function () {
       showTab(0);
@@ -255,7 +274,6 @@
     aitab.addEventListener('click', function () {
       showTab(2);
       setHashParamValue('gsc.tab', 2);
-
     });
 
 

@@ -7,131 +7,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaxAsk.com</title>
     <style>
-        .tabs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
+        /* 自定义tab */
+        .tabarea {
             display: flex;
-            justify-content: space-around;
-            background-color: #000;
-            padding: 5px 0;
-            /* Reduced padding for shorter tabs */
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-            z-index: 10;
+            padding: 0 10px;
+            border-bottom: 1px solid #e5e5e5;
+            gap: 20px;
+            position: relative;
         }
 
-        .tab-item {
-            display: flex;
-            align-items: center;
-            color: #fff;
-            padding: 5px 10px;
-            transition: border-bottom 0.3s;
-            text-decoration: none;
-            /* Remove underline for anchor links if any */
+        .tabitem {
+            display: block;
+            padding: 10px 10px;
+            min-width: 72px;
+            color: #666;
+            text-align: center;
+            line-height: 1.5;
+            border-radius: 2px;
+        }
+
+        .tabitem-inactive {
+            transition: all 0.2s ease;
+            border-color: transparent;
+            color: #666;
             cursor: pointer;
         }
 
-        .tab-item img {
-            height: 16px;
-            width: 16px;
-            margin-right: 5px;
+
+        .tabitem-inactive:hover {
+            background-color: rgba(0, 0, 0, 0.05);
         }
 
-        .tab-item:hover {
-            border-bottom: 2px solid #4285f4;
+        .tabitem-active {
+            border-bottom: 4px solid #1a73e8;
+            color: #1a73e8;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            cursor: default;
         }
 
-        .tab-item.active {
-            border-bottom: 2px solid #fff;
-        }
-
-        #iframeContainer {
+        .unfoldsearch {
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            background-image: url(toggle.svg);
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 10px;
+            right: 20px;
             position: absolute;
-            top: calc(5px + 1em);
-            /* Adjust based on your tabs div height */
-            left: 0;
-            width: 100vw;
-            height: calc(100vh - 5px - 1em);
-            /* Adjust based on your tabs div height */
-            z-index: 5;
-            /* So it's below tabs */
-            overflow: hidden;
+            transition: all 0.15s ease;
         }
 
-        .result-left {
-            flex: 20%;
-        }
-
-        .result-right {
-            flex: 30%
-        }
-
-        .result-all {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            margin-left: 10px;
-            margin-bottom: 25px;
-            margin-top: 25px;
-        }
-
-        @media (max-width: 800px) {
-
-            .result-left,
-            .result-right {
-                flex: 2%;
-            }
-
-            .search-box {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-                margin-top: 25px;
-                margin-left: 10px;
-            }
-
-            .result-all {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-            }
+        .unfoldsearch:hover {
+            background-color: #00000010;
         }
     </style>
-    <script type="text/javascript"
-        src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform"
-        async="async"></script>
-    <script async src="/head.js"></script>
 </head>
 
 <body>
-    <div class="sharethis-sticky-share-buttons"></div>
-    <div class="tabs">
-    </div>
-    <script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:9080238447">
 
-    </script>
-    <div style="display:flex;margin-top: 20px;">
-        <div class="result-left"><!-- left Area --></div>
-        <div class="result-all">
-            <div class="search-box">
-                <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92" style="margin-right:10px;">
-                <div id="cse" style="width: 100%; margin: 0 auto">
-                    <div class="gcse-searchbox"></div>
-                </div>
-            </div>
-            <div class="gcse-searchresults"></div>
+    <div class="cse-header cse-header-hide" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
+        <img src="/googlelogo_92x30.png" alt="Google logo" height="30">
+        <div class="searchboxarea">
+
+            <script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:9080238447"> //mx-test
+
+            </script>
+            <div class="gcse-searchbox"></div>
         </div>
-        <div class="result-right"><!-- right Area --></div>
     </div>
-    <div id="iframeContainer" style="display:none"></div>
+    <!--修改Hosts文件  maxask.com-->
+    <div class="tabarea" id="tabarea">
+        <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
+        <div class="tabitem tabitem-inactive" id="result_tab_1">Image</div>
+        <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
+        <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
+    </div>
+    <div class="mainarea " id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
+        <div class="gcse-searchresults" style="flex:60%"></div>
+        <div class="sidebar"><!-- Side Area --></div>
+    </div>
+    <div class="aiarea" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
+        <div class="aiwrapper" id="aiwrapper">
+            <iframe id="ai_iframe" class="aiframe" style="border: 0;" allow="clipboard-write">
+            </iframe>
+        </div>
+    </div>
     <script>
+
+
+        window.onload = () => {
+            document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+            let gs_input = document.getElementById('gsc-i-id1');
+            gs_input.addEventListener('keydown', function (event) {
+                // 检查是否按下了回车键（Enter 键）
+                if (event.key === 'Enter' || event.keyCode === 13) {
+                    ai_q = gs_input.value;
+                    back2Search();
+                    if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) { showTab(2) }
+                    // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
+                    // event.preventDefault();
+                }
+            });
+            gs_input.addEventListener('input', function (event) {
+                ai_q = event.target.value;
+            });
+        }
+        // str[str.length - 1] === "?"
         // Install the callback.
         window.__gcse || (window.__gcse = {});
         window.__gcse.searchCallbacks = {
@@ -144,7 +128,7 @@
             },
         };
         var title = "";
-        function makenicer(name, q, promos, results, resultsDiv) {
+        function makenicer() {
             const elm = document.querySelector(".gsc-tabsArea");
             if (elm) {
                 console.log("found elm:", elm);
@@ -160,17 +144,13 @@
             }
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-            //console.log("myResultsReadyCallback:", name, q, promos, results, resultsDiv)
+            console.log(name, q, promos, results, resultsDiv)
         }
+
+
     </script>
 
     <script>
-        const tabs = [
-            { name: "Google", icon: "https://www.google.com/favicon.ico", url: "../s/cse.html?q=", append: true },
-            { name: "Bing", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", url: "https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=", append: true },
-            { name: "AI Chat", url: "https://chat.maxask.com", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", append: false, iframe: true },
-            { name: "AI Image", url: "https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", append: false }
-        ]
         // Helper function to set a cookie
         function setCookie(name, value, days) {
             const date = new Date();
@@ -179,6 +159,7 @@
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
         }
         // Helper function to get a cookie by name
+        //how to use chatgpt
         function getCookie(name) {
             const value = "; " + document.cookie;
             const parts = value.split("; " + name + "=");
@@ -187,106 +168,139 @@
         function getParam(param) {
             return new URLSearchParams(window.location.search).get(param);
         }
-        function setActiveTab(tabElm) {
-            // Remove 'active' class from all tabs
-            document.querySelectorAll('.tab-item').forEach(innerTab => {
-                innerTab.classList.remove('active');
-            });
-            // Add 'active' class to the clicked tab
-            tabElm.classList.add('active');
+        function getHashParamValue(paramName) {
+            const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
+            const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+            return params.get(paramName); // 获取指定参数名的值
         }
-        function buildTabs() {
-            // Create tab elements based on the array
-            const tabsContainer = document.querySelector('.tabs');
-            tabs.forEach(tab => {
-                const tabItem = document.createElement('div');
-                tabItem.classList.add('tab-item');
-                tabItem.setAttribute('data-url', tab.url);
-                const tabIcon = document.createElement('img');
-                tabIcon.src = tab.icon;
-                tabIcon.alt = `${tab.name} Icon`;
-                tabItem.appendChild(tabIcon);
-                tabItem.appendChild(document.createTextNode(tab.name));
-                tabsContainer.appendChild(tabItem);
-            });
-
-            // Make the first tab active by default
-            tabsContainer.children[0].classList.add('active');
-            //tab item click event
-            document.querySelectorAll('.tab-item').forEach(tab => {
-                tab.addEventListener('click', function () {
-                    let input = document.querySelector('#gsc-i-id1');
-                    if (input && input.value) searchTerm = input.value
-                    let dataUrl = this.getAttribute('data-url');
-                    const tabInfo = findTab(dataUrl)
-                    if (tabInfo.name == "Google") {
-                        setActiveTab(this)
-                        document.querySelector("#iframeContainer").style.display = 'none'
-                        return
-                    }
-
-                    if (!tabInfo.iframe) { //open in new window or just do nothing
-                        if (tabInfo.append) {
-                            let input = document.querySelector('#gsc-i-id1');
-                            if (input && input.value) searchTerm = input.value;
-                            dataUrl += searchTerm;
-                        }
-                        window.open(dataUrl);
-                        return
-                    }
-                    setActiveTab(this)
-                    // Hide all iframes
-                    document.querySelectorAll("#iframeContainer iframe").forEach(iframe => {
-                        iframe.style.display = "none";
-                    });
-                    if (tabInfo.iframe) {
-                        // Show the associated iframe
-                        document.querySelector("#iframeContainer").style.display = 'block'
-                        const targetIframe = document.querySelector(`#iframeContainer iframe[data-url='${dataUrl}']`);
-                        if (targetIframe) {
-                            if (targetIframe.src == 'about:blank')
-                                targetIframe.src = tabInfo.url
-                            targetIframe.style.display = "block";
-                        }
-                    }
-                })
-            })
-        }
-        function findTab(url) {
-            for (const tab of tabs) {
-                if (tab.url === url) return tab
+        function setHashParamValue(paramName, paramValue) {
+            const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #            
+            const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+            // 设置新的参数值
+            if (params.has(paramName)) {
+                params.set(paramName, paramValue); // 修改已存在的参数
+            } else {
+                params.append(paramName, paramValue); // 添加新的参数
             }
-            return null
+            // 构造新的哈希字符串
+            let newHash = '';
+            for (const [key, value] of params.entries()) {
+                newHash += `${key}=${value}&`
+            }
+            newHash = newHash.slice(0, -1); // 删除最后一个字符
+            window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
         }
-        function preloadIframes() {
-            const iframeContainer = document.getElementById("iframeContainer");
-            tabs.forEach(tab => {
-                if (tab.iframe) {
-                    let iframe = document.createElement('iframe');
-                    iframe.src = "about:blank";
-                    iframe.style.width = "100%";
-                    iframe.style.height = "100%";
-                    iframe.style.border = "0"; // Remove default iframe border
-                    iframe.style.display = "none"; // Hide by default
-                    iframe.dataset.url = tab.url;  // Associate with tab URL for later reference
-                    iframeContainer.appendChild(iframe);
+        function showTab(tabid) {
+            if (!tabid) { tabid = 0 }
+            document.getElementById('result_tab_0').classList.add('tabitem-inactive');
+            document.getElementById('result_tab_1').classList.add('tabitem-inactive');
+            document.getElementById('result_tab_2').classList.add('tabitem-inactive');
+            document.getElementById('result_tab_0').classList.remove('tabitem-active');
+            document.getElementById('result_tab_1').classList.remove('tabitem-active');
+            document.getElementById('result_tab_2').classList.remove('tabitem-active');
+            document.getElementById(`result_tab_${tabid}`).classList.remove('tabitem-inactive');
+            document.getElementById(`result_tab_${tabid}`).classList.add('tabitem-active');
+            let ch = document.getElementById('cse_header');
+            if (tabid == 2) {
+                document.getElementById('googlesearh').classList.add('hide');
+                document.getElementById('aiarea').classList.remove('hide');
+                ch.classList.add('cse-header-hide');
+                ch.classList.remove('cse-header-show');
+                document.getElementById('show_header').classList.remove('hide');
+                showHeader = false;
+                document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
+                console.log(ai_q, old_ai_q);
+                if (aiiframe == null) { aiiframe = document.getElementById('ai_iframe'); }
+
+                if (ai_q != old_ai_q) {
+                    aiiframe.contentWindow.postMessage(ai_q, '*');
+                    old_ai_q = ai_q;
                 }
-            });
+            } else {
+                document.getElementById('aiarea').classList.add('hide');
+                document.getElementById('googlesearh').classList.remove('hide');
+                ch.classList.remove('cse-header-hide');
+                ch.classList.add('cse-header-show');
+                document.getElementById('show_header').classList.add('hide');
+                showHeader = true;
+            }
+        }
+        function back2Search() {
+            if (tabid != 2) return;
+            showTab(0);
+        }
+    </script>
+    <script>
+        const sh = document.getElementById('show_header');
+        let showHeader = false;//是否显示header
+        let tabid = getHashParamValue('gsc.tab');
+        let channel_q = new URLSearchParams(window.location.search).get('q');
+        let webtab = document.getElementById('result_tab_0');
+        let imgtab = document.getElementById('result_tab_1');
+        let aitab = document.getElementById('result_tab_2');
+        let aiiframe = document.getElementById('ai_iframe');
+        let ai_q = getHashParamValue('gsc.q');;
+        let old_ai_q = '';
+
+        if (channel_q) {
+            ai_q = ai_q ? ai_q : channel_q;
+            setHashParamValue('gsc.q', ai_q);
+        }
+        // ai_q = ai_q ? ai_q : 
+        console.log(ai_q);
+        if (ai_q) {
+            old_ai_q = ai_q;
+            aiiframe.src = `https://www.uugpt.com/framed?aisearch_q=${ai_q}`;
+            // aiiframe.src = `http://localhost:5173/framed?aisearch_q=${ai_q}`;
+        } else {
+            aiiframe.src = `https://www.uugpt.com/framed/`;
+            //  aiiframe.src =`http://localhost:5173/framed/`;
+        }
+        if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+            tabid = 2;
+            setHashParamValue('gsc.tab', 2);
         }
 
-        preloadIframes();
-        //restore and navigate
-        let searchTerm = getParam('q')
-        let url = "./cse1.html?q="
-        if (searchTerm) {
-            url += searchTerm
-        } else
-            url += 'maxthon'
 
-        buildTabs()
+        showTab(tabid);
+        webtab.addEventListener('click', function () {
+            showTab(0);
+            setHashParamValue('gsc.tab', 0);
+        });
+        imgtab.addEventListener('click', function () {
+            showTab(1);
+            setHashParamValue('gsc.tab', 1);
+        });
+        aitab.addEventListener('click', function () {
+            showTab(2);
+            setHashParamValue('gsc.tab', 2);
+        });
+
+
+
+
+        sh.addEventListener('click', function (event) {
+            let ch = document.getElementById('cse_header');
+            let showHeaderElement = document.getElementById('show_header');
+
+            if (!showHeader) {
+                ch.classList.remove('cse-header-hide');
+                ch.classList.add('cse-header-show');
+                showHeader = true;
+                document.getElementById('aiwrapper').style.height = 'calc(100vh - 163px)';
+                showHeaderElement.classList.add('rotate-180');
+            } else {
+                ch.classList.add('cse-header-hide');
+                ch.classList.remove('cse-header-show');
+                showHeader = false;
+                document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
+                showHeaderElement.classList.remove('rotate-180');
+            }
+        })
+
 
     </script>
-    <link rel="stylesheet" href="/pretty.css">
+    <link rel="stylesheet" href="pretty.css">
 </body>
 
 </html>
