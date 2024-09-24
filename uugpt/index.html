@@ -7,6 +7,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaxAsk.com</title>
   <style>
+    body {
+      background-color: #fff;
+    }
+
+    .loading-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 260px);
+    }
+
+    .loading {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      /* 外圈 */
+      border-top: 5px solid #3498db;
+      /* 顶部颜色 */
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+    }
+
+    /* CSS3 动画 */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     /* 自定义tab */
     .tabarea {
       display: flex;
@@ -68,7 +101,7 @@
 
 <body>
 
-  <div class="cse-header cse-header-hide" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
+  <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
     <img src="/googlelogo_92x30.png" alt="Google logo" height="30">
     <div class="searchboxarea">
 
@@ -85,38 +118,26 @@
     <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
     <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
   </div>
-  <div class="mainarea " id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
+
+  <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
+    <div class="loading-wrapper" id="gs_loading">
+      <div class="loading"></div>
+    </div>
     <div class="gcse-searchresults" style="flex:60%"></div>
     <div class="sidebar"><!-- Side Area --></div>
   </div>
-  <div class="aiarea" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
+
+  <div class="aiarea hide" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
+
     <div class="aiwrapper" id="aiwrapper">
+      <div class="loading-wrapper" id="ai_loading">
+        <div class="loading"></div>
+      </div>
       <iframe id="ai_iframe" class="aiframe" style="border: 0;" allow="clipboard-write">
       </iframe>
     </div>
   </div>
   <script>
-
-
-    window.onload = () => {
-      document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
-      let gs_input = document.getElementById('gsc-i-id1');
-      gs_input.addEventListener('keydown', function (event) {
-        // 检查是否按下了回车键（Enter 键）
-        if (event.key === 'Enter' || event.keyCode === 13) {
-          ai_q = gs_input.value;
-          back2Search();
-          if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) { showTab(2) }
-          // 如果需要防止默认行为（例如在表单中回车会提交表单），可以使用 preventDefault()
-          // event.preventDefault();
-        }
-      });
-      gs_input.addEventListener('input', function (event) {
-        ai_q = event.target.value;
-      });
-    }
-    // str[str.length - 1] === "?"
-    // Install the callback.
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
       image: {
@@ -131,7 +152,7 @@
     function makenicer() {
       const elm = document.querySelector(".gsc-tabsArea");
       if (elm) {
-        console.log("found elm:", elm);
+        // console.log("found elm:", elm);
         var url = new URL(document.location.href);
         var q = url.hash.split("gsc.q");
         if (q[1]) {
@@ -145,9 +166,12 @@
     }
     function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
       console.log(name, q, promos, results, resultsDiv)
+      document.getElementById('gs_loading').style.display = 'none';
     }
-
-
+    document.getElementById('ai_iframe').onload = function () {
+      console.log('-------------', ai_q, tabid);
+      document.getElementById('ai_loading').style.display = 'none';
+    }
   </script>
 
   <script>
@@ -190,99 +214,109 @@
       newHash = newHash.slice(0, -1); // 删除最后一个字符
       window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
     }
-    function showTab(tabid) {
-      if (!tabid) { tabid = 0 }
+    function showTab(showtabid) {
+      if (!showtabid) { showtabid = 0 }
       document.getElementById('result_tab_0').classList.add('tabitem-inactive');
       document.getElementById('result_tab_1').classList.add('tabitem-inactive');
       document.getElementById('result_tab_2').classList.add('tabitem-inactive');
       document.getElementById('result_tab_0').classList.remove('tabitem-active');
       document.getElementById('result_tab_1').classList.remove('tabitem-active');
       document.getElementById('result_tab_2').classList.remove('tabitem-active');
-      document.getElementById(`result_tab_${tabid}`).classList.remove('tabitem-inactive');
-      document.getElementById(`result_tab_${tabid}`).classList.add('tabitem-active');
-      let ch = document.getElementById('cse_header');
-      if (tabid == 2) {
-        document.getElementById('googlesearh').classList.add('hide');
-        document.getElementById('aiarea').classList.remove('hide');
-        ch.classList.add('cse-header-hide');
-        ch.classList.remove('cse-header-show');
-        document.getElementById('show_header').classList.remove('hide');
-        showHeader = false;
-        document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
-        console.log(ai_q, old_ai_q);
-        if (aiiframe == null) { aiiframe = document.getElementById('ai_iframe'); }
+      document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
+      document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
+      tabid = showtabid;
+      setHashParamValue('gsc.tab', tabid);
+    }
 
-        if (ai_q != old_ai_q) {
-          aiiframe.contentWindow.postMessage(ai_q, '*');
-          old_ai_q = ai_q;
-        }
-      } else {
-        document.getElementById('aiarea').classList.add('hide');
-        document.getElementById('googlesearh').classList.remove('hide');
-        ch.classList.remove('cse-header-hide');
-        ch.classList.add('cse-header-show');
-        document.getElementById('show_header').classList.add('hide');
-        showHeader = true;
-      }
+
+    function showGoogleResult() {
+      let ch = document.getElementById('cse_header');
+      ch.classList.remove('cse-header-hide');
+      ch.classList.add('cse-header-show');
+      document.getElementById('aiarea').classList.add('hide');
+      document.getElementById('googlesearh').classList.remove('hide');
+      document.getElementById('show_header').classList.add('hide');
+      showHeader = true;
+    }
+
+    function showAISearch() {
+      let ch = document.getElementById('cse_header');
+      document.getElementById('googlesearh').classList.add('hide');
+      document.getElementById('aiarea').classList.remove('hide');
+      ch.classList.add('cse-header-hide');
+      ch.classList.remove('cse-header-show');
+      document.getElementById('show_header').classList.remove('hide');
+      document.getElementById('aiwrapper').style.height = 'calc(100vh - 75px)';
+      showHeader = false;
     }
     function back2Search() {
       if (tabid != 2) return;
       showTab(0);
+      showGoogleResult();
     }
   </script>
   <script>
+
     const sh = document.getElementById('show_header');
-    let showHeader = false;//是否显示header
-    let tabid = getHashParamValue('gsc.tab');
-    let channel_q = new URLSearchParams(window.location.search).get('q');
     let webtab = document.getElementById('result_tab_0');
     let imgtab = document.getElementById('result_tab_1');
     let aitab = document.getElementById('result_tab_2');
     let aiiframe = document.getElementById('ai_iframe');
-    let ai_q = getHashParamValue('gsc.q');;
-    let old_ai_q = '';
 
-    if (channel_q) {
+    let tabid = getHashParamValue('gsc.tab');
+    let ai_q = getHashParamValue('gsc.q');
+    let channel_q = new URLSearchParams(window.location.search).get('q');
+
+    let showHeader = false;//是否显示header
+    let old_ai_q = '';
+    //如果q有值但是gsc.q没有值
+    if (channel_q && !ai_q) {
       ai_q = ai_q ? ai_q : channel_q;
       setHashParamValue('gsc.q', ai_q);
     }
-    // ai_q = ai_q ? ai_q : 
-    console.log(ai_q);
-    if (ai_q) {
-      old_ai_q = ai_q;
-      aiiframe.src = `https://www.uugpt.com/framed?aisearch_q=${ai_q}`;
-      // aiiframe.src = `http://localhost:5173/framed?aisearch_q=${ai_q}`;
-    } else {
-      aiiframe.src = `https://www.uugpt.com/framed/`;
-      //  aiiframe.src =`http://localhost:5173/framed/`;
-    }
+    //如果query中带问号，直接显示AI页
     if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
       tabid = 2;
       setHashParamValue('gsc.tab', 2);
     }
-
-
+    //根据之前决定的tabid，显示对应页面
+    if (tabid == 2) {
+      aiiframe.src = `https://www.uugpt.com/framed/?aisearch_q=${ai_q}`;
+      showAISearch();
+    } else {
+      aiiframe.src = "https://www.uugpt.com/framed/";
+      showGoogleResult();
+    }
+    //tab按钮的样式
     showTab(tabid);
+
     webtab.addEventListener('click', function () {
       showTab(0);
+      showGoogleResult();
       setHashParamValue('gsc.tab', 0);
     });
+
     imgtab.addEventListener('click', function () {
       showTab(1);
+      showGoogleResult();
       setHashParamValue('gsc.tab', 1);
     });
+
     aitab.addEventListener('click', function () {
       showTab(2);
+      showAISearch();
       setHashParamValue('gsc.tab', 2);
+      if (aiiframe == null) { aiiframe = document.getElementById('ai_iframe'); }
+      let ai_q = getHashParamValue('gsc.q');
+      if (ai_q != old_ai_q) {
+        aiiframe.contentWindow.postMessage(ai_q, '*');
+        old_ai_q = ai_q;
+      }
     });
-
-
-
 
     sh.addEventListener('click', function (event) {
       let ch = document.getElementById('cse_header');
       let showHeaderElement = document.getElementById('show_header');
-
       if (!showHeader) {
         ch.classList.remove('cse-header-hide');
         ch.classList.add('cse-header-show');
@@ -297,6 +331,30 @@
         showHeaderElement.classList.remove('rotate-180');
       }
     })
+
+    window.onload = () => {
+      //因为修改的是google加载的组件，所以必须在window.onload里，不然找不到id
+      document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+      let gs_input = document.getElementById('gsc-i-id1');
+      gs_input.addEventListener('keydown', function (event) {
+        // 检查是否按下了回车键（Enter 键）
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          ai_q = gs_input.value;
+          setHashParamValue('gsc.q', ai_q);
+          if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+            showTab(2);
+            showAISearch();
+            aiiframe.contentWindow.postMessage(ai_q, '*');
+          } else {
+            back2Search();
+          }
+        }
+      });
+      gs_input.addEventListener('input', function (event) {
+        ai_q = event.target.value;
+      });
+    }
+
 
 
   </script>
