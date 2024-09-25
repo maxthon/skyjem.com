@@ -67,7 +67,7 @@ body {
   position: relative;
   background: white;
   width: 100%;
-  height: calc(100vh - 75px);
+  transition: height 0.5s ease;
   border-radius: 8px;
   z-index: 1;
   border: 0;
@@ -538,4 +538,69 @@ body {
 .rotate-180 {
   transform: rotate(180deg);
   transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 搜索以？结尾的提示 */
+.hint {
+  position: fixed;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #c3ece1;
+  padding: 8px 10px;
+  color: #0c1119;
+  z-index: 1000;
+  min-width: 230px;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hint-close {
+  margin-left: 10px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.hint-close:hover {
+  background-color:#0000001a
+}
+
+.hint.show {
+  visibility: visible;
+  opacity: 1;
+  animation: slide-up 0.5s ease forwards;
+}
+
+.hint.hide {
+  animation: slide-down 0.5s ease forwards;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes slide-up {
+  from {
+    bottom: -20px;
+  }
+  to {
+    bottom: 64px;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    bottom: 64px;
+  }
+  to {
+    bottom: -20px;
+  }
 }
