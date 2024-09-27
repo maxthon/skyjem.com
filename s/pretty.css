@@ -15,7 +15,7 @@ body {
   margin: 0;
 }
 
-/* 针对新样式文件bublegum的调整 */
+/* 针对新样式文件bublegum的调整  */
 .gsc-control-cse {
   border: 0;
 }
@@ -36,6 +36,7 @@ body {
 .searchboxarea {
   width: auto;
   padding: 5px 9px 4px 19px;
+  transition: width 0.3s ease;
 }
 
 .cse-header-hide {
@@ -67,7 +68,7 @@ body {
   position: relative;
   background: white;
   width: 100%;
-  height: calc(100vh - 75px);
+  transition: height 0.5s ease;
   border-radius: 8px;
   z-index: 1;
   border: 0;
@@ -82,55 +83,22 @@ body {
   z-index: 10;
 }
 
-/* .aiwrapper::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(
-    97deg,
-    #a4efd1 0%,
-    #9eb3fa 28%,
-    #cab5fc 54%,
-    #c17bff 74%,
-    #549cf9 100%
-  );
-  border-radius: 10px;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-  z-index: -1;
-}
-
-.aiwrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: white;
-  border-radius: 8px;
-  z-index: 1;
-} */
-
 @media (min-width: 1369px) {
   .aiwrapper,
   .mainarea {
-    width: 75vw;
-    margin-left: 135px;
+    width: 70vw;
+    margin-left: 172px;
   }
 
   .tabarea {
-    padding-left: 165px;
-    padding-right: calc(25vw - 150px);
+    padding-left: 185px;
+    padding-right: calc(30vw - 170px);
   }
 
   .unfoldsearch {
-    right: calc(25vw - 160px);
+    right: calc(30vw - 172px);
   }
 }
-
 
 @media only screen and (min-width: 769px) {
   .cse-header {
@@ -320,11 +288,14 @@ body {
   }
 
   .gsc-input-box {
-    margin-top: 0.25rem;
+    /* margin-top: 0.25rem; */
     margin-left: 8px;
     line-height: 22px;
     flex: 1;
     width: 330px;
+  }
+
+  table.gsc-input {
   }
 
   .gsc-search-button {
@@ -333,6 +304,7 @@ body {
 
   table.gsc-search-box td.gsc-input {
     padding-right: 0;
+    padding-top: 6px;
   }
 
   input {
@@ -424,7 +396,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 769px) {
   /* Mobile specific styles */
   /* .cse-header {
     padding: 10px 0px 10px 10px !important;
@@ -452,10 +424,11 @@ body {
 
   .searchboxarea {
     padding: 5px 9px 4px 0px;
+    width: 100%;
   }
 
   .gsc-input-box {
-    width: calc(100vw - 190px);
+    /* width: calc(100vw - 190px); */
     border: none;
     background: transparent;
     border-right: 1px solid #e5e5e5;
@@ -468,8 +441,13 @@ body {
     box-shadow: 0 2px 3px 1px rgb(64 60 67 / 16%);
     border-radius: 24px;
     margin: 0 auto;
-    width: calc(100vw - 140px);
+    /* width: calc(100vw - 140px); */
+    width: 100%;
     justify-content: space-between;
+  }
+
+  .gsc-search-box tbody {
+    width: 100%;
   }
 
   .gsc-search-button {
@@ -480,7 +458,7 @@ body {
     border: none;
     background: transparent;
     cursor: pointer;
-    width: 36px;
+    width: 48px;
     padding: 6px 8px 6px 4px;
     margin-top: 0.25rem;
   }
@@ -497,8 +475,9 @@ body {
   }
 
   .gsc-search-box-tools .gsc-search-box .gsc-input {
-    padding: 6px 5px;
-    margin-top: 0.25rem;
+    /* padding: 6px 5px; */
+    margin-top: 2px;
+    padding-left: 3px !important;
   }
 
   .gsc-control-cse,
@@ -533,9 +512,84 @@ body {
     margin-bottom: 3px !important;
     color: #1a0dab !important;
   }
+
+  #glogo {
+    /* display: none; */
+    position: absolute;
+    height: 12px;
+    top: 4px;
+    left: 50%;
+    opacity: 0.5;
+    transform: translate(-64px);
+  }
 }
 
 .rotate-180 {
   transform: rotate(180deg);
   transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+
+/* 搜索以？结尾的提示 */
+.hint {
+  position: fixed;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #c3ece1;
+  padding: 8px 10px;
+  color: #0c1119;
+  z-index: 1000;
+  min-width: 230px;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hint-close {
+  margin-left: 10px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.hint-close:hover {
+  background-color: #0000001a;
+}
+
+.hint.show {
+  visibility: visible;
+  opacity: 1;
+  animation: slide-up 0.5s ease forwards;
+}
+
+.hint.hide {
+  animation: slide-down 0.5s ease forwards;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes slide-up {
+  from {
+    bottom: -20px;
+  }
+  to {
+    bottom: 64px;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    bottom: 64px;
+  }
+  to {
+    bottom: -20px;
+  }
 }
