@@ -103,7 +103,7 @@
     <!-- <div id="testid" style="height: 100vh;"></div> -->
 
     <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
-        <div id="glogo" height="30" width="92"></div>
+        <div id="glogo" width="156"></div>
         <div class="searchboxarea">
 
             <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16"> //mx-test
@@ -262,7 +262,7 @@
                 }
 
             } else {
-                if (ai_q != old_ai_q && ai_q != null && ai_q != "") {
+                if (ai_q != old_ai_q && ai_q !=null && ai_q !="") {
                     aiiframe.contentWindow.postMessage(ai_q, '*');
                     old_ai_q = ai_q;
                 }
@@ -275,9 +275,9 @@
             showGoogleResult(0);
         }
         //根据屏幕高度改变ai输入框位置，让输入框处于屏幕最下方
-        function handleResize() {
+        function handleResize(){
             let viewHight = document.documentElement.clientHeight;
-            document.getElementById('aiwrapper').style.height = (viewHight - (showHeader ? 165 : 75)) + 'px';
+            document.getElementById('aiwrapper').style.height = (viewHight - (showHeader?165:75)) + 'px';
         }
     </script>
     <script>
@@ -306,7 +306,7 @@
         //根据之前决定的tabid，显示对应页面
         if (tabid == 2) {
             showAISearch(ai_q);
-        } else {
+        }else{
             showGoogleResult(tabid);
         }
         //初始化AI页高度
@@ -375,7 +375,7 @@
         }
 
     </script>
-    <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script>
+    <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo" hl="en"></script>
     <link rel="stylesheet" href="pretty.css">
 </body>
 
