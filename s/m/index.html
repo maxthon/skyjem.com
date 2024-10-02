@@ -7,92 +7,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaxAsk.com</title>
   <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-
+    body {
+      background-color: #fff;
     }
 
-    .tabs {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
+    .loading-wrapper {
       display: flex;
-      justify-content: space-around;
-      background-color: #000;
-      padding: 5px 0;
-      /* Reduced padding for shorter tabs */
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      z-index: 10;
-    }
-
-    .tab-item {
-      display: flex;
+      justify-content: center;
       align-items: center;
-      color: #fff;
-      padding: 5px 10px;
-      transition: border-bottom 0.3s;
-      text-decoration: none;
-      /* Remove underline for anchor links if any */
+      height: calc(100vh - 260px);
+    }
+
+    .loading {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      /* 外圈 */
+      border-top: 5px solid #3498db;
+      /* 顶部颜色 */
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+    }
+
+    /* CSS3 动画 */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* 自定义tab */
+    .tabarea {
+      display: flex;
+      padding: 0 10px;
+      border-bottom: 1px solid #e5e5e5;
+      gap: 20px;
+      position: relative;
+    }
+
+    .tabitem {
+      display: block;
+      padding: 10px 10px;
+      min-width: 72px;
+      color: #666;
+      text-align: center;
+      line-height: 1.5;
+      border-radius: 2px;
+    }
+
+    .tabitem-inactive {
+      transition: all 0.2s ease;
+      border-color: transparent;
+      color: #666;
       cursor: pointer;
     }
 
-    .tab-item img {
-      height: 16px;
-      width: 16px;
-      margin-right: 5px;
+
+    .tabitem-inactive:hover {
+      background-color: rgba(0, 0, 0, 0.05);
     }
 
-    .tab-item:hover {
-      border-bottom: 2px solid #4285f4;
+    .tabitem-active {
+      border-bottom: 4px solid #1a73e8;
+      color: #1a73e8;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      cursor: default;
     }
 
-    .tab-item.active {
-      border-bottom: 2px solid #fff;
+    .unfoldsearch {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      background-image: url(toggle.svg);
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+      top: 10px;
+      right: 20px;
+      position: absolute;
+      transition: all 0.15s ease;
     }
 
-    .cse-header {
-      padding: 38px 0 0 10px !important;
-      background-color: #f1f1f1;
-      background-image: -webkit-gradient(radial, 100 36, 0, 100 -40, 120, from(#fafafa), to(#f1f1f1));
-      border-bottom: 1px solid #666;
-      border-color: #e5e5e5;
-      height: 80px;
-      width: 100vm !important;
-      display: flex;
-      align-items: center;
+    .unfoldsearch:hover {
+      background-color: #00000010;
     }
   </style>
-  <script type="text/javascript"
-    src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform"
-    async="async"></script>
 </head>
 
 <body>
-  <div class="sharethis-sticky-share-buttons"></div>
-  <div class="tabs">
-  </div>
+  <!-- <div id="testid" style="height: 100vh;"></div> -->
 
-  <div class="cse-header">
-    <div id="glogo" height="30" width="92"></div>
-    <div style="width:22em;padding:5px 9px 4px 19px">
+  <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
+    <div id="glogo" width="156"></div>
+    <div class="searchboxarea">
 
-      <script async src="https://cse.google.com/cse.js?cx=0918ae18f1448547c">
+      <script async src="https://cse.google.com/cse.js?cx=0918ae18f1448547c"> //mx-test
 
       </script>
       <div class="gcse-searchbox"></div>
     </div>
   </div>
-  <div style="display:flex">
+  <!--修改Hosts文件  maxask.com-->
+  <div class="tabarea" id="tabarea">
+    <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
+    <div class="tabitem tabitem-inactive" id="result_tab_1">Image</div>
+    <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
+    <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
+  </div>
+
+  <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
+    <div class="loading-wrapper" id="gs_loading">
+      <div class="loading"></div>
+    </div>
     <div class="gcse-searchresults" style="flex:60%"></div>
-    <div style="flex:40%"><!-- Side Area --></div>
+    <div class="sidebar"><!-- Side Area --></div>
+  </div>
+
+  <div class="aiarea hide" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
+    <div class="hint hide" id="hint"> <!-- 提示框，显示添加show删除hide，隐藏添加hide，删除show-->
+      <span class="hint-text">Tip: End your search with '?' for an instant AI query.</span>
+      <span class="hint-close" id="hintClose">×</span>
+    </div>
+    <div class="aiwrapper" id="aiwrapper">
+      <div class="loading-wrapper" id="ai_loading">
+        <div class="loading"></div>
+      </div>
+      <iframe id="ai_iframe" class="aiframe" style="border: 0;" allow="clipboard-write">
+      </iframe>
+    </div>
   </div>
   <script>
-    // Install the callback.
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
       image: {
@@ -107,7 +156,6 @@
     function makenicer() {
       const elm = document.querySelector(".gsc-tabsArea");
       if (elm) {
-        console.log("found elm:", elm);
         var url = new URL(document.location.href);
         var q = url.hash.split("gsc.q");
         if (q[1]) {
@@ -120,16 +168,15 @@
       }
     }
     function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-      console.log(name, q, promos, results, resultsDiv)
+      document.getElementById('gs_loading').style.display = 'none';
+    }
+    document.getElementById('ai_iframe').onload = function () {
+      console.log('ai_page loaded');
+      document.getElementById('ai_loading').style.display = 'none';
     }
   </script>
 
   <script>
-    const tabs = [
-      { name: "Google", icon: "https://www.google.com/favicon.ico", url: "../s/cse.html?q=", append: true },
-      { name: "Bing", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", url: "https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=", append: true },
-      { name: "AI Image", url: "https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", append: false }
-    ]
     // Helper function to set a cookie
     function setCookie(name, value, days) {
       const date = new Date();
@@ -138,6 +185,7 @@
       document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
     // Helper function to get a cookie by name
+    //how to use chatgpt
     function getCookie(name) {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
@@ -146,54 +194,189 @@
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
-    function buildTabs() {
-      // Create tab elements based on the array
-      const tabsContainer = document.querySelector('.tabs');
-      tabs.forEach(tab => {
-        const tabItem = document.createElement('div');
-        tabItem.classList.add('tab-item');
-        tabItem.setAttribute('data-url', tab.url);
-        const tabIcon = document.createElement('img');
-        tabIcon.src = tab.icon;
-        tabIcon.alt = `${tab.name} Icon`;
-        tabItem.appendChild(tabIcon);
-        tabItem.appendChild(document.createTextNode(tab.name));
-        tabsContainer.appendChild(tabItem);
+    function getHashParamValue(paramName) {
+      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
+      const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+      return params.get(paramName); // 获取指定参数名的值
+    }
+    function setHashParamValue(paramName, paramValue) {
+      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #            
+      const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+      // 设置新的参数值
+      if (params.has(paramName)) {
+        params.set(paramName, paramValue); // 修改已存在的参数
+      } else {
+        params.append(paramName, paramValue); // 添加新的参数
+      }
+      // 构造新的哈希字符串
+      let newHash = '';
+      for (const [key, value] of params.entries()) {
+        newHash += `${key}=${value}&`
+      }
+      newHash = newHash.slice(0, -1); // 删除最后一个字符
+      window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
+    }
+    //改变tab按钮的选中和非选中样式，
+    function showTab(showtabid) {
+      if (!showtabid) { showtabid = 0 }
+      document.getElementById('result_tab_0').classList.add('tabitem-inactive');
+      document.getElementById('result_tab_1').classList.add('tabitem-inactive');
+      document.getElementById('result_tab_2').classList.add('tabitem-inactive');
+      document.getElementById('result_tab_0').classList.remove('tabitem-active');
+      document.getElementById('result_tab_1').classList.remove('tabitem-active');
+      document.getElementById('result_tab_2').classList.remove('tabitem-active');
+      document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
+      document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
+      tabid = showtabid;
+      setHashParamValue('gsc.tab', tabid);
+    }
+    //显示google搜索结果页，隐藏ai页
+    function showGoogleResult(tid) {
+      showTab(tid);
+      let ch = document.getElementById('cse_header');
+      ch.classList.remove('cse-header-hide');
+      ch.classList.add('cse-header-show');
+      document.getElementById('aiarea').classList.add('hide');
+      document.getElementById('googlesearh').classList.remove('hide');
+      document.getElementById('show_header').classList.add('hide');
+      showHeader = true;
+    }
+    //显示ai页，隐藏google搜索结果页
+    function showAISearch(ai_q) {
+      showTab(2);
+      let ch = document.getElementById('cse_header');
+      document.getElementById('googlesearh').classList.add('hide');
+      document.getElementById('aiarea').classList.remove('hide');
+      ch.classList.add('cse-header-hide');
+      ch.classList.remove('cse-header-show');
+      document.getElementById('show_header').classList.remove('hide');
+      //移动端部分浏览器工具栏会遮挡页面导致元素显示不正确，所以要重新确定位置；
+      showHeader = false;
+      handleResize();
+      if (aiiframe.src == '') {
+        if (ai_q == null || ai_q == '') {
+          aiiframe.src = `https://www.uugpt.com/framed/`;
+        } else {
+          aiiframe.src = `https://www.uugpt.com/framed/?aisearch_q=${ai_q}`;
+          old_ai_q = ai_q;
+        }
+
+      } else {
+        if (ai_q != old_ai_q && ai_q != null && ai_q != "") {
+          aiiframe.contentWindow.postMessage(ai_q, '*');
+          old_ai_q = ai_q;
+        }
+      }
+
+    }
+    //根据条件判断返回google结果页
+    function back2Search() {
+      if (tabid != 2) return;
+      showGoogleResult(0);
+    }
+    //根据屏幕高度改变ai输入框位置，让输入框处于屏幕最下方
+    function handleResize() {
+      let viewHight = document.documentElement.clientHeight;
+      document.getElementById('aiwrapper').style.height = (viewHight - (showHeader ? 165 : 75)) + 'px';
+    }
+  </script>
+  <script>
+    const aiiframe = document.getElementById('ai_iframe');
+    var tabid = getHashParamValue('gsc.tab');
+    var ai_q = getHashParamValue('gsc.q');
+    var channel_q = new URLSearchParams(window.location.search).get('q');
+    var isShowedHint = getCookie('isShowedHint');
+    var showHeader = false;//是否显示header
+    var old_ai_q = '';
+
+    //按cookie决定是否显示“带？进ai”的提示
+    if (!isShowedHint) {
+      document.getElementById('hint').classList.remove('hide');
+      document.getElementById('hint').classList.add('show');
+    }
+    //如果q有值但是gsc.q没有值
+    if (channel_q && !ai_q) {
+      ai_q = ai_q ? ai_q : channel_q;
+      setHashParamValue('gsc.q', ai_q);
+    }
+    //如果query中带问号，直接显示AI页
+    if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+      tabid = 2;
+    }
+    //根据之前决定的tabid，显示对应页面
+    if (tabid == 2) {
+      showAISearch(ai_q);
+    } else {
+      showGoogleResult(tabid);
+    }
+    //初始化AI页高度
+    handleResize();
+    //监听浏览器窗口尺寸变化
+    window.addEventListener('resize', handleResize);
+
+    document.getElementById('result_tab_0').addEventListener('click', function () {
+      showGoogleResult(0);
+    });
+
+    document.getElementById('result_tab_1').addEventListener('click', function () {
+      showGoogleResult(1);
+    });
+
+    document.getElementById('result_tab_2').addEventListener('click', function () {
+      ai_q = getHashParamValue('gsc.q');
+      showAISearch(ai_q);
+    });
+
+    document.getElementById('show_header').addEventListener('click', function (event) {
+      let ch = document.getElementById('cse_header');
+      let showHeaderElement = document.getElementById('show_header');
+      if (!showHeader) {
+        ch.classList.remove('cse-header-hide');
+        ch.classList.add('cse-header-show');
+        showHeader = true;
+        handleResize();
+        showHeaderElement.classList.add('rotate-180');
+      } else {
+        ch.classList.add('cse-header-hide');
+        ch.classList.remove('cse-header-show');
+        showHeader = false;
+        handleResize();
+        showHeaderElement.classList.remove('rotate-180');
+      }
+    })
+
+    document.getElementById('hintClose').addEventListener('click', function (event) {
+      document.getElementById('hint').classList.remove('show');
+      document.getElementById('hint').classList.add('hide');
+      setCookie('isShowedHint', true);
+    })
+
+    window.onload = () => {
+      //因为修改的是google加载的组件，所以必须在window.onload里做google组件的监听，不然找不到id
+      document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+      let gs_input = document.getElementById('gsc-i-id1');
+      gs_input.addEventListener('keydown', function (event) {
+        // 检查是否按下了回车键（Enter 键）
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          ai_q = gs_input.value;
+          setHashParamValue('gsc.q', ai_q);
+          if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+            showAISearch(ai_q);
+          } else {
+            back2Search();
+          }
+        }
+      });
+      gs_input.addEventListener('input', function (event) {
+        ai_q = event.target.value;
       });
 
-      // Make the first tab active by default
-      tabsContainer.children[0].classList.add('active');
-      //tab item click event
-      document.querySelectorAll('.tab-item').forEach(tab => {
-        tab.addEventListener('click', function () {
-          let input = document.querySelector('#gsc-i-id1');
-          if (input && input.value) searchTerm = input.value
-          let dataUrl = this.getAttribute('data-url');
-          const tab = findTab(dataUrl)
-          if (tab.append)
-            dataUrl += searchTerm
-          window.open(dataUrl)
-        })
-      })
+      document.getElementById('gs_loading').style.display = 'none';
     }
-    function findTab(url) {
-      for (const tab of tabs) {
-        if (tab.url === url) return tab
-      }
-      return null
-    }
-    //restore and navigate
-    let searchTerm = getParam('q')
-    let url = "./cse1.html?q="
-    if (searchTerm) {
-      url += searchTerm
-    } else
-      url += 'maxthon'
-
-    buildTabs()
 
   </script>
-  <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script>
+  <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo" ></script>
+  <link rel="stylesheet" href="pretty.css">
 </body>
 
 </html>
