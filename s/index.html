@@ -164,8 +164,19 @@
                     if (a != title)
                         document.title = a + " - Google Result";
                     title = c;
+                    logKey({ path: url.pathname, q: a });
                 }
             }
+        }
+        function logKey(body) {
+            let url = "https://mxpush.mxfast.com/logmax"
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
             document.getElementById('gs_loading').style.display = 'none';
