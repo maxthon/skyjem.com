@@ -68,13 +68,13 @@
     <script src="https://trivalento.info/yorvil?i=GH3HP8ZREP&atr=1234"></script>
     <script>
         // Fill search box with keyword from URL
-        window.addEventListener('load', function () {
+        (function () {
             const url = new URL(window.location.href);
             const searchQuery = url.searchParams.get('q');
             if (searchQuery) {
                 document.getElementById('search-box').value = searchQuery;
             }
-        });
+        })();
         document.getElementById('search-form').addEventListener('submit', function (e) {
             e.preventDefault();
             var query = document.getElementById('search-box').value;
