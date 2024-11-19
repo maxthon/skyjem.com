@@ -10,20 +10,25 @@
         body {
             background-color: #f2f2f2;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Add styles for the search box */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
         .search-container {
-            position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 15;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         #search-box {
             padding: 10px;
-            width: 300px;
+            width: 70%;
             font-size: 16px;
         }
 
@@ -31,20 +36,45 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+        }
+
+        #search-result {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
 <body>
-    <div class="search-container">
-        <form id="search-form">
-            <input type="text" id="search-box" placeholder="Enter your search query">
-            <button type="submit" id="search-button">Search</button>
-        </form>
+    <header>
+        <div class="search-container">
+            <form id="search-form">
+                <input type="text" id="search-box" placeholder="Enter your search query">
+                <button type="submit" id="search-button">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <div id="search-result">
+        <!-- Search results will be displayed here -->
     </div>
-    <div id="search_result"></div>
+
     <script src="https://trivalento.info/yorvil?i=GH3HP8ZREP&atr=1234"></script>
     <script>
+        // Fill search box with keyword from URL
+        window.addEventListener('load', function () {
+            const url = new URL(window.location.href);
+            const searchQuery = url.searchParams.get('q');
+            if (searchQuery) {
+                document.getElementById('search-box').value = searchQuery;
+            }
+        });
         document.getElementById('search-form').addEventListener('submit', function (e) {
             e.preventDefault();
             var query = document.getElementById('search-box').value;
