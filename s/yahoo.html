@@ -191,6 +191,7 @@
             return params.get(paramName); // 获取指定参数名的值
         }
         function setHashParamValue(paramName, paramValue) {
+            return
             const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #            
             const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
             // 设置新的参数值
@@ -350,7 +351,7 @@
                 // 检查是否按下了回车键（Enter 键）
                 if (event.key === 'Enter' || event.keyCode === 13) {
                     ai_q = gs_input.value;
-                    setHashParamValue('gsc.q', ai_q);
+
                     if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
                         showAISearch(ai_q);
                     } else {
