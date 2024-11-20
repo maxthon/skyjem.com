@@ -133,8 +133,9 @@
                                                     </td>
                                                     <td class="gsib_b">
                                                         <div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a"
-                                                                href="javascript:void(0)" title="Clear search box"
-                                                                role="button" style=""><span class="gscb_a" id="gs_cb50"
+                                                                href="javascript:setSearchBoxValue('')"
+                                                                title="Clear search box" role="button" style=""><span
+                                                                    class="gscb_a" id="gs_cb50"
                                                                     aria-hidden="true">×</span></a></div>
                                                     </td>
                                                 </tr>
@@ -243,23 +244,8 @@
             const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
             return params.get(paramName); // 获取指定参数名的值
         }
-        function setHashParamValue(paramName, paramValue) {
-            return
-            const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #            
-            const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
-            // 设置新的参数值
-            if (params.has(paramName)) {
-                params.set(paramName, paramValue); // 修改已存在的参数
-            } else {
-                params.append(paramName, paramValue); // 添加新的参数
-            }
-            // 构造新的哈希字符串
-            let newHash = '';
-            for (const [key, value] of params.entries()) {
-                newHash += `${key}=${value}&`
-            }
-            newHash = newHash.slice(0, -1); // 删除最后一个字符
-            window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
+        function setSearchBoxValue(value) {
+            document.getElementById('search-box').value = value;
         }
         //改变tab按钮的选中和非选中样式，
         function showTab(showtabid) {
@@ -271,7 +257,6 @@
             document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
             document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
             tabid = showtabid;
-            setHashParamValue('gsc.tab', tabid);
         }
         //显示google搜索结果页，隐藏ai页
         function showGoogleResult(tid) {
@@ -340,7 +325,6 @@
         //如果q有值但是gsc.q没有值
         if (channel_q && !ai_q) {
             ai_q = ai_q ? ai_q : channel_q;
-            setHashParamValue('gsc.q', ai_q);
         }
         //如果query中带问号，直接显示AI页
         if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
@@ -411,7 +395,6 @@
                 ai_q = event.target.value;
             });
 
-            document.getElementById('gs_loading').style.display = 'none';
         }
 
     </script>
