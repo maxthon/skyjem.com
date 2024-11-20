@@ -170,7 +170,6 @@
     <!--修改Hosts文件  maxask.com-->
     <div class="tabarea" id="tabarea">
         <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
-        <div class="tabitem tabitem-inactive" id="result_tab_1">Image</div>
         <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
         <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
     </div>
@@ -266,10 +265,8 @@
         function showTab(showtabid) {
             if (!showtabid) { showtabid = 0 }
             document.getElementById('result_tab_0').classList.add('tabitem-inactive');
-            document.getElementById('result_tab_1').classList.add('tabitem-inactive');
             document.getElementById('result_tab_2').classList.add('tabitem-inactive');
             document.getElementById('result_tab_0').classList.remove('tabitem-active');
-            document.getElementById('result_tab_1').classList.remove('tabitem-active');
             document.getElementById('result_tab_2').classList.remove('tabitem-active');
             document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
             document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
@@ -364,9 +361,6 @@
             showGoogleResult(0);
         });
 
-        document.getElementById('result_tab_1').addEventListener('click', function () {
-            showGoogleResult(1);
-        });
 
         document.getElementById('result_tab_2').addEventListener('click', function () {
             ai_q = getHashParamValue('gsc.q');
