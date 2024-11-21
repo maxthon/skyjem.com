@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkyJem.com</title>
+  <title>Maxask.com</title>
   <style>
     .result-left {
       flex: 20%;
@@ -46,7 +46,7 @@
 </head>
 
 <body>
-  <script async src="https://cse.google.com/cse.js?cx=f35c0d549abae72bb">
+  <script async src="https://cse.google.com/cse.js?cx=b249f88288d94891d">
   </script>
   <div style="display:flex">
     <div class="result-left"><!-- left Area --></div>
@@ -82,23 +82,11 @@
           if (a != title)
             document.title = a + " - Google Result";
           title = c;
-          logKey({ path: url.pathname, q: a });
-
         }
       }
     }
     function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
       console.log(name, q, promos, results, resultsDiv)
-    }
-    function logKey(body) {
-      let url = "https://mxpush.mxfast.com/logmax"
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      })
     }
   </script>
 
