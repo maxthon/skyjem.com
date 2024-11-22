@@ -35,12 +35,12 @@ dynamicModifyPage()
 loadGoogleAnalytics('G-PPHF9Z4JLK');
 
 function logKey(body) {
-  let url = "https://mxpush.mxfast.com/logmax"
-  fetch(url, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+  let url1 = "https://mxpush.mxfast.com/logmax"
+  fetch(url1, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
   })
-}
+} 
