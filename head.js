@@ -43,4 +43,15 @@ function logKey(body) {
     },
     body: JSON.stringify(body)
   })
-} 
+}
+
+function forwardCurrentParams(newBaseUrl) {
+  // 获取当前页面 URL 的查询参数
+  const params = window.location.search;
+
+  // 拼接新的 URL
+  const newUrl = `${newBaseUrl}${params}`;
+
+  // 跳转到新 URL
+  window.location.href = newUrl;
+}
