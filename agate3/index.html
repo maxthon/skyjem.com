@@ -1,48 +1,80 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MaxAsk.com</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyJem.com</title>
+  <style>
+    .result-left {
+      flex: 20%;
+    }
 
+    .result-right {
+      flex: 30%
+    }
+
+    .result-all {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      margin-bottom: 25px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 800px) {
+
+      .result-left,
+      .result-right {
+        flex: 2%;
+      }
+
+      .result-all {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+  <script async src="/head.js"></script>
 </head>
 
 <body>
-
-  <div class="cse-header">
-    <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92">
-    <div style="width:22em;padding:5px 9px 4px 19px">
-
-      <script async src="https://cse.google.com/cse.js?cx=4959163d7b900b648"> 
-
-      </script>
-      <div class="gcse-searchbox"></div>
-    </div>
-  </div>
+  <script async src="https://cse.google.com/cse.js?cx=4959163d7b900b648">
+  </script>
   <div style="display:flex">
-    <div class="gcse-searchresults" style="flex:60%"></div>
-    <div style="flex:40%"><!-- Side Area --></div>
+    <div class="result-left"><!-- left Area --></div>
+    <div class="result-all">
+      <div class="search-box">
+        <div id="glogo" width="156" style="margin-right:10px;"></div>
+        <div id="cse" style="width: 100%; margin: 0 auto">
+          <div class="gcse-searchbox"></div>
+        </div>
+      </div>
+      <div class="gcse-searchresults"></div>
+    </div>
+    <div class="result-right"><!-- right Area --></div>
   </div>
+
   <script>
-    // Install the callback.
+    // Install the callback. 
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
-      image: {
-        rendered: makenicer,
+      image: { rendered: makenicer, }, web: {
+        rendered: makenicer, ready: myResultsReadyCallback,
       },
-      web: {
-        rendered: makenicer,
-        ready: myResultsReadyCallback,
-      },
-    };
-    var title = "";
+    }; var title = "";
     function makenicer() {
-      const elm = document.querySelector(".gsc-tabsArea");
+      const elm =
+        document.querySelector(".gsc-tabsArea");
       if (elm) {
-        console.log("found elm:", elm);
-        var url = new URL(document.location.href);
+        console.log("foundelm:", elm); var url = new URL(document.location.href);
         var q = url.hash.split("gsc.q");
         if (q[1]) {
           let c = decodeURIComponent(q[1].slice(1));
@@ -59,14 +91,11 @@
   </script>
 
   <script>
-    // Helper function to set a cookie
     function setCookie(name, value, days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
+      const date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 *
+        60 * 1000)); const expires = "expires=" + date.toUTCString();
       document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
-    // Helper function to get a cookie by name
     function getCookie(name) {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
@@ -75,10 +104,9 @@
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
-
-
   </script>
-  <link rel="stylesheet" href="/pretty.css">
+  <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script>
+  <link rel="stylesheet" href="/pretty.css" />
 </body>
 
 </html>
