@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        function getParam(name) {
+            const u = new URL(window.location)
+            const search = u.searchParams
+            return search.get(name)
+        }
+        const channel = getParam('c')
+        const keyword = getParam('q')
+        const newUrl = `https://skyjem.com/j/${channel}/?q=${keyword}`;
+        window.location.href = newUrl;
+
+    </script>
+</body>
+
+</html>
