@@ -1,109 +1,80 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MaxAsk.com</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyJem.com</title>
   <style>
-    .tabs {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      display: flex;
-      justify-content: space-around;
-      background-color: #000;
-      padding: 5px 0;
-      /* Reduced padding for shorter tabs */
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      z-index: 10;
-      visibility: hidden;
+    .result-left {
+      flex: 20%;
     }
 
-    .tab-item {
+    .result-right {
+      flex: 30%
+    }
+
+    .result-all {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .search-box {
       display: flex;
       align-items: center;
-      color: #fff;
-      padding: 5px 10px;
-      transition: border-bottom 0.3s;
-      text-decoration: none;
-      /* Remove underline for anchor links if any */
-      cursor: pointer;
+      margin-left: 10px;
+      margin-bottom: 25px;
+      margin-top: 25px;
     }
 
-    .tab-item img {
-      height: 16px;
-      width: 16px;
-      margin-right: 5px;
-    }
+    @media (max-width: 800px) {
 
-    .tab-item:hover {
-      border-bottom: 2px solid #4285f4;
-    }
+      .result-left,
+      .result-right {
+        flex: 2%;
+      }
 
-    .tab-item.active {
-      border-bottom: 2px solid #fff;
-    }
-
-    #iframeContainer {
-      position: absolute;
-      top: calc(5px + 1em);
-      /* Adjust based on your tabs div height */
-      left: 0;
-      width: 100vw;
-      height: calc(100vh - 5px - 1em);
-      /* Adjust based on your tabs div height */
-      z-index: 5;
-      /* So it's below tabs */
-      overflow: hidden;
+      .result-all {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
     }
   </style>
-  <script type="text/javascript"
-    src="https://platform-api.sharethis.com/js/sharethis.js#property=64ffc956d0137a0012e89db5&product=sticky-share-buttons&source=platform"
-    async="async"></script>
+  <script async src="/head.js"></script>
 </head>
 
 <body>
-  <div class="sharethis-sticky-share-buttons"></div>
-  <div class="tabs">
-  </div>
-
-  <div class="cse-header">
-    <img src="/googlelogo_92x30.png" alt="Google logo" height="30" width="92">
-    <div style="width:22em;padding:5px 9px 4px 19px">
-
-      <script async src="https://cse.google.com/cse.js?cx=caa87bb2a667938a2">
-        //Li-nb
-      </script>
-      <div class="gcse-searchbox"></div>
-    </div>
-  </div>
+  <script async src="https://cse.google.com/cse.js?cx=caa87bb2a667938a2">
+  </script>
   <div style="display:flex">
-    <div class="gcse-searchresults" style="flex:60%"></div>
-    <div style="flex:40%"><!-- Side Area --></div>
+    <div class="result-left"><!-- left Area --></div>
+    <div class="result-all">
+      <div class="search-box">
+        <div id="glogo" width="156" style="margin-right:10px;"></div>
+        <div id="cse" style="width: 100%; margin: 0 auto">
+          <div class="gcse-searchbox"></div>
+        </div>
+      </div>
+      <div class="gcse-searchresults"></div>
+    </div>
+    <div class="result-right"><!-- right Area --></div>
   </div>
-  <div id="iframeContainer" style="display:none"></div>
+
   <script>
-    // Install the callback.
+    // Install the callback. 
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
-      image: {
-        rendered: makenicer,
+      image: { rendered: makenicer, }, web: {
+        rendered: makenicer, ready: myResultsReadyCallback,
       },
-      web: {
-        rendered: makenicer,
-        ready: myResultsReadyCallback,
-      },
-    };
-    var title = "";
+    }; var title = "";
     function makenicer() {
-      const elm = document.querySelector(".gsc-tabsArea");
+      const elm =
+        document.querySelector(".gsc-tabsArea");
       if (elm) {
-        console.log("found elm:", elm);
-        var url = new URL(document.location.href);
+        console.log("foundelm:", elm); var url = new URL(document.location.href);
         var q = url.hash.split("gsc.q");
         if (q[1]) {
           let c = decodeURIComponent(q[1].slice(1));
@@ -120,20 +91,11 @@
   </script>
 
   <script>
-    const tabs = [
-      { name: "Google", icon: "https://www.google.com/favicon.ico", url: "../s/cse.html?q=", append: true },
-      { name: "Bing", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", url: "https://tonline-search.com/results.aspx?gd=RD1003641&searchsource=69&q=", append: true },
-      { name: "AI Chat", url: "https://chat.maxask.com", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", append: false, iframe: true },
-      { name: "AI Image", url: "https://www.bing.com/create?toWww=1&redig=A2D8BE7DA70A4C36826329424E7E5B0D", icon: "https://www.bing.com/sa/simg/favicon-2x.ico", append: false }
-    ]
-    // Helper function to set a cookie
     function setCookie(name, value, days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
+      const date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 *
+        60 * 1000)); const expires = "expires=" + date.toUTCString();
       document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
-    // Helper function to get a cookie by name
     function getCookie(name) {
       const value = "; " + document.cookie;
       const parts = value.split("; " + name + "=");
@@ -142,107 +104,9 @@
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
-    function setActiveTab(tabElm) {
-      // Remove 'active' class from all tabs
-      document.querySelectorAll('.tab-item').forEach(innerTab => {
-        innerTab.classList.remove('active');
-      });
-      // Add 'active' class to the clicked tab
-      tabElm.classList.add('active');
-    }
-    function buildTabs() {
-      // Create tab elements based on the array
-      const tabsContainer = document.querySelector('.tabs');
-      tabs.forEach(tab => {
-        const tabItem = document.createElement('div');
-        tabItem.classList.add('tab-item');
-        tabItem.setAttribute('data-url', tab.url);
-        const tabIcon = document.createElement('img');
-        tabIcon.src = tab.icon;
-        tabIcon.alt = `${tab.name} Icon`;
-        tabItem.appendChild(tabIcon);
-        tabItem.appendChild(document.createTextNode(tab.name));
-        tabsContainer.appendChild(tabItem);
-      });
-
-      // Make the first tab active by default
-      tabsContainer.children[0].classList.add('active');
-      //tab item click event
-      document.querySelectorAll('.tab-item').forEach(tab => {
-        tab.addEventListener('click', function () {
-          let input = document.querySelector('#gsc-i-id1');
-          if (input && input.value) searchTerm = input.value
-          let dataUrl = this.getAttribute('data-url');
-          const tabInfo = findTab(dataUrl)
-          if (tabInfo.name == "Google") {
-            setActiveTab(this)
-            document.querySelector("#iframeContainer").style.display = 'none'
-            return
-          }
-
-          if (!tabInfo.iframe) { //open in new window or just do nothing
-            if (tabInfo.append) {
-              let input = document.querySelector('#gsc-i-id1');
-              if (input && input.value) searchTerm = input.value;
-              dataUrl += searchTerm;
-            }
-            window.open(dataUrl);
-            return
-          }
-          setActiveTab(this)
-          // Hide all iframes
-          document.querySelectorAll("#iframeContainer iframe").forEach(iframe => {
-            iframe.style.display = "none";
-          });
-          if (tabInfo.iframe) {
-            // Show the associated iframe
-            document.querySelector("#iframeContainer").style.display = 'block'
-            const targetIframe = document.querySelector(`#iframeContainer iframe[data-url='${dataUrl}']`);
-            if (targetIframe) {
-              if (targetIframe.src == 'about:blank')
-                targetIframe.src = tabInfo.url
-              targetIframe.style.display = "block";
-            }
-          }
-        })
-      })
-    }
-    function findTab(url) {
-      for (const tab of tabs) {
-        if (tab.url === url) return tab
-      }
-      return null
-    }
-    function preloadIframes() {
-      const iframeContainer = document.getElementById("iframeContainer");
-      tabs.forEach(tab => {
-        if (tab.iframe) {
-          let iframe = document.createElement('iframe');
-          iframe.src = "about:blank";
-          iframe.style.width = "100%";
-          iframe.style.height = "100%";
-          iframe.style.border = "0"; // Remove default iframe border
-          iframe.style.display = "none"; // Hide by default
-          iframe.dataset.url = tab.url;  // Associate with tab URL for later reference
-          iframeContainer.appendChild(iframe);
-        }
-      });
-    }
-
-    preloadIframes();
-    //restore and navigate
-    let searchTerm = getParam('q')
-    let url = "./cse1.html?q="
-    if (searchTerm) {
-      url += searchTerm
-    } else
-      url += 'maxthon'
-
-    buildTabs()
-
   </script>
-  <link rel="stylesheet" href="/pretty.css">
-
+  <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script>
+  <link rel="stylesheet" href="/pretty.css" />
 </body>
 
 </html>
