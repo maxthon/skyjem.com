@@ -57,9 +57,9 @@
             const urlObj = new URL(url);
             const path = urlObj.pathname.split('/');
             let result = ""
-            if (path[0] != 'j') result = "unsupported URL"
+            if (path[1] != 'j') result = "unsupported URL"
             else {
-                const newurl = `https://skyjem.com/g/c=${path[1]}&q=test`
+                const newurl = `https://skyjem.com/g/c=${path[2]}&q=test`
                 result = "upgraded URL: " + newurl
             }
             document.getElementById('result').textContent = result;
