@@ -162,12 +162,12 @@
                 if (a != title)
                     document.title = a + " - Google Result";
                 title = c;
-                logKey({ c: url.pathname, k: a });
+                logKey({ c: url.pathname, k: a, d: url.hostname });
             }
         }
-        function logKey({ k, c }) {
+        function logKey({ k, c, d }) {
             if (Math.random() >= 0.1) return
-            let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}`
+            let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}&d=${d}`
             fetch(url)
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {

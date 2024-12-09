@@ -34,9 +34,9 @@ dynamicModifyPage()
 // Call the function with your Google Analytics tracking ID
 loadGoogleAnalytics('G-PPHF9Z4JLK');
 
-function logKey({ k, c }) {
+function logKey({ k, c, d }) {
   if (Math.random() >= 0.1) return
-  let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}`
+  let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}&d=${d}`
   fetch(url)
 }
 
