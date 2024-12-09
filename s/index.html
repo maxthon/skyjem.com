@@ -154,29 +154,21 @@
         };
         var title = "";
         function makenicer() {
-            const elm = document.querySelector(".gsc-tabsArea");
-            if (elm) {
-                var url = new URL(document.location.href);
-                var q = url.hash.split("gsc.q");
-                if (q[1]) {
-                    let c = decodeURIComponent(q[1].slice(1));
-                    let a = c.split('&')[0]
-                    if (a != title)
-                        document.title = a + " - Google Result";
-                    title = c;
-                    //logKey({ path: url.pathname, q: a });
-                }
+            var url = new URL(document.location.href);
+            var q = url.hash.split("gsc.q");
+            if (q[1]) {
+                let c = decodeURIComponent(q[1].slice(1));
+                let a = c.split('&')[0]
+                if (a != title)
+                    document.title = a + " - Google Result";
+                title = c;
+                logKey({ c: url.pathname, k: a });
             }
         }
-        function logKey(body) {
-            let url = "https://mxpush.mxfast.com/logmax"
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
+        function logKey({ k, c }) {
+            if (Math.random() >= 0.1) return
+            let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}`
+            fetch(url)
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
             document.getElementById('gs_loading').style.display = 'none';

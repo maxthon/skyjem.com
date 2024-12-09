@@ -34,15 +34,10 @@ dynamicModifyPage()
 // Call the function with your Google Analytics tracking ID
 loadGoogleAnalytics('G-PPHF9Z4JLK');
 
-function logKey(body) {
-  let url1 = "https://mxpush.mxfast.com/logmax"
-  fetch(url1, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  })
+function logKey({ k, c }) {
+  if (Math.random() >= 0.1) return
+  let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}`
+  fetch(url)
 }
 
 function forwardCurrentParams(newBaseUrl) {
