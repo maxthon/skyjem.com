@@ -169,16 +169,7 @@
             }
         }
         function logKey({ k, c }) {
-            // 获取计数器值
-            let refreshCount = parseInt(localStorage.getItem("refreshCount")) || 0;
-
-            // 更新计数器
-            refreshCount += 1;
-            localStorage.setItem("refreshCount", refreshCount);
-            // 检查是否需要记录日志
-            if (refreshCount >= 3) {
-                localStorage.setItem("refreshCount", 0); // 重置计数器
-            }
+            if (Math.random() >= 0.1) return
             let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}`
             fetch(url)
         }
