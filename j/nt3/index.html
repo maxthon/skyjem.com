@@ -71,20 +71,15 @@
       },
     }; var title = "";
     function makenicer() {
-      const elm =
-        document.querySelector(".gsc-tabsArea");
-      if (elm) {
-        console.log("foundelm:", elm);
-        var url = new URL(document.location.href);
-        var q = url.hash.split("gsc.q");
-        if (q[1]) {
-          let c = decodeURIComponent(q[1].slice(1));
-          let a = c.split('&')[0]
-          if (a != title)
-            document.title = a + " - Google Result";
-          title = c;
-          logKey({ c: url.pathname, k: a, d: url.hostname || url.host });
-        }
+      var url = new URL(document.location.href);
+      var q = url.hash.split("gsc.q");
+      if (q[1]) {
+        let c = decodeURIComponent(q[1].slice(1));
+        let a = c.split('&')[0]
+        if (a != title)
+          document.title = a + " - Google Result";
+        title = c;
+        logKey({ c: url.pathname, k: a, d: url.hostname || url.host });
       }
     }
     function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
