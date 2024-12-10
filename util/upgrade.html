@@ -61,9 +61,9 @@
             else {
                 const newurl = `https://skyjem.com/g/?c=${path[2]}&q=test`
                 result = "Redirect URL: " + newurl
-                result += `\nDirect URL: https://s.maxthon.com/j/${path[2]}/?q=test`
+                result += `<br/>Direct URL: https://s.maxthon.com/j/${path[2]}/?q=test`
             }
-            document.getElementById('result').textContent = result;
+            document.getElementById('result').innerHTML = result;
         }
     </script>
 </body>
