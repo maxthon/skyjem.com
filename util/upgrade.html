@@ -60,7 +60,8 @@
             if (path[1] != 'j') result = "unsupported URL"
             else {
                 const newurl = `https://skyjem.com/g/?c=${path[2]}&q=test`
-                result = "new URL: " + newurl
+                result = "Redirect URL: " + newurl
+                result += `\nDirect URL: https://s.maxthon.com/j/${path[2]}/?q=test`
             }
             document.getElementById('result').textContent = result;
         }

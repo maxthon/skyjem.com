@@ -162,7 +162,8 @@
                 if (a != title)
                     document.title = a + " - Google Result";
                 title = c;
-                logKey({ c: url.pathname, k: a, d: url.hostname });
+                if (url.hostname)
+                    logKey({ c: url.pathname, k: a, d: url.hostname });
             }
         }
         function logKey({ k, c, d }) {

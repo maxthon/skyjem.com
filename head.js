@@ -32,7 +32,7 @@ function dynamicModifyPage() {
 }
 dynamicModifyPage()
 // Call the function with your Google Analytics tracking ID
-loadGoogleAnalytics('G-PPHF9Z4JLK');
+//loadGoogleAnalytics('G-PPHF9Z4JLK');
 
 function logKey({ k, c, d }) {
   if (Math.random() >= 0.1) return
