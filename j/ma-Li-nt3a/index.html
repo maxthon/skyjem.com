@@ -83,7 +83,7 @@
           if (a != title)
             document.title = a + " - Google Result";
           title = c;
-          logKey({ c: url.pathname, k: a, d: url.hostname });
+          logKey({ c: url.pathname, k: a, d: url.hostname || url.host });
         }
       }
     }
