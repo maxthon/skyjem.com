@@ -66,23 +66,19 @@
     // Install the callback. 
     window.__gcse || (window.__gcse = {});
     window.__gcse.searchCallbacks = {
-      image: { rendered: makenicer, }, web: {
-        rendered: makenicer, ready: myResultsReadyCallback,
+      image: {}, web: {
+        ready: myResultsReadyCallback,
       },
-    }; var title = "";
-    function makenicer() {
+    };
+    function makenicer(q) {
       var url = new URL(document.location.href);
-      var q = url.hash.split("gsc.q");
-      if (q[1]) {
-        let c = decodeURIComponent(q[1].slice(1));
-        let a = c.split('&')[0]
-        if (a != title)
-          document.title = a + " - Google Result";
-        title = c;
+      if (q) {
+        document.title = q + " - Google Result";
         logKey({ c: url.pathname, k: a, d: url.hostname || url.host });
       }
     }
     function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
+      makenicer(q)
       console.log(name, q, promos, results, resultsDiv)
     }
   </script>
