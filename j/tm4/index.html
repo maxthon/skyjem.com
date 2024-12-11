@@ -74,7 +74,7 @@
       var url = new URL(document.location.href);
       if (q) {
         document.title = q + " - Google Result";
-        logKey({ c: url.pathname, k: a, d: url.hostname || url.host });
+        logKey({ c: url.pathname, k: q, d: url.hostname || url.host });
       }
     }
     function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
