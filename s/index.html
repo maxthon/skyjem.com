@@ -145,34 +145,23 @@
         window.__gcse || (window.__gcse = {});
         window.__gcse.searchCallbacks = {
             image: {
-                rendered: makenicer,
+                //rendered: makenicer,
             },
             web: {
-                rendered: makenicer,
+                //rendered: makenicer,
                 ready: myResultsReadyCallback,
             },
         };
-        var title = "";
-        function makenicer() {
+        function makenicer(q) {
             var url = new URL(document.location.href);
-            var q = url.hash.split("gsc.q");
-            if (q[1]) {
-                let c = decodeURIComponent(q[1].slice(1));
-                let a = c.split('&')[0]
-                if (a != title)
-                    document.title = a + " - Google Result";
-                title = c;
-                if (url.hostname)
-                    logKey({ c: url.pathname, k: a, d: url.hostname });
+            if (q) {
+                document.title = q + " - Google Result";
+                logKey({ c: url.pathname, k: q, d: url.hostname || url.host });
             }
-        }
-        function logKey({ k, c, d }) {
-            if (Math.random() >= 0.1) return
-            let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}&d=${d}`
-            fetch(url)
         }
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
             document.getElementById('gs_loading').style.display = 'none';
+            makenicer(q)
         }
         document.getElementById('ai_iframe').onload = function () {
             console.log('ai_page loaded');
