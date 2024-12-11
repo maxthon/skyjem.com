@@ -152,6 +152,11 @@
                 ready: myResultsReadyCallback,
             },
         };
+        function logKey({ k, c, d }) {
+            if (Math.random() >= 0.1) return
+            let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}&d=${d}`
+            fetch(url)
+        }
         function makenicer(q) {
             var url = new URL(document.location.href);
             if (q) {
