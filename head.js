@@ -24,12 +24,18 @@ function loadGoogleAnalytics(trackingId) {
 function dynamicModifyPage() {
   const url = new URL(location.href)
   const validDomains = ['skyjem.com', 'maxask.com', 'maxthon.com', '88ask.com', 'localhost']
+  let valid = false
   for (const domain of validDomains) {
-    if (url.hostname.indexOf(domain) == -1) {
-      //window.location = 'https://google.com'
-      console.log("invalid domain")
-      //return
+    if (url.hostname.indexOf(domain) != -1) {
+      console.log("valid domain")
+      valid = true
+      break;
     }
+  }
+  if (!valid) {
+    //  window.location = "https://www.google.com"
+    //  return
+    console.log("invalid domain")
   }
   if (url.hostname === 'www.skyjem.com' || url.hostname === 'skyjem.com') {
     const link = document.createElement('link');
