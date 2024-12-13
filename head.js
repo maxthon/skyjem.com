@@ -26,8 +26,9 @@ function dynamicModifyPage() {
   const validDomains = ['skyjem.com', 'maxask.com', 'maxthon.com', '88ask.com', 'localhost']
   for (const domain of validDomains) {
     if (url.hostname.indexOf(domain) == -1) {
-      window.location = 'https://google.com'
-      return
+      //window.location = 'https://google.com'
+      console.log("invalid domain")
+      //return
     }
   }
   if (url.hostname === 'www.skyjem.com' || url.hostname === 'skyjem.com') {
