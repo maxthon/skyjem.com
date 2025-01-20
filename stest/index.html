@@ -41,129 +41,130 @@
         }
 
 
-    
+
         /* Skeleton Screen Styles */
-      :root {
-        --skeleton-bg: linear-gradient(
-          135deg,
-          #e0e0e0 25%,
-          #f5f5f5 50%,
-          #e0e0e0 75%
-        );
-        --skeleton-bg-size: 200% 100%;
-        --skeleton-animation: skeleton-loading 5s infinite;
-        --skeleton-animation-line: skeleton-loading 10s infinite;
-      }
-
-      .skeleton-result {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 16px 0px;
-        max-width: 100%;
-        margin: 0 auto;
-      }
-
-      .skeleton-item {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 16px;
-        background-color: #fff;
-        border-bottom: 1px solid #e9e9e9;
-      }
-
-      .skeleton-thumbnail {
-        width: 60px;
-        height: 60px;
-        border-radius: 8px;
-        background: var(--skeleton-bg);
-        background-size: var(--skeleton-bg-size);
-        animation: var(--skeleton-animation);
-      }
-
-      .skeleton-content {
-        flex: 1;
-      }
-
-      .skeleton-title {
-        width: 60%;
-        height: 16px;
-        margin-bottom: 12px;
-        background: var(--skeleton-bg);
-        background-size: var(--skeleton-bg-size);
-        border-radius: 4px;
-        animation: var(--skeleton-animation-line);
-      }
-
-      .skeleton-text {
-        width: 100%;
-        height: 14px;
-        margin-bottom: 8px;
-        background: var(--skeleton-bg);
-        background-size: var(--skeleton-bg-size);
-        border-radius: 4px;
-        animation: var(--skeleton-animation-line);
-      }
-
-      .skeleton-tabs {
-        display: flex;
-        gap: 4px;
-        border-bottom: 1px solid #e9e9e9;
-      }
-
-      .skeleton-tab {
-        display: flex;
-        width: 72px;
-        height: 16px;
-        margin: 16px 0 16px 16px;
-        border-radius: 4px;
-        background: var(--skeleton-bg);
-        background-size: var(--skeleton-bg-size);
-        animation: var(--skeleton-animation-line);
-      }
-
-      .skeleton-search {
-        padding: 20px 0 10px;
-        border-bottom: 1px solid #e9e9e9;
-      }
-
-      .skeleton-searchbox {
-        max-width: 400px;
-        height: 30px;
-        border-radius: 22px;
-        margin: 0 16px;
-        background: var(--skeleton-bg);
-        background-size: var(--skeleton-bg-size);
-        animation: var(--skeleton-animation-line);
-      }
-
-      .skeleton-text:last-child {
-        width: 80%;
-      }
-
-      @media (min-width: 1369px) {
-        .skeleton-searchbox {
-          margin-left: 188px;
+        :root {
+            --skeleton-bg: linear-gradient(135deg,
+                    #e0e0e0 25%,
+                    #f5f5f5 50%,
+                    #e0e0e0 75%);
+            --skeleton-bg-size: 200% 100%;
+            --skeleton-animation: skeleton-loading 5s infinite;
+            --skeleton-animation-line: skeleton-loading 10s infinite;
         }
+
+        .skeleton-result {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 16px 0px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .skeleton-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background-color: #fff;
+            border-bottom: 1px solid #e9e9e9;
+        }
+
+        .skeleton-thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background: var(--skeleton-bg);
+            background-size: var(--skeleton-bg-size);
+            animation: var(--skeleton-animation);
+        }
+
+        .skeleton-content {
+            flex: 1;
+        }
+
+        .skeleton-title {
+            width: 60%;
+            height: 16px;
+            margin-bottom: 12px;
+            background: var(--skeleton-bg);
+            background-size: var(--skeleton-bg-size);
+            border-radius: 4px;
+            animation: var(--skeleton-animation-line);
+        }
+
+        .skeleton-text {
+            width: 100%;
+            height: 14px;
+            margin-bottom: 8px;
+            background: var(--skeleton-bg);
+            background-size: var(--skeleton-bg-size);
+            border-radius: 4px;
+            animation: var(--skeleton-animation-line);
+        }
+
         .skeleton-tabs {
-          padding-left: 185px;
-          padding-right: calc(30vw - 170px);
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid #e9e9e9;
         }
-        .skeleton-mainarea {
-          width: 70vw;
-          margin-left: 172px;
-        }
-      }
 
-      @keyframes skeleton-loading {
-        0% {
-          background-position: 300% 0;
+        .skeleton-tab {
+            display: flex;
+            width: 72px;
+            height: 16px;
+            margin: 16px 0 16px 16px;
+            border-radius: 4px;
+            background: var(--skeleton-bg);
+            background-size: var(--skeleton-bg-size);
+            animation: var(--skeleton-animation-line);
         }
-        100% {
-          background-position: -300% 0;
+
+        .skeleton-search {
+            padding: 20px 0 10px;
+            border-bottom: 1px solid #e9e9e9;
         }
-      }
+
+        .skeleton-searchbox {
+            max-width: 400px;
+            height: 30px;
+            border-radius: 22px;
+            margin: 0 16px;
+            background: var(--skeleton-bg);
+            background-size: var(--skeleton-bg-size);
+            animation: var(--skeleton-animation-line);
+        }
+
+        .skeleton-text:last-child {
+            width: 80%;
+        }
+
+        @media (min-width: 1369px) {
+            .skeleton-searchbox {
+                margin-left: 188px;
+            }
+
+            .skeleton-tabs {
+                padding-left: 185px;
+                padding-right: calc(30vw - 170px);
+            }
+
+            .skeleton-mainarea {
+                width: 70vw;
+                margin-left: 172px;
+            }
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 300% 0;
+            }
+
+            100% {
+                background-position: -300% 0;
+            }
+        }
     </style>
 </head>
 
@@ -172,68 +173,69 @@
     <!-- 骨架屏加载动画 -->
     <div class="skeleton" id="loading_skeleton">
         <div class="skeleton-search">
-          <div class="skeleton-logo"></div>
-          <div class="skeleton-searchbox"></div>
+            <div class="skeleton-logo"></div>
+            <div class="skeleton-searchbox"></div>
         </div>
         <div class="skeleton-tabs">
-          <div class="skeleton-tab"></div>
-          <div class="skeleton-tab"></div>
+            <div class="skeleton-tab"></div>
+            <div class="skeleton-tab"></div>
         </div>
         <div class="skeleton-mainarea">
-          <div class="skeleton-result">
-            <div class="skeleton-item">
-              <div class="skeleton-content">
-                <div class="skeleton-title"></div>
-                <div class="skeleton-text"></div>
-                <div class="skeleton-text"></div>
-              </div>
-              <div class="skeleton-thumbnail"></div>
+            <div class="skeleton-result">
+                <div class="skeleton-item">
+                    <div class="skeleton-content">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-thumbnail"></div>
+                </div>
+
+                <div class="skeleton-item">
+                    <div class="skeleton-content">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-thumbnail"></div>
+                </div>
+
+                <div class="skeleton-item">
+                    <div class="skeleton-content">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-thumbnail"></div>
+                </div>
+
+                <div class="skeleton-item">
+                    <div class="skeleton-content">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-thumbnail"></div>
+                </div>
             </div>
-  
-            <div class="skeleton-item">
-              <div class="skeleton-content">
-                <div class="skeleton-title"></div>
-                <div class="skeleton-text"></div>
-                <div class="skeleton-text"></div>
-              </div>
-              <div class="skeleton-thumbnail"></div>
-            </div>
-  
-            <div class="skeleton-item">
-              <div class="skeleton-content">
-                <div class="skeleton-title"></div>
-                <div class="skeleton-text"></div>
-                <div class="skeleton-text"></div>
-              </div>
-              <div class="skeleton-thumbnail"></div>
-            </div>
-  
-            <div class="skeleton-item">
-              <div class="skeleton-content">
-                <div class="skeleton-title"></div>
-                <div class="skeleton-text"></div>
-                <div class="skeleton-text"></div>
-              </div>
-              <div class="skeleton-thumbnail"></div>
-            </div>
-          </div>
         </div>
     </div>
     <div id="result" hidden>
         <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
             <div id="glogo" width="156"></div>
             <div class="searchboxarea">
-    
-                <script async src="https://cse.google.com/cse.js?cx=22817e68f62616f16"></script>
+
+                <script async src="https://cse.google.com/cse.js?cx=b59d72e777b7749d2"></script>
                 <!-- <script async src="https://cse.google.com/cse.js?cx=ba91bb0372cd88050"></script> -->
-    
-                
+
+
                 <div class="gcse-searchbox"></div>
             </div>
         </div>
         <!--修改Hosts文件  maxask.com-->
         <div class="tabarea" id="tabarea">
-            <div class="tabitem tabitem-inactive hide" id="result_tab_0">Web</div><!--激活状态是tabitem-active 不激活是tabitem-inactive-->
+            <div class="tabitem tabitem-inactive hide" id="result_tab_0">Web</div>
+            <!--激活状态是tabitem-active 不激活是tabitem-inactive-->
             <div class="tabitem tabitem-inactive hide" id="result_tab_1">Image</div>
             <div class="tabitem tabitem-inactive" id="result_tab_2">AI Result</div>
             <div class="hide" id="gsloaded_show_header">
@@ -241,7 +243,7 @@
             </div>
 
         </div>
-    
+
         <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
             <div class="loading-wrapper" id="gs_loading">
                 <div class="loading"></div>
@@ -249,7 +251,7 @@
             <div class="gcse-searchresults" style="flex:60%"></div>
             <div class="sidebar"><!-- Side Area --></div>
         </div>
-    
+
         <div class="aiarea hide" id="aiarea"><!--ai对话框 显示隐藏增加和删除class=hide -->
             <div class="hint hide" id="hint"> <!-- 提示框，显示添加show删除hide，隐藏添加hide，删除show-->
                 <span class="hint-text">Tip: End your search with '?' for an instant AI query.</span>
@@ -416,7 +418,7 @@
         const defaultOrder = '201';
         //修改defaultOrder的值即可自定义默认的tab顺序，#后参数tab_order可以通过url参数定义web顺序。 0:web; 1:image 2:aisearch
 
-        if (order==null) order = defaultOrder;
+        if (order == null) order = defaultOrder;
         if (order) {
             const tab_order = order.split('');
             const tabarea = document.getElementById('tabarea');
@@ -455,7 +457,7 @@
         if (tabid == 2) {
             showAISearch(ai_q);
             document.getElementById('loading_skeleton').style.display = 'none';
-            document.getElementById('result').style.display='block';
+            document.getElementById('result').style.display = 'block';
         } else {
             showGoogleResult(tabid);
 
@@ -506,27 +508,27 @@
             //GoogleSerach自带的tab会被包裹在一个calss="gsc_tabarea"的div里,用于控制是否显示tab
             // 如果是gsc-tabsArea，显示tab，如果是gsc-tabsAreaInvisible，隐藏tab
             //div里的每个tab会自带一个role="tab"的属性，暂时靠属性数量来判断是否含有图片tab
-            let gsr ;
+            let gsr;
             let gsr_hidetab = document.getElementsByClassName('gsc-tabsAreaInvisible');
             let gsr_showtab = document.getElementsByClassName('gsc-tabsArea');
-            if(gsr_hidetab.length > 0){
+            if (gsr_hidetab.length > 0) {
                 gsr = gsr_hidetab;
             }
-            else if(gsr_showtab.length>0){
+            else if (gsr_showtab.length > 0) {
                 gsr = gsr_showtab;
-            }else{
+            } else {
                 document.getElementById('loading_skeleton').style.display = 'none';
-                document.getElementById('result').style.display='block';
+                document.getElementById('result').style.display = 'block';
                 showAISearch();
                 return;
             }
             let gtabs = gsr[0].querySelectorAll('[role="tab"]');
 
             //显示图片tab
-            if(gtabs.length > 1){
+            if (gtabs.length > 1) {
                 document.getElementById('result_tab_1').classList.remove('hide');
             }
-            if(gtabs.length>0){
+            if (gtabs.length > 0) {
                 const resultTab0 = document.getElementById('result_tab_0');
                 const gsloadedShowHeader = document.getElementById('gsloaded_show_header');
 
@@ -544,7 +546,7 @@
             }
 
             document.getElementById('loading_skeleton').style.display = 'none';
-            document.getElementById('result').style.display='block';
+            document.getElementById('result').style.display = 'block';
             //因为修改的是google加载的组件，所以必须在window.onload里做google组件的监听，不然找不到id
             document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
             let gs_input = document.getElementById('gsc-i-id1');
