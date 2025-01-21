@@ -170,6 +170,27 @@
             document.getElementById('gs_loading').style.display = 'none';
             makenicer(q)
         }
+        function insertAdsAfterSearch() {
+            // 获取搜索结果容器
+            const searchResults = document.querySelectorAll('.gsc-webResult');
+
+            if (searchResults.length > 0) {
+                // 例如，在第3条搜索结果后插入广告
+                const insertAfterIndex = 2; // 索引从0开始
+                if (searchResults.length > insertAfterIndex) {
+                    const targetResult = searchResults[insertAfterIndex];
+
+                    // 创建广告容器
+                    const adContainer = document.createElement('div');
+                    adContainer.className = 'in-feed-ad';
+                    const innerHTML = `<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gu-c+w-3l+7t" data-ad-client="ca-pub-6532848030710435" data-ad-slot="2052969803"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});` + "<\/script>";
+                    // 插入 AdSense In-feed 广告代码
+                    adContainer.innerHTML = innerHTML;
+                    // 插入广告到指定位置
+                    targetResult.parentNode.insertBefore(adContainer, targetResult.nextSibling);
+                }
+            }
+        }
         document.getElementById('ai_iframe').onload = function () {
             console.log('ai_page loaded');
             document.getElementById('ai_loading').style.display = 'none';
