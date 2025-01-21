@@ -97,8 +97,6 @@
             background-color: #00000010;
         }
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6532848030710435"
-        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -107,6 +105,8 @@
     <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
         <div id="glogo" width="156"></div>
         <div class="searchboxarea">
+
+            <!--<script async src="https://cse.google.com/cse.js?cx=partner-pub-2698861478625135:9080238447"> //mx-test -->
             <script async src="https://cse.google.com/cse.js?cx=55bbe9025b3fa4c91"></script>
             </script>
             <div class="gcse-searchbox"></div>
@@ -209,10 +209,10 @@
             // 构造新的哈希字符串
             let newHash = '';
             for (const [key, value] of params.entries()) {
-                newHash += `${key}=${value}& `
+                newHash += `${key}=${value}&`
             }
             newHash = newHash.slice(0, -1); // 删除最后一个字符
-            window.location.hash = `#${newHash} `; // 更新 URL 的哈希部分
+            window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
         }
         //改变tab按钮的选中和非选中样式，
         function showTab(showtabid) {
@@ -223,8 +223,8 @@
             document.getElementById('result_tab_0').classList.remove('tabitem-active');
             document.getElementById('result_tab_1').classList.remove('tabitem-active');
             document.getElementById('result_tab_2').classList.remove('tabitem-active');
-            document.getElementById(`result_tab_${showtabid} `).classList.remove('tabitem-inactive');
-            document.getElementById(`result_tab_${showtabid} `).classList.add('tabitem-active');
+            document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
+            document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
             tabid = showtabid;
             setHashParamValue('gsc.tab', tabid);
         }
