@@ -164,7 +164,7 @@
                 logKey({ c: url.pathname, k: q, d: url.hostname || url.host });
             }
         }
-        function insertAdsAfterSearch() {
+        /*function insertAdsAfterSearch() {
             // 获取搜索结果容器
             const searchResults = document.querySelectorAll('.gsc-webResult');
 
@@ -184,7 +184,7 @@
                     targetResult.parentNode.insertBefore(adContainer, targetResult.nextSibling);
                 }
             }
-        }
+        }*/
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
             document.getElementById('gs_loading').style.display = 'none';
             makenicer(q)
