@@ -97,7 +97,8 @@
             background-color: #00000010;
         }
     </style>
-
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6532848030710435"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -106,7 +107,7 @@
     <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
         <div id="glogo" width="156"></div>
         <div class="searchboxarea">
-            <script async src="https://cse.google.com/cse.js?cx=7209eb8a80d2c4a85"></script>
+            <script async src="https://cse.google.com/cse.js?cx=55bbe9025b3fa4c91"></script>
             </script>
             <div class="gcse-searchbox"></div>
         </div>
@@ -163,27 +164,6 @@
                 logKey({ c: url.pathname, k: q, d: url.hostname || url.host });
             }
         }
-        /*function insertAdsAfterSearch() {
-            // 获取搜索结果容器
-            const searchResults = document.querySelectorAll('.gsc-webResult');
-
-            if (searchResults.length > 0) {
-                // 例如，在第3条搜索结果后插入广告
-                const insertAfterIndex = 2; // 索引从0开始
-                if (searchResults.length > insertAfterIndex) {
-                    const targetResult = searchResults[insertAfterIndex];
-
-                    // 创建广告容器
-                    const adContainer = document.createElement('div');
-                    adContainer.className = 'in-feed-ad';
-                    const innerHTML = `<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gu-c+w-3l+7t" data-ad-client="ca-pub-6532848030710435" data-ad-slot="2052969803"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});` + "<\/script>";
-                    // 插入 AdSense In-feed 广告代码
-                    adContainer.innerHTML = innerHTML;
-                    // 插入广告到指定位置
-                    targetResult.parentNode.insertBefore(adContainer, targetResult.nextSibling);
-                }
-            }
-        }*/
         function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
             document.getElementById('gs_loading').style.display = 'none';
             makenicer(q)
