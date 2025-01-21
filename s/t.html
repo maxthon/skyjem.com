@@ -121,12 +121,6 @@
     </div>
 
     <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
-        <div><ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gu-c+w-3l+7t"
-                data-ad-client="ca-pub-6532848030710435" data-ad-slot="2052969803"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
         <div class="loading-wrapper" id="gs_loading">
             <div class="loading"></div>
         </div>
@@ -170,14 +164,37 @@
                 logKey({ c: url.pathname, k: q, d: url.hostname || url.host });
             }
         }
-        function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
-            document.getElementById('gs_loading').style.display = 'none';
-            makenicer(q)
-        }
-        document.getElementById('ai_iframe').onload = function () {
-            console.log('ai_page loaded');
-            document.getElementById('ai_loading').style.display = 'none';
-        }
+        function insertAdsAfterSearch() {
+            // 获取搜索结果容器
+            const searchResults = document.querySelectorAll('.gsc-webResult');
+
+            if (searchResults.length > 0) {
+                // 例如，在第3条搜索结果后插入广告
+                const insertAfterIndex = 2; // 索引从0开始
+                if (searchResults.length > insertAfterIndex) {
+                    const targetResult = searchResults[insertAfterIndex];
+
+                    // 创建广告容器
+                    const adContainer = document.createElement('div');
+                    adContainer.className = 'in-feed-ad';
+
+                    // 插入 AdSense In-feed 广告代码
+                    adContainer.innerHTML = `<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gu-c+w-3l+7t" data-ad-client="ca-pub-6532848030710435" data-ad-slot="2052969803"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>`;
+
+    // 插入广告到指定位置
+    targetResult.parentNode.insertBefore(adContainer, targetResult.nextSibling);
+    }
+    }
+    }
+    function myResultsReadyCallback(name, q, promos, results, resultsDiv) {
+    document.getElementById('gs_loading').style.display = 'none';
+    makenicer(q)
+    }
+    document.getElementById('ai_iframe').onload = function () {
+    console.log('ai_page loaded');
+    document.getElementById('ai_loading').style.display = 'none';
+    }
     </script>
 
     <script>
@@ -215,10 +232,10 @@
             // 构造新的哈希字符串
             let newHash = '';
             for (const [key, value] of params.entries()) {
-                newHash += `${key}=${value}&`
+                newHash += `${ key }=${ value }& `
             }
             newHash = newHash.slice(0, -1); // 删除最后一个字符
-            window.location.hash = `#${newHash}`; // 更新 URL 的哈希部分
+            window.location.hash = `#${ newHash } `; // 更新 URL 的哈希部分
         }
         //改变tab按钮的选中和非选中样式，
         function showTab(showtabid) {
@@ -229,8 +246,8 @@
             document.getElementById('result_tab_0').classList.remove('tabitem-active');
             document.getElementById('result_tab_1').classList.remove('tabitem-active');
             document.getElementById('result_tab_2').classList.remove('tabitem-active');
-            document.getElementById(`result_tab_${showtabid}`).classList.remove('tabitem-inactive');
-            document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
+            document.getElementById(`result_tab_${ showtabid } `).classList.remove('tabitem-inactive');
+            document.getElementById(`result_tab_${ showtabid } `).classList.add('tabitem-active');
             tabid = showtabid;
             setHashParamValue('gsc.tab', tabid);
         }
