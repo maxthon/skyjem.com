@@ -186,11 +186,6 @@
                     // 创建广告容器
                     const adContainer = document.createElement('div');
                     adContainer.className = 'in-feed-ad';
-                    /*const innerHTML = `
-    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gu-c+w-3l+7t"
-        data-ad-client="ca-pub-6532848030710435" data-ad-slot="2052969803"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});\/script>`; */
-                    // 插入 AdSense In-feed 广告代码
                     // 创建 <ins> 元素
                     const ins = document.createElement('ins');
                     ins.className = 'adsbygoogle';
@@ -199,9 +194,9 @@
                     ins.setAttribute('data-ad-layout-key', '-gu-c+w-3l+7t');
                     ins.setAttribute('data-ad-client', 'ca-pub-6532848030710435');
                     ins.setAttribute('data-ad-slot', '2052969803');
-                    adContainer.appendChild(ins);
+                    //adContainer.appendChild(ins);
                     // 插入广告到指定位置
-                    targetResult.parentNode.insertBefore(adContainer, targetResult.nextSibling);
+                    targetResult.parentNode.insertBefore(ins, targetResult.nextSibling);
                     (adsbygoogle = window.adsbygoogle || []).push({})
 
                 }
