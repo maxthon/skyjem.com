@@ -434,7 +434,8 @@
 
         window.onload = () => {
             //因为修改的是google加载的组件，所以必须在window.onload里做google组件的监听，不然找不到id
-            document.getElementsByClassName('gsc-search-button gsc-search-button-v2')[0].addEventListener('click', back2Search);
+            const searchButton = document.getElementById("searchButton");
+            searchButton.addEventListener('click', back2Search);
             let gs_input = document.getElementById('search-box');
             gs_input.addEventListener('keydown', function (event) {
                 // 检查是否按下了回车键（Enter 键）
