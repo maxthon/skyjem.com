@@ -279,6 +279,10 @@
         });
     </script>
     <script>
+        function getSearchKeyword() {
+            var query = document.getElementById('search-box').value;
+            return query;
+        }
         // Helper function to set a cookie
         function setCookie(name, value, days) {
             const date = new Date();
@@ -368,7 +372,7 @@
     <script>
         const aiiframe = document.getElementById('ai_iframe');
         var tabid = getHashParamValue('gsc.tab');
-        var ai_q = getHashParamValue('gsc.q');
+        var ai_q = getSearchKeyword();
         var channel_q = new URLSearchParams(window.location.search).get('q');
         var isShowedHint = getCookie('isShowedHint');
         var showHeader = false;//是否显示header
@@ -404,7 +408,7 @@
 
 
         document.getElementById('result_tab_2').addEventListener('click', function () {
-            ai_q = getHashParamValue('gsc.q');
+            ai_q = getSearchKeyword();
             showAISearch(ai_q);
         });
 
