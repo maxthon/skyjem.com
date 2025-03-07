@@ -203,7 +203,6 @@
     const searchButton = document.getElementById("searchButton");
     const tools = document.getElementById("tools");
 
-
     // Show/hide the entire 'tools' div based on input content
     searchInput.addEventListener("input", () => {
       if (searchInput.value.trim()) {
@@ -267,7 +266,6 @@
       if (searchQuery) {
         document.getElementById('search-box').value = searchQuery;
         clearButton.style.display = "block";
-
       }
     })();
     document.getElementById('search-form').addEventListener('submit', function (e) {

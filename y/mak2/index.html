@@ -260,10 +260,12 @@
   <script>
     // Fill search box with keyword from URL
     (function () {
+      const clearButton = document.getElementById("clearButton");
       const url = new URL(window.location.href);
       const searchQuery = url.searchParams.get('q');
       if (searchQuery) {
         document.getElementById('search-box').value = searchQuery;
+        clearButton.style.display = "block";
       }
     })();
     document.getElementById('search-form').addEventListener('submit', function (e) {
