@@ -1,50 +1,392 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Search The Web</title>
-    <style type="text/css">
-        body,
-        html {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search + AI</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+            height: 100vh;
             overflow: hidden;
         }
 
-        #content {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            top: 0px;
+        /* Logo 样式 */
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            color: #141749;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            flex-shrink: 1;
+            /* 允许在小屏幕时缩小或隐藏 */
+        }
+
+        .logo img {
+            height: 8rem;
+            max-width: 80%;
+            object-fit: contain;
+        }
+
+        /* 搜索框容器 */
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            flex-shrink: 0;
+            /* 搜索框永远不会隐藏 */
+            z-index: 10;
+            /* 确保搜索框始终在最前面 */
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+
+        .search-btn {
+            border: none;
+            width: 72px;
+            height: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .search-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .search-btn:hover {
+            background: #bebebe;
+        }
+
+        /* 问题区域容器 */
+        .question-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            width: 90%;
+            margin-top: 20px;
+            flex-shrink: 1;
+            /* 允许在空间不足时缩小或隐藏 */
+        }
+
+        /* 问题按钮样式 */
+        .question-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .question-item:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            background: #f0f8ff;
+        }
+
+        .question-item span {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* Widgets 样式 */
+        .widgets {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            flex-shrink: 1;
+            /* 允许在空间不足时缩小或隐藏 */
+        }
+
+        .widget-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .widget-icon:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 600px) {
+            .question-item {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .widgets {
+                display: none;
+                /* 小屏幕优先隐藏 Widgets */
+            }
+        }
+
+        @media (max-height: 400px) {
+            .question-container {
+                display: none;
+                /* 小屏幕再隐藏问题列表 */
+            }
+        }
+
+        @media (max-height: 300px) {
+            .logo {
+                display: none;
+                /* 最后隐藏 Logo */
+            }
         }
     </style>
+    <script>
+        const url = new URL(location.href)
+        if (url.hostname === '88ask.com') {
+            location.href = "https://blog.88ask.com"
+        }
+    </script>
 </head>
 
 <body>
-    <div id="content">
-        <iframe id="mainframe" width="100%" height="100%" frameborder="0" src="./_subtab/index.html"></iframe>
+    <!-- Logo -->
+    <div class="logo" id="logo">
+        Search + AI
     </div>
+
+    <!-- 搜索框 -->
+    <div class="search-container">
+        <input class="search-box" type="search" id="searchInput" placeholder="Use '?' at the end to search smarter" />
+        <button class="search-btn" id="searchButton">
+            <img src="smart-search.svg" alt="Search Icon">
+        </button>
+    </div>
+
+    <!-- 问题列表 -->
+    <div class="question-container" id="questionList">
+        <!-- 问题项动态加载 -->
+    </div>
+
+    <!-- Widgets 快捷入口 -->
+    <div class="widgets">
+        <a href="https://www.youtube.com/" target="_blank">
+            <img class="widget-icon" src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube"
+                target='_blank'>
+        </a>
+        <a href="https://www.spotify.com/" target="_blank">
+            <img class="widget-icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111624.png" alt="Spotify"
+                target='_blank'>
+        </a>
+        <a href="https://mail.google.com/" target="_blank">
+            <img class="widget-icon" src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail"
+                target='_blank'>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank">
+            <img class="widget-icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
+                target='_blank'>
+        </a>
+        <a href="https://x.com/" target="_blank">
+            <svg class="widget-icon" viewBox="0 0 24 24" fill="black">
+                <g>
+                    <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                    </path>
+                </g>
+            </svg>
+        </a>
+    </div>
+
     <script>
-        const url = new URL(location.href)
-        const elm = document.querySelector("#mainframe")
-        if (url.hostname === 'www.skyjem.com' || url.hostname === 'skyjem.com') {
-            document.title = "SkyJem - Search The Web"
-            const link = document.createElement('link');
-            link.rel = 'shortcut icon'
-            link.href = "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 489.142 489.142' style='enable-background:new 0 0 489.142 489.142;' xml:space='preserve'%3E%3Cg%3E%3Cpath style='fill:%23005ECE;' d='M489.142,460.858L364.614,336.329c-8.494,10.315-17.97,19.791-28.284,28.284l124.529,124.529 L489.142,460.858z'/%3E%3Cpath style='fill:%239BFBFF;' d='M205.743,371.485V40C114.352,40,40,114.352,40,205.743S114.352,371.485,205.743,371.485z'/%3E%3Cpath style='fill:%2346F8FF;' d='M371.485,205.743C371.485,114.352,297.133,40,205.743,40v331.485 C297.133,371.485,371.485,297.133,371.485,205.743z'/%3E%3Cpath style='fill:%232488FF;' d='M364.614,336.329c29.272-35.548,46.872-81.05,46.872-130.587C411.485,92.296,319.189,0,205.743,0 S0,92.296,0,205.743s92.296,205.743,205.743,205.743c49.537,0,95.039-17.6,130.587-46.872 C346.644,356.12,356.12,346.644,364.614,336.329z M205.743,40c91.391,0,165.743,74.352,165.743,165.743 s-74.352,165.743-165.743,165.743S40,297.133,40,205.743S114.352,40,205.743,40z'/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A"
-            document.head.appendChild(link)
-            document.querySelector("#mainframe").src = "./_subtab/skyjem.html"
-        }
-        if (url.hostname === '88ask.com') {
-            location.href = "./mxnow/"
-        }
-        if (url.hostname === 'www.maxask.com' || url.hostname === 'maxask.com') {
-            location.href = "./mxnow/"
-        }
+        const DOMAIN = "https://www.maxask.com/s/"; // 设置搜索结果域名变量
+
+        // 搜索功能
+        // 定义搜索功能相关的元素
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+
+        // 标记是否处于中文输入法的选字状态
+        let isComposing = false;
+
+        // 搜索功能逻辑
+        const handleSearch = () => {
+            const searchWord = searchInput.value.trim(); // 获取搜索框的值
+            if (searchWord) {
+                // 构建搜索URL，tab_order默认为012 (web, image, aisearch)
+                const searchUrl = `${DOMAIN}?q=${encodeURIComponent(searchWord)}&tab_order=012`;
+                window.location.href = searchUrl; // 跳转到搜索页面
+            } else {
+                alert("Please enter a search term!");
+            }
+        };
+
+        // 点击搜索按钮时触发搜索
+        searchButton.addEventListener("click", handleSearch);
+
+        // 键盘事件监听（回车键触发搜索）
+        searchInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" && !isComposing) {
+                handleSearch(); // 如果未处于中文输入法状态，则执行搜索
+            }
+        });
+
+        // 输入法事件监听，避免中文输入法的回车键干扰
+        searchInput.addEventListener("compositionstart", () => {
+            isComposing = true; // 进入中文输入法选字状态
+        });
+
+        searchInput.addEventListener("compositionend", () => {
+            isComposing = false; // 离开选字状态
+        });
+
+        // 问题列表数据
+        const questions = [
+            //日常问题
+            { zh: "📝 写一封正式的求职信应该注意什么？", en: "📝 How to write a formal cover letter?" },
+            { zh: "⏰ 有哪些实用的时间管理方法？", en: "⏰ What are practical time management tips?" },
+            { zh: "🍳 推荐几道简单又健康的早餐食谱？", en: "🍳 What are simple healthy breakfast ideas?" },
+            { zh: "💡 如何提高记忆力？", en: "💡 How to improve memory?" },
+            { zh: "📚 有哪些提高效率的学习方法？", en: "📚 What are effective study methods?" },
+            { zh: "💡 如何快速学习新技能？", en: "💡 How to learn new skills fast?" },
+            { zh: "📖 推荐几本经典的好书？", en: "📖 What are some classic books to read?" },
+            { zh: "💼 面试时应该注意什么？", en: "💼 What to focus on during an interview?" },
+            { zh: "🌍 学习一门新语言的最佳方法是什么？", en: "🌍 What is the best way to learn a language?" },
+            { zh: "💻 有哪些提高工作效率的工具？", en: "💻 What are useful work tools?" },
+            { zh: "📅 如何安排一周的学习计划？", en: "📅 How to schedule a weekly study plan?" },
+            { zh: "💰 有哪些适合初学者的理财建议？", en: "💰 What are beginner finance tips?" },
+            { zh: "🎨 如何培养创意思维？", en: "🎨 How to develop creative thinking?" },
+            { zh: "📷 拍摄高质量照片需要注意什么？", en: "📷 How to take high-quality photos?" },
+            { zh: "🚀 如何提升日常生活的效率？", en: "🚀 How to be more efficient daily?" },
+            { zh: "✈️ 如何制定一份高效的旅行计划？", en: "✈️ How to plan an efficient trip?" },
+            { zh: "💪 日常生活中有哪些简单的健身方法？", en: "💪 What are simple fitness tips?" },
+            { zh: "😌 快速减压有哪些方法？", en: "😌 What are quick stress relief methods?" },
+            { zh: "🍴 推荐几道适合家庭晚餐的菜谱？", en: "🍴 What are good dinner recipes?" },
+            { zh: "🌙 快速入睡的方法有哪些？", en: "🌙 How to fall asleep quickly?" },
+
+            //科学问题
+            { zh: "🌌 宇宙的起源是什么？", en: "🌌 What is the origin of the universe?" },
+            { zh: "🔬 人类基因是如何影响健康的？", en: "🔬 How do human genes affect health?" },
+            { zh: "🚀 火星探索的意义是什么？", en: "🚀 What is the significance of Mars exploration?" },
+            { zh: "🌍 全球变暖有哪些解决方法？", en: "🌍 What are the solutions to global warming?" },
+            { zh: "🔬 克隆技术的未来发展如何？", en: "🔬 What is the future of cloning technology?" },
+            { zh: "⚡ 量子计算机如何工作？", en: "⚡ How does a quantum computer work?" },
+            { zh: "💊 基因疗法如何治疗疾病？", en: "💊 How does gene therapy cure diseases?" },
+            { zh: "🌊 深海探索能带来什么发现？", en: "🌊 What discoveries can deep-sea exploration bring?" },
+            { zh: "☄️ 小行星撞击地球的可能性有多大？", en: "☄️ How likely is an asteroid to hit Earth?" },
+            { zh: "🌟 黑洞会吞噬所有物质吗？", en: "🌟 Do black holes consume everything?" },
+
+            //艺术问题
+            { zh: "🎨 抽象艺术的核心是什么？", en: "🎨 What is the essence of abstract art?" },
+            { zh: "🎭 戏剧表演如何影响观众？", en: "🎭 How does theater performance affect the audience?" },
+            { zh: "📷 摄影如何捕捉情感？", en: "📷 How does photography capture emotions?" },
+            { zh: "🎵 古典音乐对大脑有什么影响？", en: "🎵 What is the effect of classical music on the brain?" },
+            { zh: "🎨 艺术创作如何表达情感？", en: "🎨 How does art express emotions?" },
+            { zh: "🎥 电影导演如何讲述一个好故事？", en: "🎥 How does a film director tell a good story?" },
+            { zh: "🎨 色彩搭配如何影响艺术创作？", en: "🎨 How does color influence artistic creation?" },
+            { zh: "📚 文学作品如何塑造文化？", en: "📚 How does literature shape culture?" },
+            { zh: "🎻 为什么音乐被称为世界语言？", en: "🎻 Why is music called the universal language?" },
+
+            // 历史问题
+            { zh: "📜 古埃及文明是如何发展的？", en: "📜 How did ancient Egypt develop?" },
+            { zh: "🏰 中世纪的欧洲有哪些重要事件？", en: "🏰 What were key events in medieval Europe?" },
+            { zh: "⚔️ 第二次世界大战的主要原因是什么？", en: "⚔️ What caused World War II?" },
+            { zh: "💡 大航海时代带来了什么影响？", en: "💡 What was the impact of the Age of Exploration?" },
+            { zh: "💡 独立战争对美国历史的意义是什么？", en: "💡 What was the significance of the American Revolution?" },
+
+            // 社会问题
+            { zh: "🌍 全球化如何改变社会？", en: "🌍 How has globalization changed society?" },
+            { zh: "💡 社会公平如何实现？", en: "💡 How can social equity be achieved?" },
+            { zh: "💡 城市化带来了哪些问题？", en: "💡 What problems does urbanization bring?" },
+            { zh: "📢 社交媒体如何影响社会行为？", en: "📢 How does social media influence behavior?" },
+            { zh: "👨‍👩‍👧‍👦 家庭结构的变化有哪些影响？", en: "👨‍👩‍👧‍👦 How does family structure affect society?" },
+
+            // 经济问题
+            { zh: "📈 什么是通货膨胀？", en: "📈 What is inflation?" },
+            { zh: "💹 股票市场的基础知识是什么？", en: "💹 What are stock market basics?" },
+            { zh: "🏦 央行如何影响经济？", en: "🏦 How does a central bank affect the economy?" },
+            { zh: "💼 创业的最大挑战是什么？", en: "💼 What are the biggest challenges in starting a business?" },
+            { zh: "🌐 数字经济如何改变全球市场？", en: "🌐 How does the digital economy change markets?" },
+
+            // 体育问题
+            { zh: "⚽ 足球为何被称为世界第一运动？", en: "⚽ Why is football the world's top sport?" },
+            { zh: "🏀 篮球运动有哪些基本规则？", en: "🏀 What are the basic rules of basketball?" },
+            { zh: "💪 奥运会的历史意义是什么？", en: "💪 What is the significance of the Olympics?" },
+            { zh: "🎾 体育运动如何促进健康？", en: "🎾 How does sports promote health?" },
+            { zh: "🎾 网球比赛的基本策略是什么？", en: "🎾 What are basic tennis strategies?" },
+
+            // 文学问题
+            { zh: "📖 小说的核心要素是什么？", en: "📖 What are the key elements of a novel?" },
+            { zh: "📖 文学如何反映社会？", en: "📖 How does literature reflect society?" },
+            { zh: "📚 世界经典文学作品有哪些？", en: "📚 What are some world literary classics?" },
+            { zh: "🎭 悲剧与喜剧有何不同？", en: "🎭 What is the difference between tragedy and comedy?" },
+            { zh: "📖 如何写一首诗？", en: "📖 How to write a poem?" }
+        ];
+
+
+        // 动态加载问题
+        const questionList = document.getElementById("questionList");
+
+        const selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 4);
+
+        selectedQuestions.forEach((question) => {
+            const button = document.createElement("div");
+            button.classList.add("question-item");
+            button.innerHTML = `<span>${question.en.split(" ")[0]}</span>${question.en.split(" ").slice(1).join(" ")}`;
+
+            // 添加跳转功能，使用 `en` 字段构造搜索URL
+            button.onclick = () => {
+                const searchQuery = encodeURIComponent(question.en); // 将英文问题内容作为搜索关键词
+                const searchUrl = `${DOMAIN}?q=${searchQuery}&tab_order=012`; // 构造跳转URL
+                window.location.href = searchUrl; // 跳转到构造的URL
+            };
+            questionList.appendChild(button);
+        });
+
+        // 动态加载 Logo
+        const logo = document.getElementById("logo");
+        const logoImg = new Image();
+        logoImg.src = "main-pic.svg"; // 替换为你的 Logo 地址
+        logoImg.onload = () => {
+            logo.innerHTML = "";
+            logo.appendChild(logoImg);
+        };
     </script>
+    <!-- Cloudflare Pages Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "7aecead9a3a048ebbf606bfb73410fd9"}'></script>
 </body>
 
 </html>
